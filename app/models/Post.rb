@@ -22,7 +22,7 @@
 # | * | Logic Equiv. Bicond. | ???                   | Double Arrow Elim.  | <->E                  |
 # |   | Logic Equiv. Bicond. | ???                   | Negated<->          | Neg<->                |
 # |   | De Morgan's Quantif. | ???                   | Qualifier Exchange  | QE                    |
-# |   | Modbus Ponens        | ???                   | Impossible Anteced. | IA                    |
+# |   | Modbus Ponens        | ???                   | Arrow Elimination   | ->E                   |
 # |   | Modbus Tollens       | ???                   | Modus Tollendo Tol. | MTT                   |
 # |   | Hypothetical Syllog. | ???                   | Hypothetical Syllo. | HS                    |
 # |   | Disjunctive Syllog.  | ???                   | Wedge Elim.         | vE                    |
