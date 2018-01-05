@@ -6,9 +6,23 @@
  * Made By MaterializeCSS.com
  */
 
+.foot {
+  color: #ee6e73;
+}
+.foot-text {
+  color: #ffffff;
+}
+.hover-card:hover {
+  background-color: #29b6f6 !important;
+}
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+.title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
 }
