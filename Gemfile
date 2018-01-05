@@ -20,6 +20,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+#tzinfo for Windows
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Curb is used to curl the requests to logic.tamu.edu
 # gem 'curb', '~> 0.9.4'
