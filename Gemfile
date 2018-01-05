@@ -23,6 +23,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #tzinfo for Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+# Use curb to curl logic.tamu.edu
+# gem 'curb'
+# Use nokogiri to parse HTML
+# gem 'nokogiri'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

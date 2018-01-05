@@ -1,3 +1,5 @@
+# Textbook pages: 27 (48), 28 (49), 72 (93)
+
 # This doesn't connect to rails! It's just here to track until a proper backend is built.
 # For now, we're just testing a static dataset against logic.tamu.edu until we have an interface
 # test using `rails Post.rb`
