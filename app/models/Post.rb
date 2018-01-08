@@ -41,46 +41,125 @@
 
 
 # TODO
-# Calulate assumption sets from input
-# Capture errors about premise and conclusion being bad format
-# Reformat input to match logic.tamu.edu layout
-# Reformat logic.tamu.edu output to proper site response
-# Reformat logic.tamu.edu failure reasons to proper reasons
+# - TALK TO HUNTER ABOUT THAT ->I(3) SYNTAX
+# - WHO IS DOING INPUT CHECKING???
+# - Calulate assumption sets from input
+# - Capture errors about premise and conclusion being bad format
+# - Reformat input to match logic.tamu.edu layout
+# - Reformat logic.tamu.edu output to proper site response
+# - Reformat logic.tamu.edu failure reasons to proper reasons
+
+# - Incorrect assumption
+# - The expression is not well formed
+
+# ERROR TYPES
+# - Proof is not finished
+# - Premise is wrong
+# - Conclusion is wrong
+# - Incorrect usage of each individual rule
+# - Line numbers for use in proof are not correct (Can prove before send via assumption set calculation?)
+# - Assumption is made that isn't in premises and isn't resolved by the proof
 
 
 require 'curb'
 require 'nokogiri'
 
-# input_proof = "1 (1) P->Q A\r\n1 (2) ~Q->~P 1Trans\r\n3 (3) ~P->R A\r\n1,3 (4) ~Q->R 2,3HS\r\n5 (5) R->S A\r\n1,3,5 (6) ~Q->S 4,5HS\r\n"
-input_proof = "1 (1) P->Q A\r\n1 (2) ~Q->~P 1Trans\r\n3 (3) ~P->R A\r\n1,3 (4) ~Q->R 2,3HS\r\n5 (5) R->S A\r\n"
-body_front = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"premises\"\r\n\r\nP->Q,~P->R,R->Q\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"conclusion\"\r\n\r\n~Q->S\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"bsubmit\"\r\n\r\nCheck Proof\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"proof\"\r\n\r\n"
-body_back = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"void\"\r\n\r\nRule : Annotation : Pattern\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt--\r\n"
+def calc_assumption_set(input_proof)
+	length = input_proof.length
+	assumption_set = Array.new(length)
+	input_proof.each_with_index do |proof_line, index|
+		dependent_lines = proof_line[1].split(',')
+		if dependent_lines.nil? || dependent_lines.empty?
+			if proof_line[2] == "A" || proof_line[2] == "a"
+				assumption_set[index] = Array(index + 1)
+			else
+				# TODO Throw error!
+			end
+		else
+			assumption_set[index] = Array.new
+			dependent_lines.each do |line|
+				line_num = line.to_i - 1
+				assumption_set[index].concat(assumption_set[line_num])
+			end
+			assumption_set[index] = assumption_set[index].uniq # NOTE(Drew): This isn't sorted. Does it need to be?
 
+			#TODO Add handling for (#) assumption set removal
+			puts "proof_line[2] #{proof_line[2]}"
+			exclusion_match = proof_line[2][/(?<=\()[\d]+(?=\))/].to_i
+			puts exclusion_match
+			puts exclusion_match.class
+			if !exclusion_match.nil?
+				assumption_set[index].delete(exclusion_match)
+			end
+		end
+	end
 
-
-curl = Curl::Easy.new("http://logic.tamu.edu/cgi-bin/logic.pl")
-curl.headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
-curl.headers["Accept-Encoding"] = "gzip, deflate"
-curl.headers["Content-Type"] = "multipart/form-data; boundary=----WebKitFormBoundaryPM7uJXvB7ekZjPLt"
-curl.headers["DNT"] = "1"
-
-curl.encoding = 'gzip'
-curl.post_body = body_front + input_proof + body_back
-curl.http_post
-
-result_page = Nokogiri::HTML(curl.body_str)
-simple_failure = result_page.xpath('//center/font').last
-error_reason = result_page.xpath('//tr/td/p').last
-
-# puts result_page.text
-
-puts simple_failure.text
-
-if error_reason.text.include? "Congratulations"
-	puts "You did it!"
-else
-	error_params = result_page.xpath('//tr/td/p/tt').last
-	error_options = error_params.text.split(/[[:space:]]+/)
-	data = {"reason"=>error_reason.text.squeeze(" ").chomp("\n").chomp("\r"), "assumption_set"=>error_options[2], "line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
-	puts "You failed. Reason: #{data["reason"]} Assumption Set: #{data["assumption_set"]}, Line Number: #{data["line_number"]}, Sentence: #{data["sentence"]}, Annotation: #{data["annotation"]}"
+	puts "Assumption set 0: #{assumption_set[0]}"
+	puts "Assumption set 1: #{assumption_set[1]}"
+	puts "Assumption set 2: #{assumption_set[2]}"
+	puts "Assumption set 3: #{assumption_set[3]}"
+	puts "Assumption set 4: #{assumption_set[4]}"
+	puts "Assumption set 5: #{assumption_set[5]}"
 end
+
+def parse_input
+	input_premesis_str = "p->r,r->q"
+	input_conclusion_str =  "p->q"
+	input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,3", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
+
+	calc_assumption_set(input_proof)
+end
+
+def post(formatted_premesis, formatted_conclusion, formatted_proof)
+	input_premesis = "P->R,R->Q"
+	input_conclusion = "P->Q"
+	input_proof = "1       (1)   p->r           A\r\n2       (2)   r->q           A\r\n3       (3)   p              A\r\n1,3     (4)   r              1,3->E\r\n1,2,3   (5)   q              2,4->E\r\n1,2     (6)   p->q              5->I(3)\r\n"
+	body_stage_1 = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"premises\"\r\n\r\n"
+	body_stage_2 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"conclusion\"\r\n\r\n"
+	body_stage_3 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"bsubmit\"\r\n\r\nCheck Proof\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"proof\"\r\n\r\n"
+	body_stage_4 = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"void\"\r\n\r\nRule : Annotation : Pattern\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt--\r\n"
+
+
+
+	curl = Curl::Easy.new("http://logic.tamu.edu/cgi-bin/logic.pl")
+	curl.headers["Accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+	curl.headers["Accept-Encoding"] = "gzip, deflate"
+	curl.headers["Content-Type"] = "multipart/form-data; boundary=----WebKitFormBoundaryPM7uJXvB7ekZjPLt"
+	curl.headers["DNT"] = "1"
+
+	curl.encoding = 'gzip'
+	curl.post_body = body_stage_1 + input_premesis + body_stage_2 + input_conclusion + body_stage_3 + input_proof + body_stage_4
+	curl.http_post
+
+	result_page = Nokogiri::HTML(curl.body_str)
+	
+	error_reason = result_page.xpath("//tr/td/p/img[@src='http://logic.tamu.edu/Images/th_up.gif']").last
+	unless error_reason.nil?
+		puts "You did it!"
+		return
+	end
+
+	# Parse errors. First marron errors, then red ones, then traditional errors
+	error_reason = result_page.xpath("//font[@color='maroon']").text
+	unless error_reason.empty?
+		puts "Maroon case"
+		puts error_reason
+		return
+	end
+
+	# Hey. This is probably going to crash is some new edge case shows. Heads up. Should probably fix this.
+	error_reason = result_page.xpath("//font[@color='red']").first.parent.text
+	unless error_reason.empty?
+		puts "Red case"
+		error_message = result_page.xpath('//tr/td/p').last.text
+		error_options = error_reason.split(/[[:space:]]+/)
+		data = {"reason"=>error_message, "assumption_set"=>error_options[2], "line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
+		puts "You failed. Reason: #{data["reason"]} Assumption Set: #{data["assumption_set"]}, Line Number: #{data["line_number"]}, Sentence: #{data["sentence"]}, Annotation: #{data["annotation"]}"
+		return
+	end
+
+	puts "You missed an error."
+end
+
+parse_input()
+post("", "", "")
