@@ -1,35 +1,156 @@
 <h5>Logic</h5>
 
-<table id="t01">
-  <tr>
-    <th>Symbol</th>
-    <th>Example</th> 
-  </tr>
-  <tr>
-    <td>AND: &amp;</td>
-      <td>P&amp;R</td>
-  </tr>
-  <tr>
-    <td>OR: v</td>
-      <td>PvR</td>
-  </tr>
-  <tr>
-    <td>IMPLIES: -></td>
-      <td>P->R</td>
-  </tr>
-  <tr>
-    <td>NOT: ~</td>
-      <td>~P</td>
-  </tr>
-  <tr>
-    <td>BICONDITIONAL: <&#45;> </td>
-        <td>P<->Q</td>
-  </tr>
-  <tr>
-    <td>XOR: x </tdppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-<div id = "premise">
-  Premise
-  <button id = "newPremise"> Add Premise </button>
-  
-</div>
+<ul id="slide-out" class="side-nav">
+	<!-- Uncomment the following 8 lines to include the background/user header in the side navbar -->
+	<!-- <li><div class="user-view"> -->
+	<!-- 	<div class="background"> -->
+	<!-- 		<img src="images/office.jpg"> -->
+	<!-- 	</div> -->
+	<!-- 	<a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
+	<!-- 	<a href="#!name"><span class="white-text name">John Doe</span></a> -->
+	<!-- 	<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a> -->
+	<!-- </div></li> -->
 
+	<!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
+	<!-- <li><a href="#!">Second Link</a></li> -->
+	<!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
+	<li><a>Legend</a></li>
+	<li><div class="divider"></div></li>
+	<li><a class="subheader">Help with symbols</a></li>
+	<li>
+		<a>
+			<table>
+
+				<tr>
+					<th>Symbol</th>
+					<th>Example</th> 
+				</tr>
+				<tr>
+					<td>AND: &amp;</td>
+					<td>P&amp;R</td>
+				</tr>
+				<tr>
+					<td>OR: v</td>
+					<td>PvR</td>
+				</tr>
+				<tr>
+					<td>IMPLIES: -></td>
+					<td>P->R</td>
+				</tr>
+				<tr>
+					<td>NOT: ~</td>
+					<td>~P</td>
+				</tr>
+				<tr>
+					<td>BICONDITIONAL: <&#45;> </td>
+					<td>P<->Q</td>
+				</tr>
+				<tr>
+					<td>XOR: x </td>
+					<td>PxQ</td>
+				</tr>
+
+			</table>
+		</a>
+		<a>
+	</li>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+
+
+
+
+
+<div class="row">
+	<form id="all_proof_input" class="col s12">
+		<div id="premises_conclusion_container" class="col s4">
+			<div class="row">
+				<div class="input-field col s10 premise_line">
+					<input id="premise_0" type="text" class="validate premise_line_input">
+					<label for="premise_0">Premise</label>
+				</div>
+			</div>
+
+			<div class="row valign-wrapper secondary_line">
+				<div class="input-field col s10">
+					<input id="premise_1" type="text" class="validate premise_line_input">
+					<label for="premise_1">Premise</label>
+				</div>
+				<div id="remove_premise_1" class="col s1">
+					<a class="btn-floating btn-small waves-effect waves-light red" onclick="deletePremiseRow(this)">
+						<i class="material-icons red">cancel</i>
+					</a>
+				</div>
+			</div>
+
+			<div id="PremisesAddLine">
+				<a class="waves-effect waves-light btn" onclick="addPremiseRow()">
+					Add Premise
+				</a>
+			</div>
+
+			<!-- There's probably a better way to put vertical space -->
+			<div class="row"></div>
+
+			<div class="row">
+				<div class="input-field col s10 conclusion_line">
+					<input id="conclusion_0" type="text" class="validate conclusion_line_input">
+					<label for="conclusion_0">Conclusion</label>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div id="proof_container" class="col s7 offset-s1">
+			<div class="row">
+				<div class="input-field col s5 proof_line">
+					<input id="proof_step_0" type="text" class="validate proof_line_input">
+					<label for="proof_step_0">Step</label>
+				</div>
+
+				<div class="input-field col s3 proof_line">
+					<input id="proof_previous_0" type="text" class="validate proof_line_input">
+					<label for="proof_previous_0">Previous Lines</label>
+				</div>
+
+				<div class="input-field col s2 proof_line">
+					<input id="proof_rules_0" type="text" class="validate proof_line_input">
+					<label for="proof_rules_0">Rules</label>
+				</div>
+			</div>
+
+			<div class="row valign-wrapper secondary_line">
+				<div class="input-field col s5">
+					<input id="proof_step_1" type="text" class="validate proof_line_input">
+					<label for="proof_step_1">Step</label>
+				</div>
+
+				<div class="input-field col s3 proof_line">
+					<input id="proof_previous_1" type="text" class="validate proof_line_input">
+					<label for="proof_previous_1">Previous Lines</label>
+				</div>
+
+				<div class="input-field col s2 proof_line">
+					<input id="proof_rules_1" type="text" class="validate proof_line_input">
+					<label for="proof_rules_1">Rules</label>
+				</div>
+
+				<div id="remove_proof_1" class="col s1">
+					<a class="btn-floating btn-small waves-effect waves-light red" onclick="deleteProofRow(this)">
+						<i class="material-icons red">cancel</i>
+					</a>
+				</div>
+			</div>
+
+			<div id="ProofsAddLine">
+				<a class="waves-effect waves-light btn" onclick="addProofRow()">
+					Add Line
+				</a>
+			</div>
+
+		</div>
+
+	</form>
+</div>

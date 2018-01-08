@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'discrete#index'
   get '/induction', to: 'discrete#induction'
   get '/logic', to: 'discrete#logic'
+  get '/login', to: 'discrete#login'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
