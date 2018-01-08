@@ -73,33 +73,24 @@ def calc_assumption_set(input_proof)
 			if proof_line[2] == "A" || proof_line[2] == "a"
 				assumption_set[index] = Array(index + 1)
 			else
-				# TODO Throw error!
+				# TODO(Drew): Throw error!
 			end
 		else
+			# Use the lines used by the proof to find a valid assumption set
 			assumption_set[index] = Array.new
 			dependent_lines.each do |line|
 				line_num = line.to_i - 1
 				assumption_set[index].concat(assumption_set[line_num])
 			end
-			assumption_set[index] = assumption_set[index].uniq # NOTE(Drew): This isn't sorted. Does it need to be?
+			assumption_set[index] = assumption_set[index].uniq
 
-			#TODO Add handling for (#) assumption set removal
-			puts "proof_line[2] #{proof_line[2]}"
+			# Removes values from assumption set that match (#) syntax.
 			exclusion_match = proof_line[2][/(?<=\()[\d]+(?=\))/].to_i
-			puts exclusion_match
-			puts exclusion_match.class
 			if !exclusion_match.nil?
 				assumption_set[index].delete(exclusion_match)
 			end
 		end
 	end
-
-	puts "Assumption set 0: #{assumption_set[0]}"
-	puts "Assumption set 1: #{assumption_set[1]}"
-	puts "Assumption set 2: #{assumption_set[2]}"
-	puts "Assumption set 3: #{assumption_set[3]}"
-	puts "Assumption set 4: #{assumption_set[4]}"
-	puts "Assumption set 5: #{assumption_set[5]}"
 end
 
 def parse_input
@@ -147,7 +138,7 @@ def post(formatted_premesis, formatted_conclusion, formatted_proof)
 		return
 	end
 
-	# Hey. This is probably going to crash is some new edge case shows. Heads up. Should probably fix this.
+	# Hey. This is probably going to crash if some new edge case shows. Heads up. Should probably fix this.
 	error_reason = result_page.xpath("//font[@color='red']").first.parent.text
 	unless error_reason.empty?
 		puts "Red case"
