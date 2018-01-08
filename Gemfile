@@ -23,6 +23,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #tzinfo for Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+gem 'cucumber'
+gem 'cucumber-rails'
 # Curb is used to curl the requests to logic.tamu.edu
 # gem 'curb', '~> 0.9.4'
 # Nokogiri is used to parse HTML from logic.tamu.edu
