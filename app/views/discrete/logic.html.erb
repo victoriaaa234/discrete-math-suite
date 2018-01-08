@@ -1,5 +1,4 @@
 <h5>Logic</h5>
-
 <table id="t01">
   <tr>
     <th>Symbol</th>
@@ -26,10 +25,82 @@
         <td>P<->Q</td>
   </tr>
   <tr>
-    <td>XOR: x </tdppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
-<div id = "premise">
-  Premise
-  <button id = "newPremise"> Add Premise </button>
+    <td>XOR: x </td>
+        <td>PxQ</td>
+  </tr>
   
-</div>
+</table>
+<body>
+    <div class="container">
+      <div class="leftpane">
+        <h1>Premises</h1>
+        <table id="premise_table">
+          <tr>
+            <td>Premise </td>
+            <td><input type="text" name="fname"></td>
+          </tr>
+          <tr>
+            <td>Premise </td>
+            <td><input type="text" name="fname"></td>
+            <td>
+              <button type="button" onclick="deletePremiseRow(this)">
+                Remove Line
+              </button>
+            </td>
+          </tr>
+        </table>
+        <!-- Line i&emsp;<input type="text" name="fname"> -->
+        <!-- <br> -->
+        <!-- Line i&emsp;<input type="text" name="fname"> -->
 
+
+        <!-- <div id="PremisesRemoveLine"> -->
+        <!-- </div> -->
+
+
+        <div id="PremisesAddLine">
+          <button type="button" onclick="addPremise()">
+            Add Line
+          </button>
+        </div>
+
+
+
+        <h1>Conclusion</h1>
+        Result&emsp;<input type="text" name="fname">
+      </div>
+
+      <div class="rightpane">
+
+        <div id="Checkoff">
+          <button type="button">Check!</button>
+        </div>
+
+
+
+        <h1>Proof</h1>
+        Step i&emsp;<input type="text" name="fname">
+        <input type="text" name="lname"><br>
+
+
+        Step i&emsp;<input type="text" name="fname">
+        <input type="text" name="lname">
+        <div id="ProofRemoveLine">
+          <button type="button">RemoveLine</button><br>
+        </div>
+
+
+
+
+        <div id="ProofAddLine">
+
+          <br><button type="button">Add Line</button>
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </body>
