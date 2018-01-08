@@ -41,7 +41,6 @@
 
 
 # TODO
-# - TALK TO HUNTER ABOUT THAT ->I(3) SYNTAX
 # - WHO IS DOING INPUT CHECKING???
 # - Calulate assumption sets from input
 # - Capture errors about premise and conclusion being bad format
@@ -91,20 +90,28 @@ def calc_assumption_set(input_proof)
 			end
 		end
 	end
+	return assumption_set
 end
 
 def parse_input
 	input_premesis_str = "p->r,r->q"
 	input_conclusion_str =  "p->q"
 	input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,3", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
+	assumption_set = calc_assumption_set(input_proof)
 
-	calc_assumption_set(input_proof)
+	# Format output to logic.tamu.edu format
+	formatted_proof = String.new
+	input_proof.each_with_index do |line, index|
+		formatted_proof << assumption_set[index].join(",") << " (" << (index + 1).to_s << ") " << line[0] << " " << line[1] << line[2] << "\r\n"
+	end
+
+	post(input_premesis_str, input_conclusion_str, formatted_proof)
 end
 
 def post(formatted_premesis, formatted_conclusion, formatted_proof)
-	input_premesis = "P->R,R->Q"
-	input_conclusion = "P->Q"
-	input_proof = "1       (1)   p->r           A\r\n2       (2)   r->q           A\r\n3       (3)   p              A\r\n1,3     (4)   r              1,3->E\r\n1,2,3   (5)   q              2,4->E\r\n1,2     (6)   p->q              5->I(3)\r\n"
+	# input_premesis = "P->R,R->Q"
+	# input_conclusion = "P->Q"
+	# input_proof = "1       (1)   p->r           A\r\n2       (2)   r->q           A\r\n3       (3)   p              A\r\n1,3     (4)   r              1,3->E\r\n1,2,3   (5)   q              2,4->E\r\n1,2     (6)   p->q              5->I(3)\r\n"
 	body_stage_1 = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"premises\"\r\n\r\n"
 	body_stage_2 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"conclusion\"\r\n\r\n"
 	body_stage_3 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"bsubmit\"\r\n\r\nCheck Proof\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"proof\"\r\n\r\n"
@@ -119,7 +126,7 @@ def post(formatted_premesis, formatted_conclusion, formatted_proof)
 	curl.headers["DNT"] = "1"
 
 	curl.encoding = 'gzip'
-	curl.post_body = body_stage_1 + input_premesis + body_stage_2 + input_conclusion + body_stage_3 + input_proof + body_stage_4
+	curl.post_body = body_stage_1 + formatted_premesis + body_stage_2 + formatted_conclusion + body_stage_3 + formatted_proof + body_stage_4
 	curl.http_post
 
 	result_page = Nokogiri::HTML(curl.body_str)
@@ -153,4 +160,3 @@ def post(formatted_premesis, formatted_conclusion, formatted_proof)
 end
 
 parse_input()
-post("", "", "")
