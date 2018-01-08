@@ -23,6 +23,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #tzinfo for Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+gem 'cucumber'
+gem 'cucumber-rails'
+
 # Use curb to curl logic.tamu.edu
 # gem 'curb'
 # Use nokogiri to parse HTML
