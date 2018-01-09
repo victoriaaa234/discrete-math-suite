@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'induction/index'
-
   root 'discrete#index'
   get '/logic', to: 'discrete#logic'
+  get '/induction', to: 'induction#index'
+  get '/induction/problem', to: 'induction#test_action'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -30,8 +30,6 @@ Rails.application.routes.draw do
     #     end
     #   end
     
-  resources :induction
-
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

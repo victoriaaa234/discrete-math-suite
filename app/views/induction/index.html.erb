@@ -9,7 +9,7 @@
     <div id="problem" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Problem</span>
-        <p>Use mathematical induction to prove that
+        <p id="problem-text">Use mathematical induction to prove that
           <p id=equation></p>
         </p>
       </div>
@@ -81,6 +81,8 @@
     </div>
   </div>
 </div>
+<script src="javascripts/induction/generateProblem.js">
+</script>
 <script>
   var element = document.getElementById('equation');
   katex.render("1+2+3+...+ n = \\tfrac{n(n+1)}{2}", element);
