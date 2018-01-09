@@ -16,4 +16,3 @@
 //= require logic
 //= require logic.js
 //= require_tree .
-//= require_self
