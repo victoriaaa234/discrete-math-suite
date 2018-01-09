@@ -62,3 +62,9 @@ group :production do
 	gem 'pg'
 	gem 'rails_12factor'
 end
+
+group :test, :development do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+end

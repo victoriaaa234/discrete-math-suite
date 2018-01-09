@@ -12,7 +12,6 @@ class LogicController < ApplicationController
 
   # TODO
   # - WHO IS DOING INPUT CHECKING???
-  # - Calculate assumption sets from input
   # - Reformat input to match logic.tamu.edu layout
   # - Change params[:submit] == 'Proof' to whatever submit param is actually in URL
 
@@ -34,6 +33,7 @@ class LogicController < ApplicationController
         if proof_line[2] == "A" || proof_line[2] == "a"
           assumption_set[index] = Array(index + 1)
         else
+          return
           # TODO(Drew): Throw error!
         end
       else
@@ -56,11 +56,15 @@ class LogicController < ApplicationController
   end
 
   def parse_input(premises, conclusion, proof)
+    #TODO Use input arguments for the proof fields
     input_premesis_str = "p->r,r->q"
     input_conclusion_str =  "p->q"
-    input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,2", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
+    input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
     assumption_set = calc_assumption_set(input_proof)
-
+    if assumption_set.nil? || assumption_set.empty?
+      puts "Ya done Goofed"
+      return
+    end
     # Format output to logic.tamu.edu format
     formatted_proof = String.new
     input_proof.each_with_index do |line, index|
@@ -71,9 +75,6 @@ class LogicController < ApplicationController
   end
 
   def post(formatted_premesis, formatted_conclusion, formatted_proof)
-    # input_premesis = "P->R,R->Q"
-    # input_conclusion = "P->Q"
-    # input_proof = "1       (1)   p->r           A\r\n2       (2)   r->q           A\r\n3       (3)   p              A\r\n1,3     (4)   r              1,3->E\r\n1,2,3   (5)   q              2,4->E\r\n1,2     (6)   p->q              5->I(3)\r\n"
     body_stage_1 = "------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"premises\"\r\n\r\n"
     body_stage_2 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"conclusion\"\r\n\r\n"
     body_stage_3 = "\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"bsubmit\"\r\n\r\nCheck Proof\r\n------WebKitFormBoundaryPM7uJXvB7ekZjPLt\r\nContent-Disposition: form-data; name=\"proof\"\r\n\r\n"
@@ -124,14 +125,10 @@ class LogicController < ApplicationController
   end
 
   def format_output(error_message)
+    # Check each type of error from logic.tamu.edu and replace with our mappings
     Mapping.all.each do |m|
-      puts m.mapping
-      if error_message.include?(m.logic)
-        puts "Checks out"
-      end
       error_message.gsub! m.logic, m.mapping
     end
-    puts error_message
     return error_message
   end
 end
