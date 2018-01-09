@@ -59,17 +59,17 @@
         <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
         <div class='wrapper'>
-            <form id='nameForm'>
+            <form id='basis-step'>
             <div class='form-uname'>
-               <input id='nameField' type='text'></input>
+               <input id='basis-input' type='text'></input>
             </div>
             <div class='form-sub'>
-              <button id='subButton' type='button'>Convert</button>
+              <button id='convButton1' type='button'>Convert</button>
             </div>
         </form>
         <br />
         <div>
-            <p id='result'></p></div>
+            <p id='result1'></p></div>
         </div>
       </div>
     </div>
@@ -89,12 +89,21 @@
         <span class="card-title">Inductive Hypothesis</span>
         <p id="problem-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
-        <div class="input-field">
-          <textarea id="hypothesis-input"></textarea>
+        <div class='wrapper'>
+            <form id='hypothesis-step'>
+            <div class='form-uname'>
+               <input id='hypothesis-input' type='text'></input>
+            </div>
+            <div class='form-sub'>
+              <button id='convButton2' type='button'>Convert</button>
+            </div>
+        </form>
+        <br />
+        <div>
+            <p id='result2'></p></div>
         </div>
       </div>
     </div>
-
     <div class="right-align">
       <button id="hypothesis-btn" class="btn waves-effect waves-light align-right" type="submit" name="action">Check
         <i class="material-icons right">send</i>
@@ -106,13 +115,23 @@
 <!-- Inductive Step-->
 <div class="row">
   <div class="col s6 offset-s3">
-    <div id="inductive-step" class="card blue-grey darken-1">
+    <div id="inductive" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Inductive Step</span>
         <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
-        <div class="input-field">
-          <textarea id="inductive-input"></textarea>
+        <div class='wrapper'>
+            <form id='inductive-step'>
+            <div class='form-uname'>
+               <input id='inductive-input' type='text'></input>
+            </div>
+            <div class='form-sub'>
+              <button id='convButton3' type='button'>Convert</button>
+            </div>
+        </form>
+        <br />
+        <div>
+            <p id='result3'></p></div>
         </div>
       </div>
     </div>
@@ -134,18 +153,41 @@
   currentProblem.loadProblem("strong");
 </script>
 
+<!-- Input Conversion function-->
 <script>
 // the function which handles the input field logic
-function getUserName() {
-    var nameField = document.getElementById('nameField').value;
-    var result = document.getElementById('result');
+function getKatexForm1() {
+    var inputField = document.getElementById('basis-input').value;
+    var result = document.getElementById('result1');
     
-    //result.textContent = nameField;
-    katex.render(nameField, result);
-    //alert(nameField);
+    //result.textContent = inputField;
+    katex.render(inputField, result);
 }
 // use an eventlistener for the event
-var subButton = document.getElementById('subButton');
-subButton.addEventListener('click', getUserName, false);
+var convButton = document.getElementById('convButton1');
+convButton.addEventListener('click', getKatexForm1, false);
 
+
+function getKatexForm2() {
+    var inputField = document.getElementById('hypothesis-input').value;
+    var result = document.getElementById('result2');
+    
+    //result.textContent = inputField;
+    katex.render(inputField, result);
+}
+// use an eventlistener for the event
+var convButton = document.getElementById('convButton2');
+convButton.addEventListener('click', getKatexForm2, false);
+
+
+function getKatexForm3() {
+    var inputField = document.getElementById('inductive-input').value;
+    var result = document.getElementById('result3');
+    
+    //result.textContent = inputField;
+    katex.render(inputField, result);
+}
+// use an eventlistener for the event
+var convButton = document.getElementById('convButton3');
+convButton.addEventListener('click', getKatexForm3, false);
 </script>
