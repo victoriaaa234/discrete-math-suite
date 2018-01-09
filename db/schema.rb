@@ -12,19 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180109072627) do
 
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
-
-  create_table "mappings", force: :cascade do |t|
-    t.string "logic"
-    t.string "mapping"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "provider"
     t.string   "uid"
