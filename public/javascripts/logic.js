@@ -102,48 +102,39 @@ function deletePremiseRow(buttonDivId) {
 
 
 
-function addProofRow() {
-	var proofSecondaries = document.getElementById("proof_secondaries");
-	if(proofSecondaries.children.length > 0) { 
-		var idOfLast = proofSecondaries.children[proofSecondaries.children.length - 1].firstElementChild.id; 
-	}
-	else {
-		var idOfLast = 'premise_0';
-	}
-	var indexOfLast = getEndingNumber(idOfLast);
-	var newIndex = indexOfLast + 1;
+function getProofLine(prefix, sizeStr, newIndex, labelString) {
+	var newProofElem = document.createElement("div");
+	newProofElem.id = prefix + String(newIndex);
+	newProofElem.className = "input-field col " + sizeStr + " proof_line";
 
-	// Build new input
-	var rowWrapper = document.createElement("div");
-	rowWrapper.className = "row";
-	
-	var newRow = document.createElement("div");
-	newRow.id = "premise_" + String(newIndex);
-	newRow.className = "input-field col s10";
+	var newProofElemInput = document.createElement("input");
+	newProofElemInput.id = prefix + "input_" + String(newIndex);
+	newProofElemInput.type = "text";
+	newProofElemInput.className = "validate proof_line_input";
 
-	var newInput = document.createElement("input");
-	newInput.id = "input_premise_" + String(newIndex);
-	newInput.type = "text";
-	newInput.className = "validate premise_line_input";
+	var newProofElemLabel = document.createElement("label");
+	newProofElemLabel.htmlFor = newProofElemInput.id;
+	var labelText = document.createTextNode(labelString);
+	newProofElemLabel.appendChild(labelText);
 
-	var newLabel = document.createElement("label");
-	newLabel.htmlFor = newInput.id;
-	var labelText = document.createTextNode("Premise");
-	newLabel.appendChild(labelText);
-
-	newRow.appendChild(newInput);
-	newRow.appendChild(newLabel);
+	newProofElem.appendChild(newProofElemInput);
+	newProofElem.appendChild(newProofElemLabel);
+	return newProofElem;
+}
 
 
 
-	// Build new delete button
+
+
+
+function getProofButton(newIndex) {
 	var buttonDiv = document.createElement("div");
-	buttonDiv.id = "remove_premise_" + String(newIndex);
+	buttonDiv.id = "proof_remove_" + String(newIndex);
 	buttonDiv.className = "col s1";
 
 	var deleteButton = document.createElement("a");
 	deleteButton.className = "btn-floating btn-small waves-effect waves-light red";
-	deleteButton.onclick = function () { deletePremiseRow(buttonDiv.id) };
+	deleteButton.onclick = function () { deleteProofRow(buttonDiv.id) };
 
 	var deleteIcon = document.createElement("i");
 	deleteIcon.className = "material-icons red";
@@ -152,9 +143,7 @@ function addProofRow() {
 
 	deleteButton.appendChild(deleteIcon);
 	buttonDiv.appendChild(deleteButton);
-	rowWrapper.appendChild(newRow);
-	rowWrapper.appendChild(buttonDiv);
-	premiseSecondaries.appendChild(rowWrapper);
+	return buttonDiv;
 }
 
 
@@ -162,6 +151,42 @@ function addProofRow() {
 
 
 
-function deleteProofRow(/* some id */) {
+function addProofRow() {
+	var proofSecondaries = document.getElementById("proof_secondaries");
+	if(proofSecondaries.children.length > 0) { 
+		var idOfLast = proofSecondaries.children[proofSecondaries.children.length - 1].firstElementChild.id; 
+	}
+	else {
+		var idOfLast = 'proof_step_0';
+	}
+	var indexOfLast = getEndingNumber(idOfLast);
+	var newIndex = indexOfLast + 1;
+
+	// Build new input
+	var rowWrapper = document.createElement("div");
+	rowWrapper.className = "row";
+	
+	var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
+	var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
+	var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
+
+
+	// Build new delete button
+	var buttonDiv = getProofButton(newIndex);
+
+
+	rowWrapper.appendChild(newStep);
+	rowWrapper.appendChild(newPrevious);
+	rowWrapper.appendChild(newRules);
+	rowWrapper.appendChild(buttonDiv);
+	proofSecondaries.appendChild(rowWrapper);
+}
+
+
+
+
+
+
+function deleteProofRow(buttonDivId) {
 
 }
