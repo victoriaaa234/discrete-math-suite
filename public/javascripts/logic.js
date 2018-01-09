@@ -68,8 +68,17 @@ function renumberNodes(nodes, deletedIndex) {
 		var nodeChildren = node.children;
 		for(let child of nodeChildren) {
 			var childIndex = getEndingNumber(child.id);
+                        if(child.tagName == 'LABEL'){
+                          childIndex = getEndingNumber(child.htmlFor);
+                        }
 			if(childIndex > deletedIndex) {
-				child.id = getIdPrefix(child.id) + String(childIndex - 1);
+                          if(child.tagName == 'LABEL'){
+                            var curFor = getIdPrefix(child.htmlFor) + String(childIndex - 1);
+                            child.setAttribute('for', curFor);
+                          }
+                          else{
+			    child.id = getIdPrefix(child.id) + String(childIndex - 1);
+                          }
 			}
 		}
 	}
