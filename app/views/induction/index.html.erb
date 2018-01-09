@@ -35,7 +35,7 @@
       <div class="card-content white-text">
         <span class="card-title">Problem</span>
         <p id="problem-text">Use mathematical induction to prove that
-          <p id=equation></p>
+          <p id=equation1></p>
         </p>
       </div>
     </div>
@@ -58,12 +58,21 @@
         <span class="card-title">Basis Step</span>
         <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
-        <div class="input-field">
-          <textarea id="basis-input"></textarea>
+        <div class='wrapper'>
+            <form id='nameForm'>
+            <div class='form-uname'>
+               <input id='nameField' type='text'></input>
+            </div>
+            <div class='form-sub'>
+              <button id='subButton' type='button'>Convert</button>
+            </div>
+        </form>
+        <br />
+        <div>
+            <p id='result'></p></div>
         </div>
       </div>
     </div>
-
     <div class="right-align">
       <button class="btn waves-effect waves-light align-right" type="submit" name="action">Check
         <i class="material-icons right">send</i>
@@ -114,9 +123,27 @@
     </div>
   </div>
 </div>
+
+<!-- Equation-->
 <script src="javascripts/induction/generateProblem.js">
 </script>
 <script>
-  var element = document.getElementById('equation');
+  var element = document.getElementById('equation1');
   katex.render("1+2+3+...+ n = \\tfrac{n(n+1)}{2}", element);
+</script>
+
+<script>
+// the function which handles the input field logic
+function getUserName() {
+    var nameField = document.getElementById('nameField').value;
+    var result = document.getElementById('result');
+    
+    //result.textContent = nameField;
+    katex.render(nameField, result);
+    //alert(nameField);
+}
+// use an eventlistener for the event
+var subButton = document.getElementById('subButton');
+subButton.addEventListener('click', getUserName, false);
+
 </script>
