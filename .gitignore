@@ -19,6 +19,3 @@
 # Ignore precompiled files
 /public/assets/
 /public/assets/*
-
-# Ignore individual Gemfile locks.
-/Gemfile.lock
