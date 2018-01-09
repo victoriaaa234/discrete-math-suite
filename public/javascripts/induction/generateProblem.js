@@ -20,13 +20,15 @@ const createSummation = function(){
 };
 
 const createPostageStamp = function(minstamp = 1,maxstamp = 10) {
-    let problem = {
-        stamp1: Math.floor(Math.random()*(maxstamp-minstamp))+minstamp,
-        stamp2: Math.floor(Math.random()*(maxstamp-minstamp))+minstamp,
-    };
+    let problem = {};
+    problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
+    do {
+        problem.stamp2 = Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
+    } while(problem.stamp1 == problem.stamp2);
+    
     problem.basis = (problem.stamp1 - 1)* (problem.stamp2 - 1);
     problem.text = `Use strong induction to prove that any amount of postage that is at least ${problem.basis} cents\
-    can be made with ${problem.stamp1} and ${problem.stamp2} cent stamps`;
+    can be made with ${problem.stamp1} and ${problem.stamp2} cent stamps.`;
     return problem;
 };
 
