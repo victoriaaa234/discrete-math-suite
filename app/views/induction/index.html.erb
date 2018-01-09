@@ -59,12 +59,12 @@
         <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
         <div class='wrapper'>
-            <form id='nameForm'>
+            <form id='inputForm'>
             <div class='form-uname'>
-               <input id='nameField' type='text'></input>
+               <input id='inputField' type='text'></input>
             </div>
             <div class='form-sub'>
-              <button id='subButton' type='button'>Convert</button>
+              <button id='convButton' type='button'>Convert</button>
             </div>
         </form>
         <br />
@@ -134,18 +134,18 @@
   currentProblem.loadProblem("strong");
 </script>
 
+<!-- Input Conversion function-->
 <script>
 // the function which handles the input field logic
-function getUserName() {
-    var nameField = document.getElementById('nameField').value;
+function getKatexForm() {
+    var inputField = document.getElementById('inputField').value;
     var result = document.getElementById('result');
     
-    //result.textContent = nameField;
-    katex.render(nameField, result);
-    //alert(nameField);
+    //result.textContent = inputField;
+    katex.render(inputField, result);
 }
 // use an eventlistener for the event
-var subButton = document.getElementById('subButton');
-subButton.addEventListener('click', getUserName, false);
+var convButton = document.getElementById('convButton');
+convButton.addEventListener('click', getKatexForm, false);
 
 </script>
