@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require logic
+//= require logic.js
 //= require_tree .
+//= require_self
