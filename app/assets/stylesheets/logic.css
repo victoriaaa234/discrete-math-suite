@@ -14,6 +14,13 @@
 a.foot-text {
     color: white;
 }
+textarea.proof {
+    height: 17rem;
+}
+a.waves-effect.waves-light.btn.modal-trigger {
+    margin-left: 80%;
+    margin-top: -5%
+}
 @media only screen and (min-width: 601px) {
     width: 90%;
 }
