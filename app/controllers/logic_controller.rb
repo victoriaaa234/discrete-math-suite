@@ -7,12 +7,13 @@ class LogicController < ApplicationController
       proof_lines = params[:proof_lines]
       parse_input(premises, conclusion, proof_lines)
     end	
-    puts parse_input("TODO", "GET THE", "REAL INPUT")
+    # puts parse_input("hello", "hello", "hello")
   end
 
   # TODO
   # - WHO IS DOING INPUT CHECKING???
   # - Reformat input to match logic.tamu.edu layout
+  # - Change params[:submit] == 'Proof' to whatever submit param is actually in URL
 
   # ERROR TYPES
   # - Proof is not finished
