@@ -1,4 +1,4 @@
-const inductionProblem = {
+const currentProblem = {
     problem: {},
     loadProblem: function(type){
         this.problem = generateProblem(type);
