@@ -57,10 +57,26 @@
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Expert</a>
 
-
-
-
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+	  <div class="premise-text">
+	  	<textarea placeholder="Enter Premise..." id="premise" rows="4" cols="50"></textarea>
+	  </div>
+	  <div class="conclusion-text">
+	  	<textarea placeholder="Enter Conclusion..." id="conclusion" rows="4" cols="50"></textarea>
+	  </div>
+	  <div class="proof-text">
+	  	<textarea class="proof" placeholder="Enter Proof..." id="proof" rows="4" cols="50"></textarea>
+	  </div>
+    </div>
+    <div class="modal-footer">
+      <button onclick="submitText(premise.value, conclusion.value, proof.value)" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+    </div>
+  </div>
 
 <div class="row">
 	<form id="all_proof_input" class="col s12">
