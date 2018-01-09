@@ -27,7 +27,7 @@ gem 'cucumber'
 # gem 'cucumber-rails'
 
 # Use curb to curl logic.tamu.edu
-# gem 'curb'
+gem 'curb'
 # Use nokogiri to parse HTML
 # gem 'nokogiri'
 
