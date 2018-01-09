@@ -1,60 +1,19 @@
 class LogicController < ApplicationController
   def logic
+    puts "Is this working?\n\n\n\n\n\n"
     if params[:submit] == 'Proof'
       premises = params[:premises].join(',')
       conclusion = params[:conclusion]
       proof_lines = params[:proof_lines]
       parse_input(premises, conclusion, proof_lines)
     end	
+    puts parse_input("hello", "hello", "hello")
   end
-
-  # Annotation equivalent set
-  # |   | Rosen Book Name      | Our Site Input Format | Logic.Tamu.Edu Name                          | Logic.Tamu.Edu Format |
-  # |---|----------------------|-----------------------|----------------------------------------------|-----------------------|
-  # | ! | Identity Laws        | ???                   | ???                                          | ???                   |
-  # | ! | Domination Laws      | ???                   | ???                                          | ???                   |
-  # | ! | Idempotent Laws      | ???                   | ???                                          | ???                   |
-  # |   | Double Negation Laws | ???                   | Double Negation                              | 1 DN                  |
-  # |   | Commutative Laws     | ???                   | Ampersand Commutativity                      | &Comm                 |
-  # |   |                      |                       | Wedge Commutativity                          | vComm                 |
-  # |   | Associative Laws     | ???                   | Ampersand Associativity                      | &Assoc, vAssoc        |
-  # |   |                      |                       | Wedge Associativity                          | vComm                 |
-  # |   | Distributive Laws    | ???                   | Ampersand/Wedge Distribution                 | &/v Dist, v/& Dist    |
-  # |   |                      | ???                   | Wedge/Ampersand Distribution                 | &/v Dist, v/& Dist    |
-  # |   | DeMorgan's Laws      | ???                   | de Morgan's Law                              | DM                    |
-  # | ! | Absorption Laws      | ???                   | ???                                          | ???                   |
-  # | ! | Negation Laws        | ???                   | ???                                          | ???                   |
-  # |   | Logic Equiv. Condit. | ???                   | Wedge Arrow                                  | v->                   |
-  # |   | Logic Equiv. Condit. | ???                   | Negated Arrow                                | Neg->                 |
-  # | * | Logic Equiv. Bicond. | ???                   | Double Arrow Elim  | Elimination             | <->E                  |
-  # |   | Logic Equiv. Bicond. | ???                   | Negated Double Arrow                         | Neg<->                |
-  # |   | De Morgan's Quantif. | ???                   | QE                                           | QE                    |
-  # |   | Modbus Ponens        | ???                   | Arrow Elim  | Elimination                    | ->E                   |
-  # |   | Modbus Tollens       | ???                   | MTT (Modus Tollendo Tollens) | MTT           | MTT                   |
-  # |   | Hypothetical Syllog. | ???                   | Hypothetical Syllogism                       | HS                    |
-  # |   | Disjunctive Syllog.  | ???                   | Wedge Elim | Elimination                     | vE                    |
-  # |   | Addition             | ???                   | Wedge Intro  | Introduction                  | vI                    |
-  # |   | Simplification       | ???                   | Ampersand Elim | Elimination                 | &E                    |
-  # |   | Conjunction          | ???                   | Ampersand Intro  | Introduction              | &I                    |
-  # | ! | Resolution           | ???                   | ???                                          | ???                   |
-  # |   | Universal Instantia. | ???                   | Universal Elim | Elimination                 | @E                    |
-  # |   | Universal Generaliz. | ???                   | Universal Intro  | Introduction              | @I                    |
-  # |   | Existential Instant. | ???                   | Existential Elim  | Elimination              | $E                    |
-  # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
-  # |   | Rando COmpletions    | ???                   | WFF => Well Formed Formulae                  |                       |
-  
-  # Resolution = ((p ∨ q) ∧ (¬p ∨ r)) → (q ∨ r)
-
 
   # TODO
   # - WHO IS DOING INPUT CHECKING???
   # - Calculate assumption sets from input
   # - Reformat input to match logic.tamu.edu layout
-  # - Reformat logic.tamu.edu output to proper site response
-  # - Reformat logic.tamu.edu failure reasons to proper reasons
-
-  # - Incorrect assumption
-  # - The expression is not well formed
 
   # ERROR TYPES
   # - Proof is not finished
@@ -98,7 +57,7 @@ class LogicController < ApplicationController
   def parse_input(premises, conclusion, proof)
     input_premesis_str = "p->r,r->q"
     input_conclusion_str =  "p->q"
-    input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,3", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
+    input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,2", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]
     assumption_set = calc_assumption_set(input_proof)
 
     # Format output to logic.tamu.edu format
@@ -136,7 +95,7 @@ class LogicController < ApplicationController
     error_reason = result_page.xpath("//tr/td/p/img[@src='http://logic.tamu.edu/Images/th_up.gif']").last
     unless error_reason.nil?
       puts "You did it!"
-      return
+      return 
     end
 
     # Parse errors. First marron errors, then red ones, then traditional errors
@@ -144,7 +103,8 @@ class LogicController < ApplicationController
     unless error_reason.empty?
       puts "Maroon case"
       puts error_reason
-      return
+      error_reason = format_output(error_message)
+      return error_reason
     end
 
     # Hey. This is probably going to crash if some new edge case shows. Heads up. Should probably fix this.
@@ -155,13 +115,22 @@ class LogicController < ApplicationController
       error_options = error_reason.split(/[[:space:]]+/)
       data = {"reason"=>error_message, "assumption_set"=>error_options[2], "line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
       puts "You failed. Reason: #{data["reason"]} Assumption Set: #{data["assumption_set"]}, Line Number: #{data["line_number"]}, Sentence: #{data["sentence"]}, Annotation: #{data["annotation"]}"
-      return
+      error_message = format_output(error_message)
+      return error_message
     end
 
     puts "You missed an error."
   end
 
   def format_output(error_message)
-        
+    Mapping.all.each do |m|
+      puts m.mapping
+      if error_message.include?(m.logic)
+        puts "Checks out"
+      end
+      error_message.gsub! m.logic, m.mapping
+    end
+    puts error_message
+    return error_message
   end
 end
