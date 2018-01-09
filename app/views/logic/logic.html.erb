@@ -66,21 +66,22 @@
 	<form id="all_proof_input" class="col s12">
 		<div id="premises_conclusion_container" class="col s4">
 			<div class="row">
-				<div class="input-field col s10 premise_line">
-					<input id="premise_0" type="text" class="validate premise_line_input">
-					<label for="premise_0">Premise</label>
+				<div id="premise_0" class="input-field col s10 premise_line">
+					<input id="input_premise_0" type="text" class="validate premise_line_input">
+					<label for="input_premise_0">Premise</label>
 				</div>
 			</div>
-
-			<div class="row valign-wrapper secondary_line">
-				<div class="input-field col s10">
-					<input id="premise_1" type="text" class="validate premise_line_input">
-					<label for="premise_1">Premise</label>
-				</div>
-				<div id="remove_premise_1" class="col s1">
-					<a class="btn-floating btn-small waves-effect waves-light red" onclick="deletePremiseRow(this)">
-						<i class="material-icons red">cancel</i>
-					</a>
+			<div id="premise_secondaries" class="row secondary_line">
+				<div class="row">
+					<div id="premise_1" class="input-field col s10">
+						<input id="input_premise_1" type="text" class="validate premise_line_input">
+						<label for="input_premise_1">Premise</label>
+					</div>
+					<div id="remove_premise_1" class="col s1">
+						<a class="btn-floating btn-small waves-effect waves-light red" onclick="deletePremiseRow('remove_premise_1')">
+							<i class="material-icons red">cancel</i>
+						</a>
+					</div>
 				</div>
 			</div>
 
@@ -94,9 +95,9 @@
 			<div class="row"></div>
 
 			<div class="row">
-				<div class="input-field col s10 conclusion_line">
-					<input id="conclusion_0" type="text" class="validate conclusion_line_input">
-					<label for="conclusion_0">Conclusion</label>
+				<div id="conclusion_0" class="input-field col s10 conclusion_line">
+					<input id="input_conclusion_0" type="text" class="validate conclusion_line_input">
+					<label for="input_conclusion_0">Conclusion</label>
 				</div>
 			</div>
 		</div>
