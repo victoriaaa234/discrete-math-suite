@@ -30,6 +30,8 @@ function addPremiseRow() {
 	newRow.appendChild(newInput);
 	newRow.appendChild(newLabel);
 
+
+
 	// Build new delete button
 	var buttonDiv = document.createElement("div");
 	buttonDiv.id = "remove_premise_" + String(newIndex);
@@ -73,6 +75,11 @@ function renumberNodes(nodes, deletedIndex) {
 	}
 }
 
+
+
+
+
+
 function deletePremiseRow(buttonDivId) {
 	var buttonDiv = document.getElementById(buttonDivId);
 	var deletedIndex = getEndingNumber(buttonDiv.id);
@@ -84,28 +91,77 @@ function deletePremiseRow(buttonDivId) {
 		var grandchildren = child.children;
 		renumberNodes(grandchildren, deletedIndex);
 	}
-	/*
-	for(let child of children) {
-		// if (child == null || child.id == null || child.id == '') { continue; }
-
-		var grandchildren = child.children;
-		for(let grandchild of grandchildren) {
-			var grandIndex = getEndingNumber(grandchild.id);
-			if(grandIndex > deletedIndex) {
-				grandchild.id = getIdPrefix(grandchild.id) + String(grandIndex - 1);
-				var ggChildren = grandchild.children;
-				for(let ggChild of ggChildren) {
-					var ggIndex = getEndingNumber(ggChild.id);
-					if(ggIndex > deletedIndex) {
-						ggChild.id = getIdPrefix(ggChild.id) + String(ggIndex - 1);
-					}
-				}
-			}
-		}
-	}
-	*/
 
 	// Actually delete the row
 	var buttonParent = buttonDiv.parentElement;
 	buttonParent.parentElement.removeChild(buttonParent);
+}
+
+
+
+
+
+
+function addProofRow() {
+	var proofSecondaries = document.getElementById("proof_secondaries");
+	if(proofSecondaries.children.length > 0) { 
+		var idOfLast = proofSecondaries.children[proofSecondaries.children.length - 1].firstElementChild.id; 
+	}
+	else {
+		var idOfLast = 'premise_0';
+	}
+	var indexOfLast = getEndingNumber(idOfLast);
+	var newIndex = indexOfLast + 1;
+
+	// Build new input
+	var rowWrapper = document.createElement("div");
+	rowWrapper.className = "row";
+	
+	var newRow = document.createElement("div");
+	newRow.id = "premise_" + String(newIndex);
+	newRow.className = "input-field col s10";
+
+	var newInput = document.createElement("input");
+	newInput.id = "input_premise_" + String(newIndex);
+	newInput.type = "text";
+	newInput.className = "validate premise_line_input";
+
+	var newLabel = document.createElement("label");
+	newLabel.htmlFor = newInput.id;
+	var labelText = document.createTextNode("Premise");
+	newLabel.appendChild(labelText);
+
+	newRow.appendChild(newInput);
+	newRow.appendChild(newLabel);
+
+
+
+	// Build new delete button
+	var buttonDiv = document.createElement("div");
+	buttonDiv.id = "remove_premise_" + String(newIndex);
+	buttonDiv.className = "col s1";
+
+	var deleteButton = document.createElement("a");
+	deleteButton.className = "btn-floating btn-small waves-effect waves-light red";
+	deleteButton.onclick = function () { deletePremiseRow(buttonDiv.id) };
+
+	var deleteIcon = document.createElement("i");
+	deleteIcon.className = "material-icons red";
+	var cancelLabel = document.createTextNode("cancel");
+	deleteIcon.appendChild(cancelLabel);
+
+	deleteButton.appendChild(deleteIcon);
+	buttonDiv.appendChild(deleteButton);
+	rowWrapper.appendChild(newRow);
+	rowWrapper.appendChild(buttonDiv);
+	premiseSecondaries.appendChild(rowWrapper);
+}
+
+
+
+
+
+
+function deleteProofRow(/* some id */) {
+
 }
