@@ -11,11 +11,18 @@ const generateProblem = function(type) {
     }
 };
 
-const createSummation = function(){
-    let problem = {
-
-    };
-
+const createSummation = function(minNum=0,maxNum=100){   // a, b and c are integers (decimals not covered in class??)
+    let problem = {};
+    problem.a = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+    problem.b = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+    problem.c = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+    while (problem.a == 0 && problem.b == 0 && problem.c == 0) {
+        problem.a = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+        problem.b = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+        problem.c = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
+    }
+    problem.text = `Prove that summation_1toN(${problem.a}i^2 + ${problem.b}i + ${problem.c})
+                    = ${problem.a}n(n+1)(2n+1)/6 + ${problem.b}n(n+1)/2 + ${problem.c}.`;
     return problem;
 };
 
