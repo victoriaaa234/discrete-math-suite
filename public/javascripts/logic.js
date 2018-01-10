@@ -24,7 +24,7 @@ function addPremiseRow() {
 
     var newInput = document.createElement("input");
     newInput.id = "input_premise_" + String(newIndex);
-    newInput.placeholder = "Enter a Premise...";	
+    newInput.placeholder = "Enter a premise...";	
     newInput.type = "text";
     newInput.className = "validate premise_line_input";
 
