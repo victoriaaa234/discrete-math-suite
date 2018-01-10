@@ -17,6 +17,15 @@ a.foot-text {
 textarea.proof {
     height: 13rem;
 }
+textarea#premise {
+    height: 2rem;
+}
+textarea#conclusion {
+    height: 2rem;
+}
+.modal-footer {
+    margin-top: -5%;
+}
 a.waves-effect.waves-light.btn.modal-trigger {
     margin-left: 80%;
     margin-top: -5%
