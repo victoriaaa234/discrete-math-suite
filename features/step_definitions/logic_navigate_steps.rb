@@ -1,3 +1,4 @@
+# Code below will be evaluated elsewhere by Cucumer
 # Given /^I am on the home page/ do
 #     visit root_path
 # end
@@ -7,6 +8,5 @@ When /^I click Logic/ do
 end
 
 Then /^I am on the Logic page$/ do
-    # expect(page.current_url)
-    expect(page).to have_current_path(logic_url, url: true)
+    expect(page).to have_current_path(logic_path)
 end
