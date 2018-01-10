@@ -284,7 +284,7 @@ function deleteProofRow(buttonDivId) {
         }
 
         //adding the conclusion
-        document.getElementById('input_conclusion_0').value = conclusion;
+        document.getElementById('input_conclusion_1').value = conclusion;
 
 
         //adding the proofs
@@ -316,4 +316,36 @@ function deleteProofRow(buttonDivId) {
                 document.getElementById(rulesId).value = string;
             }
         }
+    }
+
+    function submit(){
+        console.log('Submitted Form');
+        var premises = "";
+        var conclusion = "";
+        var stepList = [];
+        var formList = document.getElementById('all_proof_input').elements;
+        var conclusionLocation = 0;
+        for (i = 0; i < formList.length; i++) {
+            if(formList[i].id.includes("premise")) {
+                premises = premises + formList[i].value + ",";
+            }
+            else {
+                conclusionLocation = i;
+                break;
+            }
+        }
+        premises = premises.substr(0,premises.length -1);
+        conclusion = formList[conclusionLocation].value;
+        var index = conclusionLocation + 1;
+        while(index < formList.length) {
+            var step = [];
+            var counter = 3;
+            while(counter > 0) {
+                step.push(formList[index].value);
+                index++;
+                counter--;
+            }
+            stepList.push(step);
+        }
+        // TODO(vwei): parse_input
     }
