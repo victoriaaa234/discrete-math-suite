@@ -24,6 +24,7 @@ function addPremiseRow() {
 
     var newInput = document.createElement("input");
     newInput.id = "input_premise_" + String(newIndex);
+    newInput.name = newInput.id;
     newInput.placeholder = "Enter a premise...";	
     newInput.type = "text";
     newInput.className = "validate premise_line_input";
@@ -98,6 +99,11 @@ function renumberNodes(nodes, deletedIndex) {
                 }
                 else{
                     child.id = getIdPrefix(child.id) + String(childIndex - 1);
+					// input elements have name attributes
+					// these should be identical to their id attributes
+					if(child.name != null) {
+						child.name = child.id
+					}
                 }
             }
         }
@@ -138,6 +144,7 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
 
     var newProofElemInput = document.createElement("input");
     newProofElemInput.id = prefix + "input_" + String(newIndex);
+    newProofElemInput.name = newProofElemInput.id;
     switch(labelString) {
         case "Step":
             newProofElemInput.placeholder = "Enter a step...";
