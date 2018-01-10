@@ -52,8 +52,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
-    childprocess (0.8.0)
-      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.3.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -114,6 +113,8 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     jwt (1.5.6)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -155,6 +156,10 @@ GEM
       omniauth (~> 1.2)
     pg (0.21.0)
     pg (0.21.0-x86-mingw32)
+    poltergeist (1.17.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     public_suffix (3.0.1)
     rack (2.0.3)
     rack-test (0.8.2)
@@ -192,7 +197,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
-    rubyzip (1.2.1)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -207,9 +211,6 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    selenium-webdriver (3.8.0)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -235,10 +236,12 @@ GEM
       execjs (>= 0.3.0, < 3)
     web-console (3.5.1)
       actionview (>= 5.0)
-      activemodel (>= 5.0)
+      activemodel (>= 4.0)
       bindex (>= 0.4.0)
+      binding_of_caller (>= 0.7.2)
       railties (>= 5.0)
-    websocket-driver (0.6.5)
+      sprockets-rails (>= 2.0, < 4.0)
+    websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
     xpath (3.0.0)
@@ -263,11 +266,11 @@ DEPENDENCIES
   launchy
   omniauth-google-oauth2 (~> 0.2.1)
   pg
+  poltergeist
   rails
   rails_12factor
   sass-rails
   sdoc (~> 0.4.0)
-  selenium-webdriver
   spring
   sqlite3
   turbolinks
