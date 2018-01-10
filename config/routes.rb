@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'home/show'
 
   root 'discrete#index'
-  get '/logic', to: 'discrete#logic'
+  get '/logic', to: 'logic#logic'
   get '/induction', to: 'induction#index'
   get '/induction/problem', to: 'induction#test_action'
 
