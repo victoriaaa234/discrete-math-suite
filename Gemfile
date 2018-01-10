@@ -41,9 +41,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -62,4 +59,13 @@ end
 group :production do
 	gem 'pg'
 	gem 'rails_12factor'
+end
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'poltergeist'
 end
