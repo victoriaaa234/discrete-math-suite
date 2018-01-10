@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'induction/index'
-
   root 'discrete#index'
   get '/induction', to: 'discrete#induction'
   # get '/logic', to: 'discrete#logic'
@@ -35,8 +33,6 @@ Rails.application.routes.draw do
     #     end
     #   end
     
-  resources :induction
-
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
