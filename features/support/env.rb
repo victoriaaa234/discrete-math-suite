@@ -58,6 +58,7 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 #Capybara.default_driver = :selenium
+Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 #Capybara.register_driver :selenium do |app|
 #  profile = Selenium::WebDriver::Firefox::Profile.new
