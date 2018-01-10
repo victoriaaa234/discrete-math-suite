@@ -1,0 +1,3 @@
+class InductionController < ApplicationController
+  
+end
