@@ -82,15 +82,15 @@
         <div id="premises_conclusion_container" class="col s4">
             <div class="row">
                 <div id="premise_0" class="input-field col s10 premise_line">
-                    <input id="input_premise_0" type="text" class="validate premise_line_input">
-                    <label for="input_premise_0">1 Premise</label>
+                    <input placeholder="Enter a premise..." id="input_premise_0" type="text" class="validate premise_line_input">
+                    <label for="input_premise_0">Premise 1</label>
                 </div>
             </div>
             <div id="premise_secondaries" class="row secondary_line">
                 <div class="row">
                     <div id="premise_1" class="input-field col s10">
-                        <input id="input_premise_1" type="text" class="validate premise_line_input">
-                        <label for="input_premise_1">2 Premise</label>
+                        <input placeholder="Enter a premise..." id="input_premise_1" type="text" class="validate premise_line_input">
+                        <label for="input_premise_1">Premise 2</label>
                     </div>
                     <div id="remove_premise_1" class="col s1">
                         <a class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('remove_premise_1')">
@@ -111,7 +111,7 @@
 
             <div class="row">
                 <div id="conclusion_0" class="input-field col s10 conclusion_line">
-                    <input id="input_conclusion_0" type="text" class="validate conclusion_line_input">
+                    <input placeholder="Enter a conclusion..." id="input_conclusion_0" type="text" class="validate conclusion_line_input">
                     <label for="input_conclusion_0">Conclusion</label>
                 </div>
             </div>
@@ -122,17 +122,17 @@
         <div id="proof_container" class="col s7 offset-s1">
             <div class="row">
                 <div id="proof_step_0" class="input-field col s5 proof_line">
-                    <input id="proof_step_input_0" type="text" class="validate proof_line_input">
+                    <input placeholder="Enter a step..." id="proof_step_input_0" type="text" class="validate proof_line_input">
                     <label for="proof_step_input_0">Step</label>
                 </div>
 
                 <div id="proof_previous_0" class="input-field col s3 proof_line">
-                    <input id="proof_previous_input_0" type="text" class="validate proof_line_input">
+                    <input placeholder="Enter previous lines..." id="proof_previous_input_0" type="text" class="validate proof_line_input">
                     <label for="proof_previous_input_0">Previous Lines</label>
                 </div>
 
                 <div id="proof_rules_0" class="input-field col s2 proof_line">
-                    <input id="proof_rules_input_0" type="text" class="validate proof_line_input">
+                    <input placeholder="Enter rules..." id="proof_rules_input_0" type="text" class="validate proof_line_input">
                     <label for="proof_rules_input_0">Rules</label>
                 </div>
             </div>
@@ -140,35 +140,39 @@
             <div id="proof_secondaries" class="row secondary_line">
                 <div class="row">
                     <div id="proof_step_1" class="input-field col s5">
-                        <input id="proof_step_input_1" type="text" class="validate proof_line_input">
+                        <input placeholder="Enter a step.." id="proof_step_input_1" type="text" class="validate proof_line_input">
                         <label for="proof_step_input_1">Step</label>
                     </div>
 
                     <div id="proof_previous_1" class="input-field col s3 proof_line">
-                        <input id="proof_previous_input_1" type="text" class="validate proof_line_input">
+                        <input placeholder="Enter previous lines..." id="proof_previous_input_1" type="text" class="validate proof_line_input">
                         <label for="proof_previous_input_1">Previous Lines</label>
                     </div>
 
                     <div id="proof_rules_1" class="input-field col s2 proof_line">
-                        <input id="proof_rules_input_1" type="text" class="validate proof_line_input">
+                        <input placeholder = "Enter rules..." id="proof_rules_input_1" type="text" class="validate proof_line_input">
                         <label for="proof_rules_input_1">Rules</label>
                     </div>
 
-					<div id="proof_remove_1" class="col s1">
-						<a id="proof_remove_button_1" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('proof_remove_1')">
-							<i class="material-icons red">cancel</i>
-						</a>
-					</div>
-				</div>
-			</div>
-
-            <div id="ProofsAddLine">
-                <a class="waves-effect waves-light btn" onclick="addProofRow()">
-                    Add Line
-                </a>
+                    <div id="proof_remove_1" class="col s1">
+                        <a id="proof_remove_button_1" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('proof_remove_1')">
+                            <i class="material-icons red">cancel</i>
+                        </a>
+                    </div>
+                </div>
             </div>
-
-        </div>
+            <div class="submit_add_proof_line">
+                <div class="proof_add_line" id="ProofsAddLine">
+                    <a class="waves-effect waves-light btn" onclick="addProofRow()">
+                        Add Line
+                    </a>
+                </div>
+                <div class="submit" id="LogicSubmit">
+                    <a class="waves-effect waves-light btn" onclick="submit()">
+                        Submit
+                    </a>
+                </div>
+            </div>
 
     </form>
 </div>

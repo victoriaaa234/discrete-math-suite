@@ -27,8 +27,14 @@ textarea#conclusion {
     margin-top: -5%;
 }
 a.waves-effect.waves-light.btn.modal-trigger {
-    margin-left: 80%;
+    margin-left: 88%;
     margin-top: -5%
+}
+.submit {
+    float:right;
+}
+.proof_add_line {
+    float:left;
 }
 @media only screen and (min-width: 601px) {
     width: 90%;
