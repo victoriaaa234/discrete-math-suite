@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
 	$('#modal1').modal();
-  });
-  
+});
+
 function addPremiseRow() {
 	var premiseSecondaries = document.getElementById("premise_secondaries");
 	if(premiseSecondaries.children.length > 0) { 
@@ -17,7 +17,7 @@ function addPremiseRow() {
 	// Build new input
 	var rowWrapper = document.createElement("div");
 	rowWrapper.className = "row";
-	
+
 	var newRow = document.createElement("div");
 	newRow.id = "premise_" + String(newIndex);
 	newRow.className = "input-field col s10";
@@ -44,7 +44,7 @@ function addPremiseRow() {
 
 	var deleteButton = document.createElement("a");
 	deleteButton.className = "btn-floating btn-small waves-effect waves-light red";
-	deleteButton.onclick = function () { deletePremiseRow(buttonDiv.id) };
+	deleteButton.onclick = function () { deleteRow(buttonDiv.id) };
 
 	var deleteIcon = document.createElement("i");
 	deleteIcon.className = "material-icons red";
@@ -73,17 +73,16 @@ function renumberNodes(nodes, deletedIndex) {
 		var nodeChildren = node.children;
 		for(let child of nodeChildren) {
 			var childIndex = getEndingNumber(child.id);
-                        if(child.tagName == 'LABEL'){
-                          childIndex = getEndingNumber(child.htmlFor);
-                        }
+			if(child.tagName == 'LABEL') {
+				childIndex = getEndingNumber(child.htmlFor);
+			}
 			if(childIndex > deletedIndex) {
-                          if(child.tagName == 'LABEL'){
-                            var curFor = getIdPrefix(child.htmlFor) + String(childIndex - 1);
-                            child.setAttribute('for', curFor);
-                          }
-                          else{
-			    child.id = getIdPrefix(child.id) + String(childIndex - 1);
-                          }
+				if(child.tagName == 'LABEL') {
+					child.htmlFor = getIdPrefix(child.htmlFor) + String(childIndex - 1);
+				}
+				else{
+					child.id = getIdPrefix(child.id) + String(childIndex - 1);
+				}
 			}
 		}
 	}
@@ -94,7 +93,7 @@ function renumberNodes(nodes, deletedIndex) {
 
 
 
-function deletePremiseRow(buttonDivId) {
+function deleteRow(buttonDivId) {
 	var buttonDiv = document.getElementById(buttonDivId);
 	var deletedIndex = getEndingNumber(buttonDiv.id);
 
@@ -148,7 +147,7 @@ function getProofButton(newIndex) {
 
 	var deleteButton = document.createElement("a");
 	deleteButton.className = "btn-floating btn-small waves-effect waves-light red";
-	deleteButton.onclick = function () { deleteProofRow(buttonDiv.id) };
+	deleteButton.onclick = function () { deleteRow(buttonDiv.id) };
 
 	var deleteIcon = document.createElement("i");
 	deleteIcon.className = "material-icons red";
@@ -179,7 +178,7 @@ function addProofRow() {
 	// Build new input
 	var rowWrapper = document.createElement("div");
 	rowWrapper.className = "row";
-	
+
 	var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
 	var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
 	var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
@@ -201,6 +200,21 @@ function addProofRow() {
 
 
 
+/*
 function deleteProofRow(buttonDivId) {
+	var buttonDiv = document.getElementById(buttonDivId);
+	var deletedIndex = getEndingNumber(buttonDiv.id);
 
+	// Since we're deleting a row, we need to renumber the rows
+	var children = buttonDiv.parentElement.parentElement.children;
+	renumberNodes(children, deletedIndex);
+	for(let child of children) {
+		var grandchildren = child.children;
+		renumberNodes(grandchildren, deletedIndex);
+	}
+
+	// Actually delete the row
+	var buttonParent = buttonDiv.parentElement;
+	buttonParent.parentElement.removeChild(buttonParent);
 }
+*/
