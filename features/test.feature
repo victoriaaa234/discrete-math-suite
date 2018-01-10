@@ -1,6 +1,6 @@
-Feature: Site Search
+Feature: Go to induction
 @javascript
 Scenario:
-  Given We navigate to the homepage
-  When We search for the word agile
-  Then The results for the search will be displayed
+  Given We navigate to the home page
+  When We click on induction
+  Then we navigate to induction
