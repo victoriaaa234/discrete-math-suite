@@ -23,7 +23,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #tzinfo for Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
-gem 'cucumber'
 # gem 'cucumber-rails'
 
 # Use curb to curl logic.tamu.edu
@@ -31,13 +30,6 @@ gem 'curb'
 # Use nokogiri to parse HTML
 # gem 'nokogiri'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do

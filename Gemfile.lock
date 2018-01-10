@@ -254,18 +254,12 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capybara
-  coffee-rails
   cucumber
   cucumber-rails
   cucumber-rails-training-wheels
 
   curb
   database_cleaner
-  jbuilder (~> 2.0)
-  jquery-rails
-  launchy
-  omniauth-google-oauth2 (~> 0.2.1)
-  pg
   poltergeist
   rails
   rails_12factor

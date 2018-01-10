@@ -146,6 +146,11 @@
 <script src="javascripts/induction/stepManager.js"></script>
 <script src="javascripts/induction/generateProblem.js"></script>
 <script src="javascripts/induction/inductionProblem.js"></script>
+<script>
+  //var element = document.getElementById('equation');
+  //katex.render("1+2+3+...+ n = \\tfrac{n(n+1)}{2}", element);
+  currentProblem.loadProblem("strong");
+</script>
 
 <!-- Input Conversion function-->
 <script>
@@ -161,9 +166,6 @@ function getKatexForm1() {
 var convButton = document.getElementById('convButton1');
 convButton.addEventListener('click', getKatexForm1, false);
 
-  //var element = document.getElementById('equation');
-  //katex.render("1+2+3+...+ n = \\tfrac{n(n+1)}{2}", element);
-  currentProblem.loadProblem("strong");
 
 function getKatexForm2() {
     var inputField = document.getElementById('hypothesis-input').value;
