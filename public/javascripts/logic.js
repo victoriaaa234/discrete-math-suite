@@ -9,7 +9,7 @@ function addPremiseRow() {
         var idOfLast = premiseSecondaries.children[premiseSecondaries.children.length - 1].firstElementChild.id; 
     }
     else {
-        var idOfLast = 'premise_0';
+        var idOfLast = 'premise_1';
     }
     var indexOfLast = getEndingNumber(idOfLast);
     var newIndex = indexOfLast + 1;
@@ -32,7 +32,7 @@ function addPremiseRow() {
     newLabel.className = "active";
     newLabel.htmlFor = newInput.id;
     var labelText = document.createTextNode("Premise");
-    var lineLabelText = document.createTextNode(" " + String(newIndex + 1));
+    var lineLabelText = document.createTextNode(" " + String(newIndex));
     newLabel.appendChild(labelText);
     newLabel.appendChild(lineLabelText);
 
@@ -72,6 +72,11 @@ function getIdPrefix(id) {
     return id.substr(0, id.lastIndexOf("_") + 1);
 }
 
+function labelShouldRenumber(parentId) {
+    var prefix = getIdPrefix(parentId);
+    return (prefix == 'proof_step_' || prefix == 'premise_');
+}
+
 function renumberNodes(nodes, deletedIndex) {
     for(let node of nodes) {
         var nodeChildren = node.children;
@@ -82,11 +87,13 @@ function renumberNodes(nodes, deletedIndex) {
             }
             if(childIndex > deletedIndex) {
                 if(child.tagName == 'LABEL') {
-                    var label = child.lastChild;
-                    child.removeChild(label);
-                    var labelText = document.createTextNode(" " + String(childIndex));
-                    child.append(labelText);
-
+                    if (labelShouldRenumber(child.parentNode.id)) {
+                        // TODO: should get the label text in a better way
+                        var labelText = child.lastChild;
+                        child.removeChild(labelText);
+                        var newLabelText = document.createTextNode(" " + String(childIndex - 1));
+                        child.append(newLabelText);
+                    }
                     child.htmlFor = getIdPrefix(child.htmlFor) + String(childIndex - 1);
                 }
                 else{
@@ -151,6 +158,10 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     newProofElemLabel.className = "active";
     var labelText = document.createTextNode(labelString);
     newProofElemLabel.appendChild(labelText);
+    if(labelString == "Step") {
+        labelText = document.createTextNode(" " + newIndex);
+        newProofElemLabel.appendChild(labelText)
+    }
 
     newProofElem.appendChild(newProofElemInput);
     newProofElem.appendChild(newProofElemLabel);
@@ -192,7 +203,7 @@ function addProofRow() {
         var idOfLast = proofSecondaries.children[proofSecondaries.children.length - 1].firstElementChild.id; 
     }
     else {
-        var idOfLast = 'proof_step_0';
+        var idOfLast = 'proof_step_1';
     }
     var indexOfLast = getEndingNumber(idOfLast);
     var newIndex = indexOfLast + 1;
