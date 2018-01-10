@@ -19,3 +19,6 @@
 # Ignore precompiled files
 /public/assets/
 /public/assets/*
+
+# Ignore .DS_Store files from macOS
+.DS_Store
