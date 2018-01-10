@@ -46,7 +46,7 @@ function addPremiseRow() {
 
     var deleteButton = document.createElement("a");
     deleteButton.className = "btn-floating btn-small waves-effect waves-light red";
-    deleteButton.onclick = function () { deletePremiseRow(buttonDiv.id) };
+    deleteButton.onclick = function () { deleteRow(buttonDiv.id) };
 
     var deleteIcon = document.createElement("i");
     deleteIcon.className = "material-icons red";
