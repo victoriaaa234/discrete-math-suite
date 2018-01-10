@@ -17,14 +17,23 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Discrete Math Suite</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/login">Login</a></li>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Discrete Math Suite</a>
+      <%if current_user%>
+		Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+		<%else%>
+	  <ul class="right hide-on-med-and-down">
+        <li> <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
       </ul>
-
+	  <%end%>
+      <%if current_user%>
+	  		Signed in as <strong><%= current_user.name %></strong>!
+        <%= link_to "Sign out", signout_path, id: "sign_out" %>
+		<%else%>
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="/login">Login</a></li>
+        <li> <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
       </ul>
+	  <%end%>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
