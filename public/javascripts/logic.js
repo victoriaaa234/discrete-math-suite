@@ -23,17 +23,19 @@ function addPremiseRow() {
     newRow.className = "input-field col s10";
 
     var newInput = document.createElement("input");
-    newInput.id = "input_premise_" + String(newIndex);
-    newInput.type = "text";
+	newInput.id = "input_premise_" + String(newIndex);
+	newInput.placeholder = "Enter a Premise...";	
+	newInput.type = "text";
     newInput.className = "validate premise_line_input";
 
-    var newLabel = document.createElement("label");
-    newLabel.htmlFor = newInput.id;
-    var labelText = document.createTextNode("Premise");
-    var lineLabelText = document.createTextNode(String(newIndex + 1) + " ");
-    newLabel.appendChild(lineLabelText);
+	var newLabel = document.createElement("label");
+	newLabel.className = "active";
+	newLabel.htmlFor = newInput.id;
+	var labelText = document.createTextNode("Premise");
+    var lineLabelText = document.createTextNode(" " + String(newIndex + 1));
     newLabel.appendChild(labelText);
-
+    newLabel.appendChild(lineLabelText);
+	
     newRow.appendChild(newInput);
     newRow.appendChild(newLabel);
 
@@ -268,6 +270,7 @@ function submitText(){
 			for(i = 2;i<proofs.length;i++){
 				string += proofs[i] + " ";
 			}
+			string = string.substr(0, string.length-1);
 			document.getElementById(rulesId).value = string;
 		}
 		else{
