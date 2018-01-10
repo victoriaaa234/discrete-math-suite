@@ -1,0 +1,6 @@
+# Declare files that will always have CRLF line endings on checkout.
+.rb text eol=lf
+.erb text eol=lf
+.coffee text eol=lf
+.scss text eol=lf
+.css text eol=lf
