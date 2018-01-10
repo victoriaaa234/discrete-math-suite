@@ -20,6 +20,7 @@ function addPremiseRow() {
 
     var newRow = document.createElement("div");
     newRow.id = "premise_" + String(newIndex);
+    newRow.style = "margin-bottom: -6%";
     newRow.className = "input-field col s10";
 
     var newInput = document.createElement("input");
@@ -218,7 +219,9 @@ function addProofRow() {
     // Build new input
     var rowWrapper = document.createElement("div");
     rowWrapper.className = "row";
-
+    rowWrapper.id = "proof_row";
+    rowWrapper.style = "margin-bottom: -6%";
+    
     var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
