@@ -347,5 +347,5 @@ function deleteProofRow(buttonDivId) {
             }
             stepList.push(step);
         }
-        // TODO(vwei): parse_input
+        // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
     }
