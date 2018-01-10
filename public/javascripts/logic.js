@@ -269,16 +269,16 @@ function deleteProofRow(buttonDivId) {
         var proofList = proof.split('\n');
 
         //adding the premises
-        for (i = 0; i < premiseList.length; i++){
+        for (i = 1; i <= premiseList.length; i++){
             var premiseId = 'input_premise_'+i;
             if(document.getElementById(premiseId)!==null){
                 document.getElementById(premiseId).value = premiseList[i];
-                console.log(premiseList[i]);
+                console.log(premiseList[i-1]);
             }
             else{
                 addPremiseRow();
                 document.getElementById(premiseId).value = premiseList[i];
-                console.log(premiseList[i]);
+                console.log(premiseList[i-1]);
             }
 
         }
@@ -288,8 +288,8 @@ function deleteProofRow(buttonDivId) {
 
 
         //adding the proofs
-        for (i = 0; i <proofList.length; i++){
-            var proofs = proofList[i].split(' ');
+        for (i = 1; i <=proofList.length; i++){
+            var proofs = proofList[i-1].split(' ');
             var stepId = 'proof_step_input_'+i;
             var previousId = 'proof_previous_input_'+i;
             var rulesId = 'proof_rules_input_'+i;
