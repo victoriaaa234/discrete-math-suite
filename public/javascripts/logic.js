@@ -131,11 +131,24 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
 
     var newProofElemInput = document.createElement("input");
     newProofElemInput.id = prefix + "input_" + String(newIndex);
+    switch(labelString) {
+        case "Step":
+            newProofElemInput.placeholder = "Enter a step...";
+            break;
+        case "Previous Lines":
+            newProofElemInput.placeholder = "Enter previous lines...";
+            break;
+        case "Rules":
+            newProofElemInput.placeholder = "Enter rules...";
+            break;
+        default:
+    }
     newProofElemInput.type = "text";
     newProofElemInput.className = "validate proof_line_input";
 
     var newProofElemLabel = document.createElement("label");
     newProofElemLabel.htmlFor = newProofElemInput.id;
+    newProofElemLabel.className = "active";
     var labelText = document.createTextNode(labelString);
     newProofElemLabel.appendChild(labelText);
 
