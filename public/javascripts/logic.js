@@ -339,7 +339,7 @@ function deleteProofRow(buttonDivId) {
         var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
         if (allProofRowsLength >= i)
         {
-            for (j = allPremiseBoxesLength; j >= i; j--){
+            for (j = allProofRowsLength; j >= i; j--){
                 var proofRowId = 'proof_remove_'+j;
                 deleteRow(proofRowId);
             }
