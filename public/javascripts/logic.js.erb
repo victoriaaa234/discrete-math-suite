@@ -1,3 +1,5 @@
+<%# CHANGE THIS FILE TO ERB and update route...for Ruby in JS %>
+
 $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
@@ -20,7 +22,6 @@ function addPremiseRow() {
 
     var newRow = document.createElement("div");
     newRow.id = "premise_" + String(newIndex);
-    newRow.style = "margin-bottom: -6%";
     newRow.className = "input-field col s10";
 
     var newInput = document.createElement("input");
@@ -219,9 +220,7 @@ function addProofRow() {
     // Build new input
     var rowWrapper = document.createElement("div");
     rowWrapper.className = "row";
-    rowWrapper.id = "proof_row";
-    rowWrapper.style = "margin-bottom: -6%";
-    
+
     var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
@@ -272,16 +271,16 @@ function deleteProofRow(buttonDivId) {
         var proofList = proof.split('\n');
 
         //adding the premises
-        for (i = 1; i <= premiseList.length; i++){
+        for (i = 0; i < premiseList.length; i++){
             var premiseId = 'input_premise_'+i;
             if(document.getElementById(premiseId)!==null){
                 document.getElementById(premiseId).value = premiseList[i];
-                console.log(premiseList[i-1]);
+                console.log(premiseList[i]);
             }
             else{
                 addPremiseRow();
                 document.getElementById(premiseId).value = premiseList[i];
-                console.log(premiseList[i-1]);
+                console.log(premiseList[i]);
             }
 
         }
@@ -291,8 +290,8 @@ function deleteProofRow(buttonDivId) {
 
 
         //adding the proofs
-        for (i = 1; i <=proofList.length; i++){
-            var proofs = proofList[i-1].split(' ');
+        for (i = 0; i <proofList.length; i++){
+            var proofs = proofList[i].split(' ');
             var stepId = 'proof_step_input_'+i;
             var previousId = 'proof_previous_input_'+i;
             var rulesId = 'proof_rules_input_'+i;
@@ -350,5 +349,6 @@ function deleteProofRow(buttonDivId) {
             }
             stepList.push(step);
         }
-        // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+        <%# // document.getElementById('all_proof_input').submit(); %>
+        var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
     }

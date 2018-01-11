@@ -7,5 +7,5 @@ When /^I click induction/ do
 end
 
 Then /^I am on the induction page/ do
-    puts current_url
+    expect(page).to have_current_path(induction_path)
 end

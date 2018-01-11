@@ -27,8 +27,26 @@ textarea#conclusion {
     margin-top: -5%;
 }
 a.waves-effect.waves-light.btn.modal-trigger {
-    margin-left: 80%;
+    margin-left: 88%;
     margin-top: -5%
+}
+.submit {
+    float:right;
+}
+.proof_add_line {
+    float:left;
+}
+i.material-icons {
+    margin-left: -4%;
+}
+#premise_1 {
+    margin-bottom: -6%;
+}
+#premise_2 {
+    margin-bottom: -6%;
+}
+#proof_row{
+    margin-bottom: -6%;
 }
 @media only screen and (min-width: 601px) {
     width: 90%;

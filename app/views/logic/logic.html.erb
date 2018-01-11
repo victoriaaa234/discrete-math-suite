@@ -14,87 +14,96 @@
 	<!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
 	<!-- <li><a href="#!">Second Link</a></li> -->
 	<!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
-	<li><a>Legend</a></li>
-	<li><div class="divider"></div></li>
-	<li><a class="subheader">Help with symbols</a></li>
+	<li style="text-align: center"><a class="subheader">Help with symbols</a></li>
 	<li>
-		<a>
-			<table>
+		<style>
 
-				<tr>
-					<th>Symbol</th>
-					<th>Example</th> 
-				</tr>
-				<tr>
-					<td>AND: &amp;</td>
-					<td>P&amp;R</td>
-				</tr>
-				<tr>
-					<td>OR: v</td>
-					<td>PvR</td>
-				</tr>
-				<tr>
-					<td>IMPLIES: -></td>
-					<td>P->R</td>
-				</tr>
-				<tr>
-					<td>NOT: ~</td>
-					<td>~P</td>
-				</tr>
-				<tr>
-					<td>BICONDITIONAL: <&#45;> </td>
-					<td>P<->Q</td>
-				</tr>
-				<tr>
-					<td>XOR: x </td>
-					<td>PxQ</td>
-				</tr>
+#hoverid:hover {
+	background-color: #789c90;
+}
+		</style>
+		<table>
 
-			</table>
-		</a>
-		<a>
+			<tr>
+				<th style="padding-left: 30px">Symbol</th>
+				<th>Example</th>
+			</tr>
+
+			<tr id = "hoverid">
+
+
+				<td style="padding-left: 30px">AND:&amp;</td>
+				<td>P&amp;R</td>
+
+			</tr>
+
+
+			<tr id = "hoverid">
+				<td style="padding-left: 30px">OR: v</td>
+				<td>PvR</td>
+			</tr>
+			<tr id = "hoverid">
+				<td style="padding-left: 30px">IMPLIES: -></td>
+				<td>P->R</td>
+			</tr>
+			<tr id = "hoverid">
+				<td style="padding-left: 30px">NOT: ~</td>
+				<td>~P</td>
+			</tr>
+			<tr id = "hoverid">
+				<td style="padding-left: 30px">BICONDITIONAL: <&#45;> </td>
+				<td>P<->Q</td>
+			</tr>
+
+			<tr id = "hoverid">
+				<td style="padding-left: 30px">XOR: x </td>
+				<td>PxQ</td>
+			</tr>
+
+		</table>
+
 	</li>
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Expert</a>
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Expert</a>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-	  <div class="premise-text">
-	  	<textarea placeholder="Enter Premise..." id="premise" rows="4" cols="50"></textarea>
-	  </div>
-	  <div class="conclusion-text">
-	  	<textarea placeholder="Enter Conclusion..." id="conclusion" rows="4" cols="50"></textarea>
-	  </div>
-	  <div class="proof-text">
-	  	<textarea class="proof" placeholder="Enter Proof..." id="proof" rows="4" cols="50"></textarea>
-	  </div>
-    </div>
-    <div class="modal-footer">
-      <button onclick="submitText(premise.value, conclusion.value, proof.value)" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
-    </div>
-  </div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<div class="premise-text">
+			<textarea placeholder="Enter Premise..." id="premise" rows="4" cols="50"></textarea>
+		</div>
+		<div class="conclusion-text">
+			<textarea placeholder="Enter Conclusion..." id="conclusion" rows="4" cols="50"></textarea>
+		</div>
+		<div class="proof-text">
+			<textarea class="proof" placeholder="Enter Proof..." id="proof" rows="4" cols="50"></textarea>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button onclick="submitText()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+	</div>
+</div>
 
 <div class="row">
 	<form id="all_proof_input" class="col s12">
 		<div id="premises_conclusion_container" class="col s4">
 			<div class="row">
-				<div id="premise_0" class="input-field col s10 premise_line">
-					<input id="input_premise_0" type="text" class="validate premise_line_input">
-					<label for="input_premise_0">Premise</label>
+				<div id="premise_1" class="input-field col s10 premise_line">
+					<input placeholder="Enter a premise..." id="input_premise_1" name="input_premise_1" type="text" class="validate premise_line_input">
+					<label for="input_premise_1">Premise 1</label>
 				</div>
 			</div>
 			<div id="premise_secondaries" class="row secondary_line">
 				<div class="row">
-					<div id="premise_1" class="input-field col s10">
-						<input id="input_premise_1" type="text" class="validate premise_line_input">
-						<label for="input_premise_1">Premise</label>
+					<div id="premise_2" class="input-field col s10">
+						<input placeholder="Enter a premise..." id="input_premise_2" name="input_premise_2" type="text" class="validate premise_line_input">
+						<label for="input_premise_2">Premise 2</label>
 					</div>
-					<div id="remove_premise_1" class="col s1">
-						<a class="btn-floating btn-small waves-effect waves-light red" onclick="deletePremiseRow('remove_premise_1')">
+					<div id="remove_premise_2" class="col s1">
+						<a class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('remove_premise_2')">
 							<i class="material-icons red">cancel</i>
 						</a>
 					</div>
@@ -111,9 +120,9 @@
 			<div class="row"></div>
 
 			<div class="row">
-				<div id="conclusion_0" class="input-field col s10 conclusion_line">
-					<input id="input_conclusion_0" type="text" class="validate conclusion_line_input">
-					<label for="input_conclusion_0">Conclusion</label>
+				<div id="conclusion_1" class="input-field col s10 conclusion_line">
+					<input placeholder="Enter a conclusion..." id="input_conclusion_1" name="input_conclusion_1" type="text" class="validate conclusion_line_input">
+					<label for="input_conclusion_1">Conclusion</label>
 				</div>
 			</div>
 		</div>
@@ -121,54 +130,59 @@
 
 
 		<div id="proof_container" class="col s7 offset-s1">
-			<div class="row">
-				<div id="proof_step_0" class="input-field col s5 proof_line">
-					<input id="proof_step_input_0" type="text" class="validate proof_line_input">
-					<label for="proof_step_input_0">Step</label>
+			<div id="proof_row" class="row">
+				<div id="proof_step_1" class="input-field col s5 proof_line">
+					<input placeholder="Enter a step..." id="proof_step_input_1" name="proof_step_input_1" type="text" class="validate proof_line_input">
+					<label for="proof_step_input_1">Step 1</label>
 				</div>
 
-				<div id="proof_previous_0" class="input-field col s3 proof_line">
-					<input id="proof_previous_input_0" type="text" class="validate proof_line_input">
-					<label for="proof_previous_input_0">Previous Lines</label>
+				<div id="proof_previous_1" class="input-field col s3 proof_line">
+					<input placeholder="Enter previous lines..." id="proof_previous_input_1" name="proof_previous_input_1" type="text" class="validate proof_line_input">
+					<label for="proof_previous_input_1">Previous Lines</label>
 				</div>
 
-				<div id="proof_rules_0" class="input-field col s2 proof_line">
-					<input id="proof_rules_input_0" type="text" class="validate proof_line_input">
-					<label for="proof_rules_input_0">Rules</label>
+				<div id="proof_rules_1" class="input-field col s2 proof_line">
+					<input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input">
+					<label for="proof_rules_input_1">Rules</label>
 				</div>
 			</div>
 
 			<div id="proof_secondaries" class="row secondary_line">
-				<div class="row">
-					<div id="proof_step_1" class="input-field col s5">
-						<input id="proof_step_input_1" type="text" class="validate proof_line_input">
-						<label for="proof_step_input_1">Step</label>
+				<div id="proof_row" class="row">
+					<div id="proof_step_2" class="input-field col s5 proof_line">
+						<input placeholder="Enter a step..." id="proof_step_input_2" name="proof_step_input_2" type="text" class="validate proof_line_input">
+						<label for="proof_step_input_2">Step 2</label>
 					</div>
 
-					<div id="proof_previous_1" class="input-field col s3 proof_line">
-						<input id="proof_previous_input_1" type="text" class="validate proof_line_input">
-						<label for="proof_previous_input_1">Previous Lines</label>
+					<div id="proof_previous_2" class="input-field col s3 proof_line">
+						<input placeholder="Enter previous lines..." id="proof_previous_input_2" name="proof_previous_input_2" type="text" class="validate proof_line_input">
+						<label for="proof_previous_input_2">Previous Lines</label>
 					</div>
 
-					<div id="proof_rules_1" class="input-field col s2 proof_line">
-						<input id="proof_rules_input_1" type="text" class="validate proof_line_input">
-						<label for="proof_rules_input_1">Rules</label>
+					<div id="proof_rules_2" class="input-field col s2 proof_line">
+						<input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input">
+						<label for="proof_rules_input_2">Rules</label>
 					</div>
 
-					<div id="proof_remove_1" class="col s1">
-						<a id="proof_remove_button_1" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteProofRow('proof_remove_1')">
+					<div id="proof_remove_2" class="col s1">
+						<a id="proof_remove_button_2" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('proof_remove_2')">
 							<i class="material-icons red">cancel</i>
 						</a>
 					</div>
 				</div>
 			</div>
-
-			<div id="ProofsAddLine">
-				<a class="waves-effect waves-light btn" onclick="addProofRow()">
-					Add Line
-				</a>
+			<div class="submit_add_proof_line">
+				<div class="proof_add_line" id="ProofsAddLine">
+					<a class="waves-effect waves-light btn" onclick="addProofRow()">
+						Add Line
+					</a>
+				</div>
+				<div class="submit" id="LogicSubmit">
+					<a class="waves-effect waves-light btn" onclick="submit()">
+						Submit
+					</a>
+				</div>
 			</div>
-
 		</div>
 
 	</form>

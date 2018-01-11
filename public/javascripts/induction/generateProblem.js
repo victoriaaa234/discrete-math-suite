@@ -84,3 +84,59 @@ const heightOfTree = function(){
 
     return problem;
 };
+
+const generateSolution = function(solutionParameters) {
+    switch (solutonParameters.type) {
+        case "polynomial":
+            return polynomialSoluton(solutionParameters);
+        case "diversive":
+            return diversiveSoluton(solutionParameters);
+        case "geometric":
+            return geometricSoluton(solutionParameters);
+        case "strong":
+            return  strongSolution(solutionParameters);
+        case "structural":
+            return structuralSolution(solutionParameters);
+        default:
+            break;
+    }
+};
+
+const polynomialSolution = function(solutionParameters){
+    let solution = {
+        
+    };
+    return solution;
+};
+
+const diversiveSolution = function(solutionParameters){
+    let solution = {
+
+    };
+
+    return solution;
+};
+
+const geometricSolution = function(solutionParameters){
+    let solution = {
+
+    };
+
+    return solution;
+};
+
+const strongSolution = function(solutionParameters){
+    let solution = {
+
+    };
+
+    return solution;
+};
+
+const structuralSolution = function(solutionParameters){
+    let solution = {
+
+    };
+
+    return solution;
+};
