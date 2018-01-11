@@ -294,6 +294,8 @@ function deleteProofRow(buttonDivId) {
             }
 
         }
+
+        //removing extra premises
         var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
         if (allPremiseBoxesLength >= i)
         {
@@ -315,8 +317,8 @@ function deleteProofRow(buttonDivId) {
             var rulesId = 'proof_rules_input_'+i;
 
             if(document.getElementById(stepId)!==null){
-                document.getElementById(stepId).value = proofs[0].trim();
-                document.getElementById(previousId).value = proofs[1].trim();
+                document.getElementById(stepId).value = proofs[0] || "";
+                document.getElementById(previousId).value = proofs[1] || "";
                 var string = " ";
                 for(j = 2;j<proofs.length;j++){
                     string += proofs[j] + " ";
@@ -326,9 +328,9 @@ function deleteProofRow(buttonDivId) {
             }
             else{
                 addProofRow();
-                document.getElementById(stepId).value = proofs[0].trim();
-                document.getElementById(previousId).value = proofs[1].trim();
-                document.getElementById(rulesId).value = proofs[2].trim();
+                document.getElementById(stepId).value = proofs[0] || "";
+                document.getElementById(previousId).value = proofs[1] || "";
+                document.getElementById(rulesId).value = proofs[2] || "";
                 var string = " ";
                 for(i = 2;i<proofs.length;i++){
                     string += proofs[i] + " ";
@@ -336,12 +338,17 @@ function deleteProofRow(buttonDivId) {
                 document.getElementById(rulesId).value = string;
             }
         }
+
+        //removing proofs
         var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
-        if (allProofRowsLength >= i)
+        if (i > 1)
         {
-            for (j = allProofRowsLength; j >= i; j--){
-                var proofRowId = 'proof_remove_'+j;
-                deleteRow(proofRowId);
+            if (allProofRowsLength >= i)
+            {
+                for (j = allProofRowsLength; j >= i; j--){
+                    var proofRowId = 'proof_remove_'+j;
+                    deleteRow(proofRowId);
+                }
             }
         }
     }
