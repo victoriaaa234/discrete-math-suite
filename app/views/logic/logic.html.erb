@@ -70,7 +70,7 @@
 
 
 <!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
+<a onclick="modalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
@@ -86,6 +86,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
+		<button onclick="modalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 		<button onclick="submitText()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
 	</div>
 </div>

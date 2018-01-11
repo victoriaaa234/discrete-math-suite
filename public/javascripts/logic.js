@@ -390,3 +390,22 @@ function submit(){
     });
     // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
 }
+
+var globalModalData = [];
+function modalOpen(){
+    globalModalData.length = 0; // Reset array
+    globalModalData.push(document.getElementById('premise').value);
+    globalModalData.push(document.getElementById('conclusion').value);
+    globalModalData.push(document.getElementById('proof').value);
+
+    $('.modal').modal({
+        dismissible: false
+    });
+}
+
+function modalCancel(){
+    document.getElementById('premise').value = globalModalData[0];
+    document.getElementById('conclusion').value = globalModalData[1];
+    document.getElementById('proof').value = globalModalData[2];
+    globalModalData.length = 0;
+}
