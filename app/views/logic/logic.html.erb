@@ -1,5 +1,3 @@
-<h5>Logic</h5>
-
 <ul id="slide-out" class="side-nav">
 	<!-- Uncomment the following 8 lines to include the background/user header in the side navbar -->
 	<!-- <li><div class="user-view"> -->
@@ -18,8 +16,10 @@
 	<li>
 		<style>
 
+#sidenavbtn{  position: relative; left:55px;  top:45px;}
+
 #hoverid:hover {
-	background-color: #789c90;
+	background-color: #e3eaf2;
 }
 		</style>
 		<table>
@@ -64,10 +64,13 @@
 
 	</li>
 </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+<a href="#" data-activates="slide-out"  id = "sidenavbtn" class="button-collapse">
+<i class="material-icons" >menu</i></a>
+<h5 id = "logicheader" style = "padding-left:35px">Logic</h5>
+
 
 <!-- Modal Trigger -->
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Expert</a>
+<a class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
@@ -92,14 +95,14 @@
 		<div id="premises_conclusion_container" class="col s4">
 			<div class="row">
 				<div id="premise_1" class="input-field col s10 premise_line">
-					<input placeholder="Enter a premise..." id="input_premise_1" name="input_premise_1" type="text" class="validate premise_line_input" data-lpignore="true">
+					<input placeholder="Enter a premise..." id="input_premise_1" name="input_premise_1" type="text" class="validate premise_line_input">
 					<label for="input_premise_1">Premise 1</label>
 				</div>
 			</div>
 			<div id="premise_secondaries" class="row secondary_line">
 				<div class="row">
 					<div id="premise_2" class="input-field col s10">
-						<input placeholder="Enter a premise..." id="input_premise_2" name="input_premise_2" type="text" class="validate premise_line_input" data-lpignore="true">
+						<input placeholder="Enter a premise..." id="input_premise_2" name="input_premise_2" type="text" class="validate premise_line_input">
 						<label for="input_premise_2">Premise 2</label>
 					</div>
 					<div id="remove_premise_2" class="col s1">
@@ -121,7 +124,7 @@
 
 			<div class="row">
 				<div id="conclusion_1" class="input-field col s10 conclusion_line">
-					<input placeholder="Enter a conclusion..." id="input_conclusion_1" name="input_conclusion_1" type="text" class="validate conclusion_line_input" data-lpignore="true">
+					<input placeholder="Enter a conclusion..." id="input_conclusion_1" name="input_conclusion_1" type="text" class="validate conclusion_line_input">
 					<label for="input_conclusion_1">Conclusion</label>
 				</div>
 			</div>
@@ -132,17 +135,17 @@
 		<div id="proof_container" class="col s7 offset-s1">
 			<div id="proof_row" class="row">
 				<div id="proof_step_1" class="input-field col s5 proof_line">
-					<input placeholder="Enter a step..." id="proof_step_input_1" name="proof_step_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+					<input placeholder="Enter a step..." id="proof_step_input_1" name="proof_step_input_1" type="text" class="validate proof_line_input">
 					<label for="proof_step_input_1">Step 1</label>
 				</div>
 
 				<div id="proof_previous_1" class="input-field col s3 proof_line">
-					<input placeholder="Enter previous lines..." id="proof_previous_input_1" name="proof_previous_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+					<input placeholder="Enter previous lines..." id="proof_previous_input_1" name="proof_previous_input_1" type="text" class="validate proof_line_input">
 					<label for="proof_previous_input_1">Previous Lines</label>
 				</div>
 
 				<div id="proof_rules_1" class="input-field col s2 proof_line">
-					<input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+					<input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input">
 					<label for="proof_rules_input_1">Rules</label>
 				</div>
 			</div>
@@ -150,17 +153,17 @@
 			<div id="proof_secondaries" class="row secondary_line">
 				<div id="proof_row" class="row">
 					<div id="proof_step_2" class="input-field col s5 proof_line">
-						<input placeholder="Enter a step..." id="proof_step_input_2" name="proof_step_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+						<input placeholder="Enter a step..." id="proof_step_input_2" name="proof_step_input_2" type="text" class="validate proof_line_input">
 						<label for="proof_step_input_2">Step 2</label>
 					</div>
 
 					<div id="proof_previous_2" class="input-field col s3 proof_line">
-						<input placeholder="Enter previous lines..." id="proof_previous_input_2" name="proof_previous_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+						<input placeholder="Enter previous lines..." id="proof_previous_input_2" name="proof_previous_input_2" type="text" class="validate proof_line_input">
 						<label for="proof_previous_input_2">Previous Lines</label>
 					</div>
 
 					<div id="proof_rules_2" class="input-field col s2 proof_line">
-						<input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+						<input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input">
 						<label for="proof_rules_input_2">Rules</label>
 					</div>
 
