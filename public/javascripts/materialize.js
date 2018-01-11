@@ -51,6 +51,23 @@ if (typeof jQuery === 'undefined') {
       c4 = 2 * PI / 3,
       c5 = 2 * PI / 4.5;
 
+  function previewProfileImage( uploader ) {   
+    //ensure a file was selected 
+    if (uploader.files && uploader.files[0]) {
+        var imageFile = uploader.files[0];
+        var reader = new FileReader();    
+        reader.onload = function (e) {
+            //set the image data as source
+            $('#profileImage').attr('src', e.target.result);
+        }    
+        reader.readAsDataURL( imageFile );
+    }
+}
+
+$("#imageUpload").change(function(){
+    previewProfileImage( this );
+});
+
   // x is the fraction of animation progress, in the range 0..1
   function bounceOut(x) {
     var n1 = 7.5625,
