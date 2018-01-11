@@ -104,11 +104,11 @@ function renumberNodes(nodes, deletedIndex) {
                 }
                 else{
                     child.id = getIdPrefix(child.id) + String(childIndex - 1);
-					// input elements have name attributes
-					// these should be identical to their id attributes
-					if(child.name != null) {
-						child.name = child.id
-					}
+                    // input elements have name attributes
+                    // these should be identical to their id attributes
+                    if(child.name != null) {
+                        child.name = child.id
+                    }
                 }
             }
         }
@@ -230,7 +230,7 @@ function addProofRow() {
     rowWrapper.className = "row";
     rowWrapper.id = "proof_row";
     rowWrapper.style = "margin-bottom: -6%";
-    
+
     var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
@@ -330,34 +330,47 @@ function deleteProofRow(buttonDivId) {
         }
     }
 
-    function submit(){
-        console.log('Submitted Form');
-        var premises = "";
-        var conclusion = "";
-        var stepList = [];
-        var formList = document.getElementById('all_proof_input').elements;
-        var conclusionLocation = 0;
-        for (i = 0; i < formList.length; i++) {
-            if(formList[i].id.includes("premise")) {
-                premises = premises + formList[i].value + ",";
-            }
-            else {
-                conclusionLocation = i;
-                break;
-            }
+function submit(){
+    console.log('Submitted Form');
+    var premises = "";
+    var conclusion = "";
+    var stepList = [];
+    var formList = document.getElementById('all_proof_input').elements;
+    var conclusionLocation = 0;
+    for (i = 0; i < formList.length; i++) {
+        if(formList[i].id.includes("premise")) {
+            premises = premises + formList[i].value + ",";
         }
-        premises = premises.substr(0,premises.length -1);
-        conclusion = formList[conclusionLocation].value;
-        var index = conclusionLocation + 1;
-        while(index < formList.length) {
-            var step = [];
-            var counter = 3;
-            while(counter > 0) {
-                step.push(formList[index].value);
-                index++;
-                counter--;
-            }
-            stepList.push(step);
+        else {
+            conclusionLocation = i;
+            break;
         }
-        // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
     }
+    premises = premises.substr(0,premises.length -1);
+    conclusion = formList[conclusionLocation].value;
+    var index = conclusionLocation + 1;
+    while(index < formList.length) {
+        var step = [];
+        var counter = 3;
+        while(counter > 0) {
+            step.push(formList[index].value);
+            index++;
+            counter--;
+        }
+        stepList.push(step);
+    }
+    $.ajax({
+        url: "/logic",
+        data: {
+            submit: 'Proof',
+            premises: premises,
+            conclusion: conclusion,
+            proof_lines: stepList
+        },
+        success: function(data){
+            alert("Data: " + data.data.toString() + "\n");
+        },
+        dataType: 'json'
+    });
+    // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+}
