@@ -404,8 +404,8 @@ function modalOpen(){
 }
 
 function modalCancel(){
-    document.getElementById('premise').value = globalModalData[0];
-    document.getElementById('conclusion').value = globalModalData[1];
-    document.getElementById('proof').value = globalModalData[2];
+    document.getElementById('premise').value = globalModalData[0] || "";
+    document.getElementById('conclusion').value = globalModalData[1] || "";
+    document.getElementById('proof').value = globalModalData[2] || "";
     globalModalData.length = 0;
 }

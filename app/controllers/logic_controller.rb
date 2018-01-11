@@ -9,7 +9,7 @@ class LogicController < ApplicationController
             respond_to do |format|
                 format.json { render json: data }
             end
-        end	
+        end
 
         # puts parse_input("hello", "hello", "hello")
     end
@@ -71,10 +71,10 @@ class LogicController < ApplicationController
         proof.values.each do |line|
             input_proof.push(line)
         end
-        puts input_proof        
+        puts input_proof
         assumption_set = calc_assumption_set(input_proof)
         if assumption_set.nil? || assumption_set.empty?
-            return "Ya done goofed" 
+            return "Ya done goofed"
         end
         # Format output to logic.tamu.edu format
         formatted_proof = String.new
