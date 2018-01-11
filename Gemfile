@@ -56,6 +56,7 @@ group :production do
 end
 
 group :test do
+  gem 'rspec'
   gem 'cucumber-rails'
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'

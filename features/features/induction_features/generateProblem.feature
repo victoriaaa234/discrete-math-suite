@@ -1,5 +1,5 @@
 # feature/features/generateProblem.feature
-
+@wip
 Feature: User can generate a problem
 
 Scenario:
