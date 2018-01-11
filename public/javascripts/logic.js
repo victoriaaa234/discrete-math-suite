@@ -284,15 +284,23 @@ function deleteProofRow(buttonDivId) {
         for (i = 1; i <= premiseList.length; i++){
             var premiseId = 'input_premise_'+i;
             if(document.getElementById(premiseId)!==null){
-                document.getElementById(premiseId).value = premiseList[i-1];
+                document.getElementById(premiseId).value = premiseList[i-1].trim();
                 console.log(premiseList[i-1]);
             }
             else{
                 addPremiseRow();
-                document.getElementById(premiseId).value = premiseList[i-1];
+                document.getElementById(premiseId).value = premiseList[i-1].trim();
                 console.log(premiseList[i-1]);
             }
 
+        }
+        var allPremiseBoxes = document.querySelectorAll("[id*='input_premise_']");
+        if (allPremiseBoxes.length >= i)
+        {
+            for (; i <= allPremiseBoxes.length; i++){
+                var premiseId = 'remove_premise_'+i;
+                deleteRow(premiseId);
+            }
         }
 
         //adding the conclusion
@@ -307,25 +315,33 @@ function deleteProofRow(buttonDivId) {
             var rulesId = 'proof_rules_input_'+i;
 
             if(document.getElementById(stepId)!==null){
-                document.getElementById(stepId).value = proofs[0];
-                document.getElementById(previousId).value = proofs[1];
+                document.getElementById(stepId).value = proofs[0].trim();
+                document.getElementById(previousId).value = proofs[1].trim();
                 var string = " ";
-                for(i = 2;i<proofs.length;i++){
-                    string += proofs[i] + " ";
+                for(j = 2;j<proofs.length;j++){
+                    string += proofs[j] + " ";
                 }
                 string = string.substr(0, string.length-1);
                 document.getElementById(rulesId).value = string;
             }
             else{
                 addProofRow();
-                document.getElementById(stepId).value = proofs[0];
-                document.getElementById(previousId).value = proofs[1];
-                document.getElementById(rulesId).value = proofs[2];
+                document.getElementById(stepId).value = proofs[0].trim();
+                document.getElementById(previousId).value = proofs[1].trim();
+                document.getElementById(rulesId).value = proofs[2].trim();
                 var string = " ";
                 for(i = 2;i<proofs.length;i++){
                     string += proofs[i] + " ";
                 }
                 document.getElementById(rulesId).value = string;
+            }
+        }
+        var allProofRows = document.querySelectorAll("[id*='proof_step_input_']");
+        if (allProofRows.length >= i)
+        {
+            for (; i <= allProofRows.length; i++){
+                var proofRowId = 'proof_remove_'+i;
+                deleteRow(proofRowId);
             }
         }
     }
