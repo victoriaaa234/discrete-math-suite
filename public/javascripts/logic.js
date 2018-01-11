@@ -5,8 +5,8 @@ $(document).ready(function(){
 
 function addPremiseRow() {
     var premiseSecondaries = document.getElementById("premise_secondaries");
-    if(premiseSecondaries.children.length > 0) { 
-        var idOfLast = premiseSecondaries.children[premiseSecondaries.children.length - 1].firstElementChild.id; 
+    if(premiseSecondaries.children.length > 0) {
+        var idOfLast = premiseSecondaries.children[premiseSecondaries.children.length - 1].firstElementChild.id;
     }
     else {
         var idOfLast = 'premise_1';
@@ -26,9 +26,13 @@ function addPremiseRow() {
     var newInput = document.createElement("input");
     newInput.id = "input_premise_" + String(newIndex);
     newInput.name = newInput.id;
-    newInput.placeholder = "Enter a premise...";	
+    newInput.placeholder = "Enter a premise...";
     newInput.type = "text";
     newInput.className = "validate premise_line_input";
+
+    var lastPassAttrib = document.createAttribute("data-lpignore");
+    lastPassAttrib.value = "true";
+    newInput.setAttributeNode(lastPassAttrib);
 
     var newLabel = document.createElement("label");
     newLabel.className = "active";
@@ -160,6 +164,11 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     }
     newProofElemInput.type = "text";
     newProofElemInput.className = "validate proof_line_input";
+
+
+    var lastPassAttrib = document.createAttribute("data-lpignore");
+    lastPassAttrib.value = "true";
+    newProofElemInput.setAttributeNode(lastPassAttrib);
 
     var newProofElemLabel = document.createElement("label");
     newProofElemLabel.htmlFor = newProofElemInput.id;
