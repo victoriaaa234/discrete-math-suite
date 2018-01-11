@@ -294,6 +294,14 @@ function deleteProofRow(buttonDivId) {
             }
 
         }
+        var allPremiseBoxes = document.querySelectorAll("[id*='input_premise_']");
+        if (allPremiseBoxes.length >= i)
+        {
+            for (; i <= allPremiseBoxes.length; i++){
+                var premiseId = 'remove_premise_'+i;
+                deleteRow(premiseId);
+            }
+        }
 
         //adding the conclusion
         document.getElementById('input_conclusion_1').value = conclusion;
@@ -328,6 +336,14 @@ function deleteProofRow(buttonDivId) {
                 document.getElementById(rulesId).value = string;
             }
         }
+        var allProofRows = document.querySelectorAll("[id*='proof_step_input_']");
+        if (allProofRows.length * 3 >= i)
+        {
+            for (i = Math.floor((i/3)+1); i <= allProofRows.length; i++){
+                var proofRowId = 'proof_remove_'+i;
+                deleteRow(proofRowId);
+            }
+        }
     }
 
     function submit(){
@@ -346,7 +362,7 @@ function deleteProofRow(buttonDivId) {
                 break;
             }
         }
-        premises = premises.substr(0,premises.length -1);
+        premises = premises.substr(0,premises.length - 1);
         conclusion = formList[conclusionLocation].value;
         var index = conclusionLocation + 1;
         while(index < formList.length) {
