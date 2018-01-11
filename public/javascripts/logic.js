@@ -294,11 +294,11 @@ function deleteProofRow(buttonDivId) {
             }
 
         }
-        var allPremiseBoxes = document.querySelectorAll("[id*='input_premise_']");
-        if (allPremiseBoxes.length >= i)
+        var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
+        if (allPremiseBoxesLength >= i)
         {
-            for (; i <= allPremiseBoxes.length; i++){
-                var premiseId = 'remove_premise_'+i;
+            for (j = allPremiseBoxesLength; j >= i; j--){
+                var premiseId = 'remove_premise_'+j;
                 deleteRow(premiseId);
             }
         }
@@ -336,11 +336,11 @@ function deleteProofRow(buttonDivId) {
                 document.getElementById(rulesId).value = string;
             }
         }
-        var allProofRows = document.querySelectorAll("[id*='proof_step_input_']");
-        if (allProofRows.length >= i)
+        var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
+        if (allProofRowsLength >= i)
         {
-            for (; i <= allProofRows.length; i++){
-                var proofRowId = 'proof_remove_'+i;
+            for (j = allPremiseBoxesLength; j >= i; j--){
+                var proofRowId = 'proof_remove_'+j;
                 deleteRow(proofRowId);
             }
         }
