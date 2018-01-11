@@ -29,12 +29,13 @@
 	  		<div style="text-align:right">
         <!--  Signed in as <strong><%= current_user.name %></strong>! -->
       
-        <div class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down">
 
-        Sign in as <a id="sign_in" href="/profile"><%=current_user.name%></a>
+        <li>Sign in as</li>
+        <li><a id="sign_in" href="/profile"><%=current_user.name%></a></li>
       
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
-        </div>
+        <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+        </ul>
       </div>
         
 		<%else%>
