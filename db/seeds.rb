@@ -39,8 +39,8 @@
   # |   | Universal Generaliz. | ???                   | Universal Intro  | Introduction              | @I                    |
   # |   | Existential Instant. | ???                   | Existential Elim  | Elimination              | $E                    |
   # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
-  # |   | Rando COmpletions    | ???                   | WFF => Well Formed Formulae                  |                       |
-  #
+  # |   | Rando Completions    | ???                   | WFF => Well Formed Formulae                  |                       |
+
 mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
              {:logic => 'Ampersand Commutativity'            , :mapping => 'Commutative Law'},
              {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},
@@ -55,10 +55,10 @@ mappings = [{:logic => 'Double Negation'                     , :mapping => 'Doub
              {:logic => 'Double Arrow Elimination'           , :mapping => 'Logic Equiv. Bicond.'},
              {:logic => 'Negated Double Arrow'               , :mapping => 'Logic Equiv. Bicon'},
              {:logic => 'QE'                                 , :mapping => "De Morgan's Quantif."},
-             {:logic => 'Arrow Elim'                         , :mapping => 'Moddus Ponens'},
-             {:logic => 'Arrow Elimination'                  , :mapping => 'Moddus Ponens'},
-             {:logic => 'MTT (Modus Tollendo Tollens)'       , :mapping => 'Moddus Tollens'},
-             {:logic => 'MTT'                                , :mapping => 'Moddus Tollens'},
+             {:logic => 'Arrow Elim'                         , :mapping => 'Modus Ponens'},
+             {:logic => 'Arrow Elimination'                  , :mapping => 'Modus Ponens'},
+             {:logic => 'MTT (Modus Tollendo Tollens)'       , :mapping => 'Modus Tollens'},
+             {:logic => 'MTT'                                , :mapping => 'Modus Tollens'},
              {:logic => 'Hypothetical Syllogism'             , :mapping => 'Hypothetical Syllog.'},
              {:logic => 'Wedge Elimination'                  , :mapping => 'Disjunctive Syllog.'},
              {:logic => 'Wedge Elim'                         , :mapping => 'Disjunctive Syllog.'},
