@@ -28,9 +28,14 @@
       <%if current_user%>
 	  		<div style="text-align:right">
         <!--  Signed in as <strong><%= current_user.name %></strong>! -->
-        Signed in as <button type="button"><%= current_user.name %></button>
+      
+        <div class="right hide-on-med-and-down">
+
+        Sign in as <a id="sign_in" href="/profile"><%=current_user.name%></a>
+      
         <%= link_to "Sign out", signout_path, id: "sign_out" %>
         </div>
+      </div>
         
 		<%else%>
       <ul id="nav-mobile" class="side-nav">
