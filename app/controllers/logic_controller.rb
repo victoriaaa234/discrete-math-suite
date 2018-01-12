@@ -129,12 +129,11 @@ class LogicController < ApplicationController
         error_reason = result_page.xpath("//font[@color='red']").first.parent.text
         unless error_reason.empty?
             puts "Red case"
-puts "Hello"
+
             if error_reason == "'No conclusion.'"
                 return "Please enter a conclusion" # NOTE(Drew): One of the few times we manually create an error message.
-                puts "Poop"
             end
-puts "Goodbye"
+
             error_message = result_page.xpath('//tr/td/p').last.text
             error_options = error_reason.split(/[[:space:]]+/)
             data = {"reason"=>error_message, "assumption_set"=>error_options[2], "line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
