@@ -41,7 +41,7 @@
   # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
   # |   | Rando Completions    | ???                   | WFF => Well Formed Formulae                  |                       |
 
-mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
+response_mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
              {:logic => 'Ampersand Commutativity'            , :mapping => 'Commutative Law'},
              {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},
              {:logic => 'Ampersand Associativity'            , :mapping => 'Associative Law'},
@@ -51,12 +51,12 @@ mappings = [{:logic => 'Double Negation'                     , :mapping => 'Doub
              {:logic => "de Morgan's Law"                    , :mapping => "DeMorgan's Laws"},
              {:logic => 'Wedge Arrow'                        , :mapping => 'Logic Equiv. Condit.'},
              {:logic => 'Negated Arrow'                      , :mapping => 'Logic Equiv. Condit.'},
-             {:logic => 'Double Arrow Elim'                  , :mapping => 'Logic Equiv. Bicond.'},
              {:logic => 'Double Arrow Elimination'           , :mapping => 'Logic Equiv. Bicond.'},
+             {:logic => 'Double Arrow Elim'                  , :mapping => 'Logic Equiv. Bicond.'},
              {:logic => 'Negated Double Arrow'               , :mapping => 'Logic Equiv. Bicon'},
              {:logic => 'QE'                                 , :mapping => "De Morgan's Quantif."},
-             {:logic => 'Arrow Elim'                         , :mapping => 'Modus Ponens'},
              {:logic => 'Arrow Elimination'                  , :mapping => 'Modus Ponens'},
+             {:logic => 'Arrow Elim'                         , :mapping => 'Modus Ponens'},
              {:logic => 'MTT (Modus Tollendo Tollens)'       , :mapping => 'Modus Tollens'},
              {:logic => 'MTT'                                , :mapping => 'Modus Tollens'},
              {:logic => 'Hypothetical Syllogism'             , :mapping => 'Hypothetical Syllog.'},
@@ -78,6 +78,21 @@ mappings = [{:logic => 'Double Negation'                     , :mapping => 'Doub
              {:logic => 'Existential Intro'                  , :mapping => 'Existential General'},
              {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]
 
-mappings.each do |mapping|
-  Mapping.create!(mapping)
+latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
+                   {:latex => '\land'                        , :mapping => '&'},
+                   {:latex => '\neg'                         , :mapping => '~'},
+                   {:latex => '\forall'                      , :mapping => '@'},
+                   {:latex => '\exists'                      , :mapping => 'E'},
+                   {:latex => '\Longrightarrow'              , :mapping => '->'},
+                   {:latex => '\implies'                     , :mapping => '->'},
+                   {:latex => '\Rightarrow'                  , :mapping => '->'},
+                   {:latex => '\iff'                         , :mapping => '<->'},
+                   {:latex => '\Leftrightarrow'              , :mapping => '<->'}]
+
+response_mappings.each do |mapping|
+  ResponseMapping.create!(mapping)
+end
+
+latex_mappings.each do |mapping|
+  LatexMapping.create!(mapping)
 end
