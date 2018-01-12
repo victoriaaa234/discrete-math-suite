@@ -1,0 +1,2 @@
+class ResponseMapping < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class LatexMapping < ApplicationRecord
+end

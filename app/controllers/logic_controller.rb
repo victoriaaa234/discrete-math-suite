@@ -82,7 +82,15 @@ class LogicController < ApplicationController
             formatted_proof << assumption_set[index].join(",") << " (" << (index + 1).to_s << ") " << line[0] << " " << line[1] << line[2] << "\r\n"
         end
 
-        return post(input_premesis_str, input_conclusion_str, formatted_proof)
+        LatexMapping.all.each do |m|
+            input_premesis_str.gsub! m.latex, m.mapping
+            input_conclusion_str.gsub! m.latex, m.mapping
+            formatted_proof.gsub! m.latex, m.mapping
+        end
+
+        result = post(input_premesis_str, input_conclusion_str, formatted_proof)
+        puts result
+        return result
     end
 
     def post(formatted_premesis, formatted_conclusion, formatted_proof)
@@ -110,7 +118,7 @@ class LogicController < ApplicationController
             return "You did it!"
         end
 
-        # Parse errors. First marron errors, then red ones, then traditional errors
+        # Parse errors. First maroon errors, then red ones, then traditional errors
         error_reason = result_page.xpath("//font[@color='maroon']").text
         unless error_reason.empty?
             error_reason = format_output(error_message)
@@ -134,7 +142,7 @@ class LogicController < ApplicationController
 
     def format_output(error_message)
         # Check each type of error from logic.tamu.edu and replace with our mappings
-        Mapping.all.each do |m|
+        ResponseMapping.all.each do |m|
             error_message.gsub! m.logic, m.mapping
         end
         return error_message
