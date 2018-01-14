@@ -306,9 +306,11 @@ function deleteProofRow(buttonDivId) {
         }
 
         //adding the conclusion
+        
+        //remove spaces first
+        conclusion = removeSpaces(conclusion);
         document.getElementById('input_conclusion_1').value = conclusion;
-
-
+        
         //adding the proofs
         for (i = 1; i <=proofList.length; i++){
             var proofs = proofList[i-1].split(' ');
@@ -324,6 +326,7 @@ function deleteProofRow(buttonDivId) {
                     string += proofs[j] + " ";
                 }
                 string = string.substr(0, string.length-1);
+                string = removeSpaces(string);
                 document.getElementById(rulesId).value = string;
             }
             else{
@@ -352,6 +355,19 @@ function deleteProofRow(buttonDivId) {
             }
         }
     }
+
+function removeSpaces(text) {  
+    var i = 0;
+    while (i < text.length) {  
+         if (text[i] == " ") {
+             text = text.substring(0, i) + text.substring(i + 1, text.length);
+         }
+         else {
+            i++;
+         }
+     }
+     return text;
+}
 
 function submit(){
     console.log('Submitted Form');
