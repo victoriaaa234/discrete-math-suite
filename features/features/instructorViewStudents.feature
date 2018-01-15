@@ -1,5 +1,5 @@
 # feature/features/instructorViewStudents.feature
-@wip
+
 Feature: Instructor can view students accounts
 
 Scenario:

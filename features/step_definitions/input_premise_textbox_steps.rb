@@ -1,5 +1,5 @@
 Given /^I am on the logic page/ do
-    puts visit logic_path
+    visit root_path/logic
 end
 
 When /^I input text into premise textbox$/ do |input_term|

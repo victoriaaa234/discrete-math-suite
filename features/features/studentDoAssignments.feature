@@ -1,5 +1,5 @@
 # feature/features/studentDoAssignments.feature
-@wip
+
 Feature: User can pick assignments
 
 Scenario:

@@ -5,8 +5,8 @@ $(document).ready(function(){
 
 function addPremiseRow() {
     var premiseSecondaries = document.getElementById("premise_secondaries");
-    if(premiseSecondaries.children.length > 0) {
-        var idOfLast = premiseSecondaries.children[premiseSecondaries.children.length - 1].firstElementChild.id;
+    if(premiseSecondaries.children.length > 0) { 
+        var idOfLast = premiseSecondaries.children[premiseSecondaries.children.length - 1].firstElementChild.id; 
     }
     else {
         var idOfLast = 'premise_1';
@@ -26,13 +26,9 @@ function addPremiseRow() {
     var newInput = document.createElement("input");
     newInput.id = "input_premise_" + String(newIndex);
     newInput.name = newInput.id;
-    newInput.placeholder = "Enter a premise...";
+    newInput.placeholder = "Enter a premise...";	
     newInput.type = "text";
     newInput.className = "validate premise_line_input";
-
-    var lastPassAttrib = document.createAttribute("data-lpignore");
-    lastPassAttrib.value = "true";
-    newInput.setAttributeNode(lastPassAttrib);
 
     var newLabel = document.createElement("label");
     newLabel.className = "active";
@@ -104,11 +100,11 @@ function renumberNodes(nodes, deletedIndex) {
                 }
                 else{
                     child.id = getIdPrefix(child.id) + String(childIndex - 1);
-                    // input elements have name attributes
-                    // these should be identical to their id attributes
-                    if(child.name != null) {
-                        child.name = child.id
-                    }
+					// input elements have name attributes
+					// these should be identical to their id attributes
+					if(child.name != null) {
+						child.name = child.id
+					}
                 }
             }
         }
@@ -164,11 +160,6 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     }
     newProofElemInput.type = "text";
     newProofElemInput.className = "validate proof_line_input";
-
-
-    var lastPassAttrib = document.createAttribute("data-lpignore");
-    lastPassAttrib.value = "true";
-    newProofElemInput.setAttributeNode(lastPassAttrib);
 
     var newProofElemLabel = document.createElement("label");
     newProofElemLabel.htmlFor = newProofElemInput.id;
@@ -230,7 +221,7 @@ function addProofRow() {
     rowWrapper.className = "row";
     rowWrapper.id = "proof_row";
     rowWrapper.style = "margin-bottom: -6%";
-
+    
     var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
@@ -284,25 +275,15 @@ function deleteProofRow(buttonDivId) {
         for (i = 1; i <= premiseList.length; i++){
             var premiseId = 'input_premise_'+i;
             if(document.getElementById(premiseId)!==null){
-                document.getElementById(premiseId).value = premiseList[i-1].trim();
+                document.getElementById(premiseId).value = premiseList[i];
                 console.log(premiseList[i-1]);
             }
             else{
                 addPremiseRow();
-                document.getElementById(premiseId).value = premiseList[i-1].trim();
+                document.getElementById(premiseId).value = premiseList[i];
                 console.log(premiseList[i-1]);
             }
 
-        }
-
-        //removing extra premises
-        var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
-        if (allPremiseBoxesLength >= i)
-        {
-            for (j = allPremiseBoxesLength; j >= i; j--){
-                var premiseId = 'remove_premise_'+j;
-                deleteRow(premiseId);
-            }
         }
 
         //adding the conclusion
@@ -317,20 +298,20 @@ function deleteProofRow(buttonDivId) {
             var rulesId = 'proof_rules_input_'+i;
 
             if(document.getElementById(stepId)!==null){
-                document.getElementById(stepId).value = proofs[0] || "";
-                document.getElementById(previousId).value = proofs[1] || "";
+                document.getElementById(stepId).value = proofs[0];
+                document.getElementById(previousId).value = proofs[1];
                 var string = " ";
-                for(j = 2;j<proofs.length;j++){
-                    string += proofs[j] + " ";
+                for(i = 2;i<proofs.length;i++){
+                    string += proofs[i] + " ";
                 }
                 string = string.substr(0, string.length-1);
                 document.getElementById(rulesId).value = string;
             }
             else{
                 addProofRow();
-                document.getElementById(stepId).value = proofs[0] || "";
-                document.getElementById(previousId).value = proofs[1] || "";
-                document.getElementById(rulesId).value = proofs[2] || "";
+                document.getElementById(stepId).value = proofs[0];
+                document.getElementById(previousId).value = proofs[1];
+                document.getElementById(rulesId).value = proofs[2];
                 var string = " ";
                 for(i = 2;i<proofs.length;i++){
                     string += proofs[i] + " ";
@@ -338,81 +319,36 @@ function deleteProofRow(buttonDivId) {
                 document.getElementById(rulesId).value = string;
             }
         }
+    }
 
-        //removing proofs
-        var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
-        if (i > 1)
-        {
-            if (allProofRowsLength >= i)
-            {
-                for (j = allProofRowsLength; j >= i; j--){
-                    var proofRowId = 'proof_remove_'+j;
-                    deleteRow(proofRowId);
-                }
+    function submit(){
+        console.log('Submitted Form');
+        var premises = "";
+        var conclusion = "";
+        var stepList = [];
+        var formList = document.getElementById('all_proof_input').elements;
+        var conclusionLocation = 0;
+        for (i = 0; i < formList.length; i++) {
+            if(formList[i].id.includes("premise")) {
+                premises = premises + formList[i].value + ",";
+            }
+            else {
+                conclusionLocation = i;
+                break;
             }
         }
-    }
-
-function submit(){
-    console.log('Submitted Form');
-    var premises = "";
-    var conclusion = "";
-    var stepList = [];
-    var formList = document.getElementById('all_proof_input').elements;
-    var conclusionLocation = 0;
-    for (i = 0; i < formList.length; i++) {
-        if(formList[i].id.includes("premise")) {
-            premises = premises + formList[i].value + ",";
+        premises = premises.substr(0,premises.length -1);
+        conclusion = formList[conclusionLocation].value;
+        var index = conclusionLocation + 1;
+        while(index < formList.length) {
+            var step = [];
+            var counter = 3;
+            while(counter > 0) {
+                step.push(formList[index].value);
+                index++;
+                counter--;
+            }
+            stepList.push(step);
         }
-        else {
-            conclusionLocation = i;
-            break;
-        }
+        // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
     }
-    premises = premises.substr(0,premises.length -1);
-    conclusion = formList[conclusionLocation].value;
-    var index = conclusionLocation + 1;
-    while(index < formList.length) {
-        var step = [];
-        var counter = 3;
-        while(counter > 0) {
-            step.push(formList[index].value);
-            index++;
-            counter--;
-        }
-        stepList.push(step);
-    }
-    $.ajax({
-        url: "/logic",
-        data: {
-            submit: 'Proof',
-            premises: premises,
-            conclusion: conclusion,
-            proof_lines: stepList
-        },
-        success: function(data){
-            alert("Data: " + data.data.toString() + "\n");
-        },
-        dataType: 'json'
-    });
-    // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
-}
-
-var globalModalData = [];
-function modalOpen(){
-    globalModalData.length = 0; // Reset array
-    globalModalData.push(document.getElementById('premise').value);
-    globalModalData.push(document.getElementById('conclusion').value);
-    globalModalData.push(document.getElementById('proof').value);
-
-    $('.modal').modal({
-        dismissible: false
-    });
-}
-
-function modalCancel(){
-    document.getElementById('premise').value = globalModalData[0] || "";
-    document.getElementById('conclusion').value = globalModalData[1] || "";
-    document.getElementById('proof').value = globalModalData[2] || "";
-    globalModalData.length = 0;
-}

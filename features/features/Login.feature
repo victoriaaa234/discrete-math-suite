@@ -1,5 +1,5 @@
 # feature/features/Login.feature
-@wip
+
 Feature: User can log in
 
 Scenario:

@@ -1,5 +1,5 @@
 # feature/features/LogicNavigation.feature
-@wip
+
 Feature: User can click Logic
 
 Scenario:

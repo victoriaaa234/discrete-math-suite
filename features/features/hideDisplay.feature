@@ -1,5 +1,5 @@
 # feature/features/hideDisplay.feature
-@wip
+
 Feature: User can only see display for current step
 
 Scenario:

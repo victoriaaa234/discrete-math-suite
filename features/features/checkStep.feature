@@ -1,5 +1,5 @@
 # feature/features/checkStep.feature
-@wip
+
 Feature: User can check each step
 
 Scenario:

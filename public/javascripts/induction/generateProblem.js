@@ -85,90 +85,58 @@ const heightOfTree = function(){
     return problem;
 };
 
-const generateSolution = function(problemParameters) {
-    switch (problemParameters.type) {
-        case "summation":
-            return polynomialSoluton(problemParameters);
-        case "division":
-            return divisionSoluton(problemParameters);
+const generateSolution = function(solutionParameters) {
+    switch (solutonParameters.type) {
+        case "polynomial":
+            return polynomialSoluton(solutionParameters);
+        case "diversive":
+            return diversiveSoluton(solutionParameters);
         case "geometric":
-            return geometricSoluton(problemParameters);
+            return geometricSoluton(solutionParameters);
         case "strong":
-            return  strongSolution(problemParameters);
+            return  strongSolution(solutionParameters);
         case "structural":
-            return structuralSolution(problemParameters);
+            return structuralSolution(solutionParameters);
         default:
             break;
     }
 };
 
-const summationSolution = function(problemParameters){
-    let solution = {};
-    solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
-    solution.hypothesis_text = `Assume that the statement holds when n = k`;
-    solution.step_text_initial = `Prove that the statement holds true when n = k+1`;
-    solution.step_text_connection = `Which leads the equation to:`;
-    solution.step_text_lhs = `The LHS of the equation equals to: ${problemParameters.lhs}`;
-    solution.step_text_rhs = `The RHS of the equation equals to: ${problemParameters.rhs}`;
-    solution.step_text_conclude = `LHS=RHS for n=k+1. Thus prooven that the statement holds true when n = k+1. Therefore, it holds for true for all n`;
+const polynomialSolution = function(solutionParameters){
+    let solution = {
+        
+    };
+    return solution;
+};
+
+const diversiveSolution = function(solutionParameters){
+    let solution = {
+
+    };
 
     return solution;
 };
 
-const divisionSolution = function(problemParameters){
-    let solution = {};
-    solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
-    solution.hypothesis_text = `Assume that the statement holds when n = k`;
-    solution.step_text_initial = `Prove that the statement holds true when n = k+1`;
-    solution.step_text_connection = `Which leads the equation to:`;
-    solution.step_text_lhs = `Check if LHS of the equation is divisible: ${problemParameters.lhs}`;
-    solution.step_text_rhs = `Check if RHS of the equation is divisible: ${problemParameters.rhs}`;
-    solution.step_text_conclude = `Both sides of euquation are shown to be diversible. Thus prooven that the statement holds true when n = k+1. Therefore, it holds for true for all n`;
-    return solution;
-};
+const geometricSolution = function(solutionParameters){
+    let solution = {
 
-const geometricSolution = function(problemParameters){
-    let solution = {};
-    solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
-    solution.hypothesis_text = `Assume that the statement holds when n = k`;
-    solution.step_text_initial = `Prove that the statement holds true when n = k+1`;
-    solution.step_text_connection = `Which leads the equation to:`;
-    solution.step_text_lhs = `The LHS of the equation equals to: ${problemParameters.lhs}`;
-    solution.step_text_rhs = `The RHS of the equation equals to: ${problemParameters.rhs}`;
-    solution.step_text_conclude = `LHS=RHS for n=k+1. Thus prooven that the statement holds true when n = k+1. Therefore, it holds for true for all n`;
+    };
 
     return solution;
 };
 
-const strongSolution = function(problemParameters){
-    let solution = {};
-    solution.text = `12 cents uses three 4-cent stamps. 13 cents of postage uses two 4-cent 
-    stamps plus a 5-cent stamp. 14 uses one 4-cent stamp plus two 5-cent stamps. 
-    The formula for making k cents of postage depends on the one for making
-    k−4 cents of postage. That is, you take the stamps for k−4 cents and add
-    another 4-cent stamp. We can make this into an inductive proof as follows:
-    Proof: by induction on the amount of postage.
-    Base: If the postage is 12 cents, we can make it with three 4-cent
-    stamps. If the postage is 13 cents, we can make it with two 4-cent
-    stamps. plus a 5-cent stamp. If it is 14, we use one 4-cent stamp
-    plus two 5-cent stamps. If it is 15, we use three 5-cent stamps.
-    Induction: Suppose that we have show how to construct postage
-    for every value from 12 up through k. We need to show how to
-    construct k+1 cents of postage. Since we’ve alread proved base
-    cases up through 15 cents, we’ll assume that k+1 ≥ 16.
-    Since k+1 ≥ 16, (k+1)−4 ≥ 12. So by the inductive hypothesis,
-    we can construct postage for (k+1)−4 cents using m 4-cent
-    stamps and n 5-cent stamps, for some natural numbers m and n.
-    In other words (k+1)−4) = 4m+5n.
-    But then k+1 = 4(m+1) + 5n. So we can construct k+1 cents
-    of postage using m+ 1 4-cent stamps and n 5-cent stamps, which
-    is what we needed to show.`;
+const strongSolution = function(solutionParameters){
+    let solution = {
+
+    };
 
     return solution;
 };
 
-const structuralSolution = function(problemParameters){
-    let solution = {};
+const structuralSolution = function(solutionParameters){
+    let solution = {
+
+    };
 
     return solution;
 };

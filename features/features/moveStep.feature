@@ -1,5 +1,5 @@
 # feature/features/moveStep.feature
-@wip
+
 Feature: User can move to next step
 
 Scenario:

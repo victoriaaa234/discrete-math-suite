@@ -7,14 +7,12 @@ Rails.application.routes.draw do
 
   root 'discrete#index'
   get '/logic', to: 'logic#logic'
-  get '/logic_options', to: 'logic#option'
   get '/induction', to: 'induction#index'
   get '/induction/problem', to: 'induction#test_action'
   get '/profile', to: 'profile#profilePage'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
-  post '/logic', to: 'logic#logic'
 
   resources :sessions, only: [:create, :destroy]
   

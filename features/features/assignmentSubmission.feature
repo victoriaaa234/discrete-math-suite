@@ -1,5 +1,5 @@
 # feature/features/assignmentSubmission.feature
-@wip
+
 Feature: User can submit assignments
 
 Scenario:

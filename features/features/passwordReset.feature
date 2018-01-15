@@ -1,5 +1,5 @@
 # feature/features/passwordReset.feature
-@wip
+
 Feature: User can reset password
 
 Scenario:
