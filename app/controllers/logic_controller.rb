@@ -17,7 +17,6 @@ class LogicController < ApplicationController
     # TODO
     # - WHO IS DOING INPUT CHECKING???
     # - Reformat input to match logic.tamu.edu layout
-    # - Change params[:submit] == 'Proof' to whatever submit param is actually in URL
 
     # ERROR TYPES
     # - Proof is not finished
@@ -61,7 +60,6 @@ class LogicController < ApplicationController
 
     def parse_input(premises, conclusion, proof)
         puts proof
-        #TODO Use input arguments for the proof fields
         #input_premesis_str = "p->r,r->q"
         #input_conclusion_str =  "p->q"
         #input_proof = [ [ "p->r", "", "A" ], [ "r->q", "", "A" ], [ "p", "", "A" ], [ "r", "1,3", "->E" ], [ "q", "2,4", "->E"], [ "p->q", "5", "->I(3)" ] ]

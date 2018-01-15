@@ -50,10 +50,10 @@ response_mappings = [{:logic => 'Double Negation'                     , :mapping
              {:logic => 'Wedge/Ampersand Distribution'       , :mapping => 'Distributive Law'},
              {:logic => "de Morgan's Law"                    , :mapping => "DeMorgan's Laws"},
              {:logic => 'Wedge Arrow'                        , :mapping => 'Logic Equiv. Condit.'},
-             {:logic => 'Negated Arrow'                      , :mapping => 'Logic Equiv. Condit.'},
+             {:logic => 'Negated Arrow'                      , :mapping => 'Logic Equiv. Condit. Negated'},
              {:logic => 'Double Arrow Elimination'           , :mapping => 'Logic Equiv. Bicond.'},
              {:logic => 'Double Arrow Elim'                  , :mapping => 'Logic Equiv. Bicond.'},
-             {:logic => 'Negated Double Arrow'               , :mapping => 'Logic Equiv. Bicon'},
+             {:logic => 'Negated Double Arrow'               , :mapping => 'Logic Equiv. Bicon. Negated'},
              {:logic => 'QE'                                 , :mapping => "De Morgan's Quantif."},
              {:logic => 'Arrow Elimination'                  , :mapping => 'Modus Ponens'},
              {:logic => 'Arrow Elim'                         , :mapping => 'Modus Ponens'},
@@ -78,6 +78,33 @@ response_mappings = [{:logic => 'Double Negation'                     , :mapping
              {:logic => 'Existential Intro'                  , :mapping => 'Existential General'},
              {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]
 
+input_mppings = [{:outbound => 'Double Negation Laws'          , :mapping => 'DN'},
+             {:outbound => 'Commutative Law'                   , :mapping => '&Comm'},
+             {:outbound => 'Commutative Law'                   , :mapping => 'vComm'},
+             {:outbound => 'Associative Law'                   , :mapping => '&Assoc'},
+             {:outbound => 'Associative Law'                   , :mapping => 'vAssoc'},
+             {:outbound => 'Distributive Law'                  , :mapping => '&/v Dist'},
+             {:outbound => 'Distributive Law'                  , :mapping => 'v/& Dist'},
+             {:outbound => "DeMorgan's Laws"                   , :mapping => "DM"},
+             {:outbound => 'Logic Equiv. Condit.'              , :mapping => 'v->'},
+             {:outbound => 'Logic Equiv. Condit. Negated'      , :mapping => 'Neg->'},
+             {:outbound => 'Logic Equiv. Bicond.'              , :mapping => '<->E'},
+             {:outbound => 'Logic Equiv. Bicond. Negated'      , :mapping => 'Neg<->'},
+             {:outbound => "De Morgan's Quantif."              , :mapping => "QE"},
+             {:outbound => 'Modus Ponens'                      , :mapping => '->E'},
+             {:outbound => 'Modus Tollens'                     , :mapping => 'MTT'},
+             {:outbound => 'Hypothetical Syllog.'              , :mapping => 'HS'},
+             {:outbound => 'Disjunctive Syllog.'               , :mapping => 'vE'},
+             {:outbound => 'Addition'                          , :mapping => 'vI'},
+             {:outbound => 'Simplification'                    , :mapping => '&E'},
+             {:outbound => 'Conjunction'                       , :mapping => '&I'},
+             {:outbound => 'Conjunction'                       , :mapping => '&I'},
+             {:outbound => 'Universal Instantiation'           , :mapping => '@E'},
+             {:outbound => 'Universal Generalization'          , :mapping => '@I'},
+             {:outbound => 'Existential Instantiation'         , :mapping => '$E'},
+             {:outbound => 'Existential General'           , :mapping => '$I'},
+             {:outbound => 'Well Formed Formula'           , :mapping => 'WFF'}]
+
 latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\land'                        , :mapping => '&'},
                    {:latex => '\neg'                         , :mapping => '~'},
@@ -91,6 +118,10 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
 
 response_mappings.each do |mapping|
   ResponseMapping.create!(mapping)
+end
+
+input_mappings.each do |mapping|
+    InputMapping.create(mapping)
 end
 
 latex_mappings.each do |mapping|

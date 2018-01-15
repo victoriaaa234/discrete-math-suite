@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'ruby'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
@@ -24,7 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # gem 'cucumber-rails'
-
 # Use curb to curl logic.tamu.edu
 gem 'curb'
 # Use nokogiri to parse HTML
@@ -51,7 +50,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg','~>0.20'
+  gem 'pg'
   gem 'rails_12factor'
 end
 

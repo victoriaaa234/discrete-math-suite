@@ -94,7 +94,10 @@ function renumberNodes(nodes, deletedIndex) {
             if(childIndex > deletedIndex) {
                 if(child.tagName == 'LABEL') {
                     if (labelShouldRenumber(child.parentNode.id)) {
-                        // TODO: should get the label text in a better way
+                        // TODO: should get the label text in a better way -- see below
+                        // labelText = getIdPrefix(child.text??);
+                        // var newLabelText = document.createTextNode(labelText + String(childIndex - 1));
+                        // child.text?? = newLabelText;
                         var labelText = child.lastChild;
                         child.removeChild(labelText);
                         var newLabelText = document.createTextNode(" " + String(childIndex - 1));
@@ -390,6 +393,8 @@ function submit(){
             conclusion: conclusion,
             proof_lines: stepList
         },
+        // TODO: Make better alert
+        // TODO: SHow loading solution alert for users when performing proof check
         success: function(data){
             alert("Data: " + data.data.toString() + "\n");
         },

@@ -93,8 +93,7 @@ GEM
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.18)
-    ffi (1.9.18-x86-mingw32)
+    ffi (1.9.15)
     gherkin (5.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -122,17 +121,17 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_mime (1.0.0)
-    mini_portile2 (2.3.0)
+    mini_portile (0.6.2)
     minitest (5.11.1)
-    multi_json (1.13.0)
+    multi_json (1.13.1)
     multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nio4r (2.2.0)
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
-    nokogiri (1.8.1-x86-mingw32)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.6.6.4)
+      mini_portile (~> 0.6.0)
+    nokogiri (1.6.6.4-x86-mingw32)
+      mini_portile (~> 0.6.0)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
       jwt (~> 1.0)
@@ -151,8 +150,8 @@ GEM
     omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    pg (0.21.0)
-    pg (0.21.0-x86-mingw32)
+    pg (1.0.0)
+    pg (1.0.0-x86-mingw32)
     poltergeist (1.17.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -194,6 +193,20 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
+    ruby (0.1.0)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -219,6 +232,8 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
     sqlite3 (1.3.13-x86-mingw32)
+    sweetalert-rails (1.1.3)
+      railties (>= 3.1.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -239,8 +254,8 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.0.0)
-      nokogiri (~> 1.8)
+    xpath (2.1.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -258,14 +273,17 @@ DEPENDENCIES
   jquery-rails
   launchy
   omniauth-google-oauth2 (~> 0.2.1)
-  pg (~> 0.20)
+  pg
   poltergeist
   rails
   rails_12factor
+  rspec
+  ruby
   sass-rails
   sdoc (~> 0.4.0)
   spring
   sqlite3
+  sweetalert-rails
   turbolinks
   tzinfo-data
   uglifier
