@@ -1,5 +1,5 @@
 # feature/features/tutorialDisplay.feature
-
+@wip
 Feature: User can view tutorial
 
 Scenario:

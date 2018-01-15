@@ -1,5 +1,5 @@
 # feature/features/instructorAccountSsetup.feature
-
+@wip
 Feature: User can set up instructor account
 
 Scenario:
