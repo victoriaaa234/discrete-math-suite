@@ -1,5 +1,5 @@
 # feature/features/standardInput.feature
-
+@wip
 Feature: Input is in standarized format
 
 Scenario:

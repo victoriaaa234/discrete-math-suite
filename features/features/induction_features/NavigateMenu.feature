@@ -1,5 +1,5 @@
 # feature/features/NavigateMenu.feature
-
+@wip
 Feature: User can navigate menu
 
 Scenario:

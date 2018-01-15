@@ -39,45 +39,45 @@
   # |   | Universal Generaliz. | ???                   | Universal Intro  | Introduction              | @I                    |
   # |   | Existential Instant. | ???                   | Existential Elim  | Elimination              | $E                    |
   # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
-  # |   | Rando COmpletions    | ???                   | WFF => Well Formed Formulae                  |                       |
-  #
+  # |   | Rando Completions    | ???                   | WFF => Well Formed Formulae                  |                       |
+
 mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
              {:logic => 'Ampersand Commutativity'            , :mapping => 'Commutative Law'},
-             {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},     
-             {:logic => 'Ampersand Associativity'            , :mapping => 'Associative Law'},         
-             {:logic => 'Wedge Associativity'                , :mapping => 'Associative Law'},         
-             {:logic => 'Ampersand/Wedge Distribution'       , :mapping => 'Distributive Law'},              
-             {:logic => 'Wedge/Ampersand Distribution'       , :mapping => 'Distributive Law'},                               
+             {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},
+             {:logic => 'Ampersand Associativity'            , :mapping => 'Associative Law'},
+             {:logic => 'Wedge Associativity'                , :mapping => 'Associative Law'},
+             {:logic => 'Ampersand/Wedge Distribution'       , :mapping => 'Distributive Law'},
+             {:logic => 'Wedge/Ampersand Distribution'       , :mapping => 'Distributive Law'},
              {:logic => "de Morgan's Law"                    , :mapping => "DeMorgan's Laws"},
-             {:logic => 'Wedge Arrow'                        , :mapping => 'Logic Equiv. Condit.'},  
-             {:logic => 'Negated Arrow'                      , :mapping => 'Logic Equiv. Condit.'}, 
-             {:logic => 'Double Arrow Elim'                  , :mapping => 'Logic Equiv. Bicond.'},               
-             {:logic => 'Double Arrow Elimination'           , :mapping => 'Logic Equiv. Bicond.'},               
+             {:logic => 'Wedge Arrow'                        , :mapping => 'Logic Equiv. Condit.'},
+             {:logic => 'Negated Arrow'                      , :mapping => 'Logic Equiv. Condit.'},
+             {:logic => 'Double Arrow Elim'                  , :mapping => 'Logic Equiv. Bicond.'},
+             {:logic => 'Double Arrow Elimination'           , :mapping => 'Logic Equiv. Bicond.'},
              {:logic => 'Negated Double Arrow'               , :mapping => 'Logic Equiv. Bicon'},
-             {:logic => 'QE'                                 , :mapping => "De Morgan's Quantif."},  
-             {:logic => 'Arrow Elim'                         , :mapping => 'Moddus Ponens'},              
-             {:logic => 'Arrow Elimination'                  , :mapping => 'Moddus Ponens'},              
-             {:logic => 'MTT (Modus Tollendo Tollens)'       , :mapping => 'Moddus Tollens'},                       
-             {:logic => 'MTT'                                , :mapping => 'Moddus Tollens'},                      
-             {:logic => 'Hypothetical Syllogism'             , :mapping => 'Hypothetical Syllog.'},     
-             {:logic => 'Wedge Elimination'                  , :mapping => 'Disjunctive Syllog.'},        
-             {:logic => 'Wedge Elim'                         , :mapping => 'Disjunctive Syllog.'},        
-             {:logic => 'Wedge Introduction'                 , :mapping => 'Addition'},                    
-             {:logic => 'Wedge Intro'                        , :mapping => 'Addition'},                    
-             {:logic => 'Ampersand Elimination'              , :mapping => 'Simplification'},                 
-             {:logic => 'Ampersand Elim'                     , :mapping => 'Simplification'},                 
-             {:logic => 'Ampersand Introduction'             , :mapping => 'Conjunction'},          
-             {:logic => 'Ampersand Intro'                    , :mapping => 'Conjunction'},          
-             {:logic => 'Universal Elimination'              , :mapping => 'Universal Instantiation'}, 
-             {:logic => 'Universal Elim'                     , :mapping => 'Universal Instantiation'}, 
-             {:logic => 'Universal Introduction'             , :mapping => 'Universal Generalization'},                              
-             {:logic => 'Universal Intro'                    , :mapping => 'Universal Generalization'},                              
-             {:logic => 'Existential Elimination'            , :mapping => 'Existential Instantiation'},                              
-             {:logic => 'Existential Elim'                   , :mapping => 'Existential Instantiation'},                              
-             {:logic => 'Existential Introduction'           , :mapping => 'Existential General'},                                
-             {:logic => 'Existential Intro'                  , :mapping => 'Existential General'},                                
-             {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]                          
-                                                                           
+             {:logic => 'QE'                                 , :mapping => "De Morgan's Quantif."},
+             {:logic => 'Arrow Elim'                         , :mapping => 'Modus Ponens'},
+             {:logic => 'Arrow Elimination'                  , :mapping => 'Modus Ponens'},
+             {:logic => 'MTT (Modus Tollendo Tollens)'       , :mapping => 'Modus Tollens'},
+             {:logic => 'MTT'                                , :mapping => 'Modus Tollens'},
+             {:logic => 'Hypothetical Syllogism'             , :mapping => 'Hypothetical Syllog.'},
+             {:logic => 'Wedge Elimination'                  , :mapping => 'Disjunctive Syllog.'},
+             {:logic => 'Wedge Elim'                         , :mapping => 'Disjunctive Syllog.'},
+             {:logic => 'Wedge Introduction'                 , :mapping => 'Addition'},
+             {:logic => 'Wedge Intro'                        , :mapping => 'Addition'},
+             {:logic => 'Ampersand Elimination'              , :mapping => 'Simplification'},
+             {:logic => 'Ampersand Elim'                     , :mapping => 'Simplification'},
+             {:logic => 'Ampersand Introduction'             , :mapping => 'Conjunction'},
+             {:logic => 'Ampersand Intro'                    , :mapping => 'Conjunction'},
+             {:logic => 'Universal Elimination'              , :mapping => 'Universal Instantiation'},
+             {:logic => 'Universal Elim'                     , :mapping => 'Universal Instantiation'},
+             {:logic => 'Universal Introduction'             , :mapping => 'Universal Generalization'},
+             {:logic => 'Universal Intro'                    , :mapping => 'Universal Generalization'},
+             {:logic => 'Existential Elimination'            , :mapping => 'Existential Instantiation'},
+             {:logic => 'Existential Elim'                   , :mapping => 'Existential Instantiation'},
+             {:logic => 'Existential Introduction'           , :mapping => 'Existential General'},
+             {:logic => 'Existential Intro'                  , :mapping => 'Existential General'},
+             {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]
+
 mappings.each do |mapping|
   Mapping.create!(mapping)
-end  
+end

@@ -1,5 +1,5 @@
 # feature/features/generateProblem.feature
-
+@wip
 Feature: Soluion can be found for every problem
 
 Scenario:
