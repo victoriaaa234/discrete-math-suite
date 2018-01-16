@@ -274,11 +274,11 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-function generatePracticeProblems() {
-    //TODO(vwei): create database of practice problems and randomly select one.
-    // submitText(premise, conclusion, proof);
-    console.log('Generated practice problem');
-}
+    function generatePracticeProblems() {
+        //TODO(vwei): create database of practice problems and randomly select one.
+        // submitText(premise, conclusion, proof);
+        console.log('Generated practice problem');
+    }
 
 function submitText(premise, conclusion, proof) {
     var premiseList = premise.split(',');
@@ -310,11 +310,11 @@ function submitText(premise, conclusion, proof) {
     }
 
     //adding the conclusion
-    
+
     //remove spaces first
     conclusion = removeSpaces(conclusion);
     document.getElementById('input_conclusion_1').value = conclusion;
-    
+
     //adding the proofs
     for (i = 1; i <=proofList.length; i++){
         var proofs = proofList[i-1].split(' ');
@@ -359,26 +359,26 @@ function submitText(premise, conclusion, proof) {
         }
     }
 }
-    function submitExpertMode(){
-        console.log('Submitted');
-        var premise = document.getElementById('premise').value;
-        var conclusion = document.getElementById('conclusion').value;
-        var proof = document.getElementById('proof').value;
+function submitExpertMode(){
+    console.log('Submitted');
+    var premise = document.getElementById('premise').value;
+    var conclusion = document.getElementById('conclusion').value;
+    var proof = document.getElementById('proof').value;
 
-        submitText(premise, conclusion, proof);
-    }
+    submitText(premise, conclusion, proof);
+}
 
 function removeSpaces(text) {  
     var i = 0;
     while (i < text.length) {  
-         if (text[i] == " ") {
-             text = text.substring(0, i) + text.substring(i + 1, text.length);
-         }
-         else {
+        if (text[i] == " ") {
+            text = text.substring(0, i) + text.substring(i + 1, text.length);
+        }
+        else {
             i++;
-         }
-     }
-     return text;
+        }
+    }
+    return text;
 }
 
 function submit(){
