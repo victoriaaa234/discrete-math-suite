@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
+    $('#modal2').modal();
 });
 
 function addPremiseRow() {
@@ -118,11 +119,6 @@ function renumberNodes(nodes, deletedIndex) {
     }
 }
 
-
-
-
-
-
 function deleteRow(buttonDivId) {
     var buttonDiv = document.getElementById(buttonDivId);
     var deletedIndex = getEndingNumber(buttonDiv.id);
@@ -139,11 +135,6 @@ function deleteRow(buttonDivId) {
     var buttonParent = buttonDiv.parentElement;
     buttonParent.parentElement.removeChild(buttonParent);
 }
-
-
-
-
-
 
 function getProofLine(prefix, sizeStr, newIndex, labelString) {
     var newProofElem = document.createElement("div");
@@ -188,11 +179,6 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     return newProofElem;
 }
 
-
-
-
-
-
 function getProofButton(newIndex) {
     var buttonDiv = document.createElement("div");
     buttonDiv.id = "proof_remove_" + String(newIndex);
@@ -211,11 +197,6 @@ function getProofButton(newIndex) {
     buttonDiv.appendChild(deleteButton);
     return buttonDiv;
 }
-
-
-
-
-
 
 function addProofRow() {
     var proofSecondaries = document.getElementById("proof_secondaries");
@@ -249,11 +230,6 @@ function addProofRow() {
     rowWrapper.appendChild(buttonDiv);
     proofSecondaries.appendChild(rowWrapper);
 }
-
-
-
-
-
 
 /*
 function deleteProofRow(buttonDivId) {
@@ -359,14 +335,19 @@ function submitText(premise, conclusion, proof) {
         }
     }
 }
-    function submitExpertMode(){
-        console.log('Submitted');
-        var premise = document.getElementById('premise').value;
-        var conclusion = document.getElementById('conclusion').value;
-        var proof = document.getElementById('proof').value;
 
-        submitText(premise, conclusion, proof);
-    }
+function submitExpertMode(){
+    console.log('Submitted');
+    var premise = document.getElementById('premise').value;
+    var conclusion = document.getElementById('conclusion').value;
+    var proof = document.getElementById('proof').value;
+
+    submitText(premise, conclusion, proof);
+}
+
+function submitLatexMode() {
+    //TODO(vwei): submit latex and fill out fields
+}
 
 function removeSpaces(text) {  
     var i = 0;
@@ -428,21 +409,31 @@ function submit(){
     // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
 }
 
-var globalModalData = [];
-function modalOpen(){
-    globalModalData.length = 0; // Reset array
-    globalModalData.push(document.getElementById('premise').value);
-    globalModalData.push(document.getElementById('conclusion').value);
-    globalModalData.push(document.getElementById('proof').value);
+var globalExpertModalData = [];
+function expertModalOpen(){
+    globalExpertModalData.length = 0; // Reset array
+    globalExpertModalData.push(document.getElementById('premise').value);
+    globalExpertModalData.push(document.getElementById('conclusion').value);
+    globalExpertModalData.push(document.getElementById('proof').value);
 
     $('.modal').modal({
         dismissible: false
     });
 }
 
-function modalCancel(){
-    document.getElementById('premise').value = globalModalData[0] || "";
-    document.getElementById('conclusion').value = globalModalData[1] || "";
-    document.getElementById('proof').value = globalModalData[2] || "";
-    globalModalData.length = 0;
+function expertModalCancel(){
+    document.getElementById('premise').value = globalExpertModalData[0] || "";
+    document.getElementById('conclusion').value = globalExpertModalData[1] || "";
+    document.getElementById('proof').value = globalExpertModalData[2] || "";
+    globalExpertModalData.length = 0;
+}
+
+var globalLatexModalData = [];
+function latexModalOpen() {
+    //TODO(vwei): reset array
+}
+
+function latexModalCancel() {
+    // TODO(vwei): cancel
+    // document.getElementById('latex')
 }
