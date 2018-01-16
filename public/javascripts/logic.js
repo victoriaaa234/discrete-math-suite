@@ -338,9 +338,9 @@ function submitText(premise, conclusion, proof) {
 
 function submitExpertMode(){
     console.log('Submitted');
-    var premise = document.getElementById('premise').value;
-    var conclusion = document.getElementById('conclusion').value;
-    var proof = document.getElementById('proof').value;
+    var premise = document.getElementById('premise-expert').value;
+    var conclusion = document.getElementById('conclusion-expert').value;
+    var proof = document.getElementById('proof-expert').value;
 
     submitText(premise, conclusion, proof);
 }
@@ -412,9 +412,9 @@ function submit(){
 var globalExpertModalData = [];
 function expertModalOpen(){
     globalExpertModalData.length = 0; // Reset array
-    globalExpertModalData.push(document.getElementById('premise').value);
-    globalExpertModalData.push(document.getElementById('conclusion').value);
-    globalExpertModalData.push(document.getElementById('proof').value);
+    globalExpertModalData.push(document.getElementById('premise-expert').value);
+    globalExpertModalData.push(document.getElementById('conclusion-expert').value);
+    globalExpertModalData.push(document.getElementById('proof-expert').value);
 
     $('.modal').modal({
         dismissible: false
@@ -422,18 +422,27 @@ function expertModalOpen(){
 }
 
 function expertModalCancel(){
-    document.getElementById('premise').value = globalExpertModalData[0] || "";
-    document.getElementById('conclusion').value = globalExpertModalData[1] || "";
-    document.getElementById('proof').value = globalExpertModalData[2] || "";
+    document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
+    document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
+    document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
     globalExpertModalData.length = 0;
 }
 
 var globalLatexModalData = [];
 function latexModalOpen() {
-    //TODO(vwei): reset array
+    globalLatexModalData.length = 0; // Reset array
+    globalLatexModalData.push(document.getElementById('premise-latex').value);
+    globalLatexModalData.push(document.getElementById('conclusion-latex').value);
+    globalLatexModalData.push(document.getElementById('proof-latex').value);
+
+    $('.modal').modal({
+        dismissible: false
+    });
 }
 
 function latexModalCancel() {
-    // TODO(vwei): cancel
-    // document.getElementById('latex')
+    document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
+    document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
+    document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
+    globalLatexModalData.length = 0;
 }

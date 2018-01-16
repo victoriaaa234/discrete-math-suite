@@ -17,13 +17,10 @@ a.foot-text {
 textarea.proof {
     height: 13rem;
 }
-textarea#premise {
+textarea.premise {
     height: 2rem;
 }
-textarea#latex {
-    height: 16rem;
-}
-textarea#conclusion {
+textarea.conclusion {
     height: 2rem;
 }
 .modal-footer {
