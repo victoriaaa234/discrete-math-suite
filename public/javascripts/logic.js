@@ -400,9 +400,15 @@ function submit(){
             proof_lines: stepList
         },
         // TODO: Make better alert
-        // TODO: SHow loading solution alert for users when performing proof check
+        // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
-            alert("Data: " + data.data.toString() + "\n");
+            swal({
+                title: data.data.toString(),
+                type: 'warning',
+                confirmButtonText: 'Sure',
+                confirmButtonColor: '#2acbb3',
+                showCancelButton: true
+            });
         },
         dataType: 'json'
     });
@@ -444,5 +450,4 @@ function latexModalCancel() {
     document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
     document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
     document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
-    globalLatexModalData.length = 0;
 }

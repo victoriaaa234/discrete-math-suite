@@ -26,6 +26,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # gem 'cucumber-rails'
 # Use curb to curl logic.tamu.edu
 gem 'curb'
+gem 'sweetalert2'
 # Use nokogiri to parse HTML
 # gem 'nokogiri'
 
