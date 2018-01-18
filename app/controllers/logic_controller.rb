@@ -86,6 +86,14 @@ class LogicController < ApplicationController
             formatted_proof.gsub! m.latex, m.mapping
         end
 
+        InputMapping.all.each do |m|
+            puts m
+            input_premesis_str.gsub! m.outbound, m.mapping
+            input_conclusion_str.gsub! m.outbound, m.mapping
+            formatted_proof.gsub! m.outbound, m.mapping
+        end
+
+        puts formatted_proof
         result = post(input_premesis_str, input_conclusion_str, formatted_proof)
         puts result
         return result

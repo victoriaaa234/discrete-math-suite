@@ -400,49 +400,65 @@ function submit(){
             proof_lines: stepList
         },
         // TODO: Make better alert
-        // TODO: SHow loading solution alert for users when performing proof check
+        // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
-            alert("Data: " + data.data.toString() + "\n");
-        },
-        dataType: 'json'
-    });
-    // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
-}
+            swal({
+                title: data.data.toString(),
+                type: 'error',
+                confirmButtonText: 'Continue',
+                confirmButtonColor: '#2acbb3',
+                showCancelButton: true,
+                cancelButtonText: 'Return to Options'
+            }).then((result) => {
+                if (result.value) {
+                    swal(
+                        'Try Again',
+                        'You can do it!!',
+                        'success'
+                    )
+                } else if (result.dismiss === 'cancel') {
+                    window.location.href = "/logic_options";
+                }
+            });
+            },
+                dataType: 'json'
+            });
+            // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+        }
 
-var globalExpertModalData = [];
-function expertModalOpen(){
-    globalExpertModalData.length = 0; // Reset array
-    globalExpertModalData.push(document.getElementById('premise-expert').value);
-    globalExpertModalData.push(document.getElementById('conclusion-expert').value);
-    globalExpertModalData.push(document.getElementById('proof-expert').value);
+        var globalExpertModalData = [];
+        function expertModalOpen(){
+            globalExpertModalData.length = 0; // Reset array
+            globalExpertModalData.push(document.getElementById('premise-expert').value);
+            globalExpertModalData.push(document.getElementById('conclusion-expert').value);
+            globalExpertModalData.push(document.getElementById('proof-expert').value);
 
-    $('.modal').modal({
-        dismissible: false
-    });
-}
+            $('.modal').modal({
+                dismissible: false
+            });
+        }
 
-function expertModalCancel(){
-    document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
-    document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
-    document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
-    globalExpertModalData.length = 0;
-}
+        function expertModalCancel(){
+            document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
+            document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
+            document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
+            globalExpertModalData.length = 0;
+        }
 
-var globalLatexModalData = [];
-function latexModalOpen() {
-    globalLatexModalData.length = 0; // Reset array
-    globalLatexModalData.push(document.getElementById('premise-latex').value);
-    globalLatexModalData.push(document.getElementById('conclusion-latex').value);
-    globalLatexModalData.push(document.getElementById('proof-latex').value);
+        var globalLatexModalData = [];
+        function latexModalOpen() {
+            globalLatexModalData.length = 0; // Reset array
+            globalLatexModalData.push(document.getElementById('premise-latex').value);
+            globalLatexModalData.push(document.getElementById('conclusion-latex').value);
+            globalLatexModalData.push(document.getElementById('proof-latex').value);
 
-    $('.modal').modal({
-        dismissible: false
-    });
-}
+            $('.modal').modal({
+                dismissible: false
+            });
+        }
 
-function latexModalCancel() {
-    document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
-    document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
-    document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
-    globalLatexModalData.length = 0;
-}
+        function latexModalCancel() {
+            document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
+            document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
+            document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
+        }
