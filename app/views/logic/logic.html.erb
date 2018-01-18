@@ -68,9 +68,10 @@
 <i class="material-icons" >menu</i></a>
 <h5 id = "logicheader" style = "padding-left:35px">Logic</h5>
 
+<div class="modals">
 
-<!-- Modal Trigger -->
-<a onclick="modalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
+	<!-- Expert Mode Modal Trigger -->
+	<a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
@@ -80,14 +81,45 @@
 		</div>
 		<div class="conclusion-text">
 			<textarea placeholder="Enter Conclusion..." id="conclusion" rows="4" cols="50"></textarea>
+	<!-- Expert Mode Modal Structure -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<div class="premise-text">
+				<textarea class="premise" placeholder="Enter Premise..." id="premise-expert" rows="4" cols="50"></textarea>
+			</div>
+			<div class="conclusion-text">
+				<textarea class="conclusion" placeholder="Enter Conclusion..." id="conclusion-expert" rows="4" cols="50"></textarea>
+			</div>
+			<div class="proof-text">
+				<textarea class="proof" placeholder="Enter Proof..." id="proof-expert" rows="4" cols="50"></textarea>
+			</div>
 		</div>
-		<div class="proof-text">
-			<textarea class="proof" placeholder="Enter Proof..." id="proof" rows="4" cols="50"></textarea>
+		<div class="modal-footer">
+			<button onclick="expertModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			<button onclick="submitExpertMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
 		</div>
 	</div>
-	<div class="modal-footer">
-		<button onclick="modalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-		<button onclick="submitExpertMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+
+	<!-- Latex Mode Modal Trigger -->
+	<a onclick="latexModalOpen()" class="waves-effect waves-light btn modal-trigger" id="latexheader" href="#modal2">Latex</a>
+
+	<!-- Latex Mode Modal Structure -->
+	<div id="modal2" class="modal">
+		<div class="modal-content">
+			<div class="premise-text">
+				<textarea class="premise" placeholder="Enter Premise in Latex..." id="premise-latex" rows="4" cols="50"></textarea>
+			</div>
+			<div class="conclusion-text">
+				<textarea class="conclusion" placeholder="Enter Conclusion in Latex..." id="conclusion-latex" rows="4" cols="50"></textarea>
+			</div>
+			<div class="proof-text">
+				<textarea class="proof" placeholder="Enter Proof in Latex..." id="proof-latex" rows="4" cols="50"></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="latexModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+			<button onclick="submitLatexMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+		</div>
 	</div>
 </div>
 
@@ -130,7 +162,6 @@
 				</div>
 			</div>
 		</div>
-
 
 
 		<div id="proof_container" class="col s7 offset-s1">

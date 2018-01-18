@@ -78,7 +78,7 @@ response_mappings = [{:logic => 'Double Negation'                     , :mapping
              {:logic => 'Existential Intro'                  , :mapping => 'Existential General'},
              {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]
 
-input_mppings = [{:outbound => 'Double Negation Laws'          , :mapping => 'DN'},
+input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'DN'},
              {:outbound => 'Commutative Law'                   , :mapping => '&Comm'},
              {:outbound => 'Commutative Law'                   , :mapping => 'vComm'},
              {:outbound => 'Associative Law'                   , :mapping => '&Assoc'},

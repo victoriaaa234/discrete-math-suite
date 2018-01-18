@@ -17,18 +17,21 @@ a.foot-text {
 textarea.proof {
     height: 13rem;
 }
-textarea#premise {
+textarea.premise {
     height: 2rem;
 }
-textarea#conclusion {
+textarea.conclusion {
     height: 2rem;
 }
 .modal-footer {
     margin-top: -5%;
 }
-a.waves-effect.waves-light.btn.modal-trigger {
-    margin-left: 88%;
-    margin-top: -5%
+.modals {
+    padding-left: 77%;
+    padding-bottom: 2%;
+}
+a#expertheader.waves-effect.waves-light.btn.modal-trigger {
+    float: right;
 }
 .submit {
     float:right;

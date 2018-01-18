@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
+    $('#modal2').modal();
 });
 
 function addPremiseRow() {
@@ -118,11 +119,6 @@ function renumberNodes(nodes, deletedIndex) {
     }
 }
 
-
-
-
-
-
 function deleteRow(buttonDivId) {
     var buttonDiv = document.getElementById(buttonDivId);
     var deletedIndex = getEndingNumber(buttonDiv.id);
@@ -139,11 +135,6 @@ function deleteRow(buttonDivId) {
     var buttonParent = buttonDiv.parentElement;
     buttonParent.parentElement.removeChild(buttonParent);
 }
-
-
-
-
-
 
 function getProofLine(prefix, sizeStr, newIndex, labelString) {
     var newProofElem = document.createElement("div");
@@ -188,11 +179,6 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     return newProofElem;
 }
 
-
-
-
-
-
 function getProofButton(newIndex) {
     var buttonDiv = document.createElement("div");
     buttonDiv.id = "proof_remove_" + String(newIndex);
@@ -211,11 +197,6 @@ function getProofButton(newIndex) {
     buttonDiv.appendChild(deleteButton);
     return buttonDiv;
 }
-
-
-
-
-
 
 function addProofRow() {
     var proofSecondaries = document.getElementById("proof_secondaries");
@@ -250,11 +231,6 @@ function addProofRow() {
     proofSecondaries.appendChild(rowWrapper);
 }
 
-
-
-
-
-
 /*
 function deleteProofRow(buttonDivId) {
         var buttonDiv = document.getElementById(buttonDivId);
@@ -274,11 +250,11 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-function generatePracticeProblems() {
-    //TODO(vwei): create database of practice problems and randomly select one.
-    // submitText(premise, conclusion, proof);
-    console.log('Generated practice problem');
-}
+    function generatePracticeProblems() {
+        //TODO(vwei): create database of practice problems and randomly select one.
+        // submitText(premise, conclusion, proof);
+        console.log('Generated practice problem');
+    }
 
 function submitText(premise, conclusion, proof) {
     var premiseList = premise.split(',');
@@ -310,11 +286,11 @@ function submitText(premise, conclusion, proof) {
     }
 
     //adding the conclusion
-    
+
     //remove spaces first
     conclusion = removeSpaces(conclusion);
     document.getElementById('input_conclusion_1').value = conclusion;
-    
+
     //adding the proofs
     for (i = 1; i <=proofList.length; i++){
         var proofs = proofList[i-1].split(' ');
@@ -359,26 +335,31 @@ function submitText(premise, conclusion, proof) {
         }
     }
 }
-    function submitExpertMode(){
-        console.log('Submitted');
-        var premise = document.getElementById('premise').value;
-        var conclusion = document.getElementById('conclusion').value;
-        var proof = document.getElementById('proof').value;
 
-        submitText(premise, conclusion, proof);
-    }
+function submitExpertMode(){
+    console.log('Submitted');
+    var premise = document.getElementById('premise-expert').value;
+    var conclusion = document.getElementById('conclusion-expert').value;
+    var proof = document.getElementById('proof-expert').value;
+
+    submitText(premise, conclusion, proof);
+}
+
+function submitLatexMode() {
+    //TODO(vwei): submit latex and fill out fields
+}
 
 function removeSpaces(text) {  
     var i = 0;
     while (i < text.length) {  
-         if (text[i] == " ") {
-             text = text.substring(0, i) + text.substring(i + 1, text.length);
-         }
-         else {
+        if (text[i] == " ") {
+            text = text.substring(0, i) + text.substring(i + 1, text.length);
+        }
+        else {
             i++;
-         }
-     }
-     return text;
+        }
+    }
+    return text;
 }
 
 function submit(){
@@ -419,30 +400,65 @@ function submit(){
             proof_lines: stepList
         },
         // TODO: Make better alert
-        // TODO: SHow loading solution alert for users when performing proof check
+        // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
-            alert("Data: " + data.data.toString() + "\n");
-        },
-        dataType: 'json'
-    });
-    // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
-}
+            swal({
+                title: data.data.toString(),
+                type: 'error',
+                confirmButtonText: 'Continue',
+                confirmButtonColor: '#2acbb3',
+                showCancelButton: true,
+                cancelButtonText: 'Return to Options'
+            }).then((result) => {
+                if (result.value) {
+                    swal(
+                        'Try Again',
+                        'You can do it!!',
+                        'success'
+                    )
+                } else if (result.dismiss === 'cancel') {
+                    window.location.href = "/logic_options";
+                }
+            });
+            },
+                dataType: 'json'
+            });
+            // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+        }
 
-var globalModalData = [];
-function modalOpen(){
-    globalModalData.length = 0; // Reset array
-    globalModalData.push(document.getElementById('premise').value);
-    globalModalData.push(document.getElementById('conclusion').value);
-    globalModalData.push(document.getElementById('proof').value);
+        var globalExpertModalData = [];
+        function expertModalOpen(){
+            globalExpertModalData.length = 0; // Reset array
+            globalExpertModalData.push(document.getElementById('premise-expert').value);
+            globalExpertModalData.push(document.getElementById('conclusion-expert').value);
+            globalExpertModalData.push(document.getElementById('proof-expert').value);
 
-    $('.modal').modal({
-        dismissible: false
-    });
-}
+            $('.modal').modal({
+                dismissible: false
+            });
+        }
 
-function modalCancel(){
-    document.getElementById('premise').value = globalModalData[0] || "";
-    document.getElementById('conclusion').value = globalModalData[1] || "";
-    document.getElementById('proof').value = globalModalData[2] || "";
-    globalModalData.length = 0;
-}
+        function expertModalCancel(){
+            document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
+            document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
+            document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
+            globalExpertModalData.length = 0;
+        }
+
+        var globalLatexModalData = [];
+        function latexModalOpen() {
+            globalLatexModalData.length = 0; // Reset array
+            globalLatexModalData.push(document.getElementById('premise-latex').value);
+            globalLatexModalData.push(document.getElementById('conclusion-latex').value);
+            globalLatexModalData.push(document.getElementById('proof-latex').value);
+
+            $('.modal').modal({
+                dismissible: false
+            });
+        }
+
+        function latexModalCancel() {
+            document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
+            document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
+            document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
+        }
