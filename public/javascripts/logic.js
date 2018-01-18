@@ -391,6 +391,8 @@ function submit(){
         }
         stepList.push(step);
     }
+    
+    $('#loader').show()
     $.ajax({
         url: "/logic",
         data: {
@@ -402,21 +404,25 @@ function submit(){
         // TODO: Make better alert
         // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
+            $('#loader').hide()
+            var text = data.data.toString();
+            var title = "Error";
+            var type = 'error';
+            if(text.includes("You did it!")){
+                title = "Success"
+                type = 'success'
+            }
             swal({
-                title: data.data.toString(),
-                type: 'error',
+                title: title,
+                text: text,
+                type: type,
                 confirmButtonText: 'Continue',
                 confirmButtonColor: '#2acbb3',
                 showCancelButton: true,
-                cancelButtonText: 'Return to Options'
+                cancelButtonText: 'Return to Options',
+                allowOutsideClick: false
             }).then((result) => {
-                if (result.value) {
-                    swal(
-                        'Try Again',
-                        'You can do it!!',
-                        'success'
-                    )
-                } else if (result.dismiss === 'cancel') {
+                if (result.dismiss === 'cancel') {
                     window.location.href = "/logic_options";
                 }
             });
