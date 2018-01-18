@@ -150,4 +150,9 @@ class LogicController < ApplicationController
         end
         return error_message
     end
+
+    def generate_problem()
+        #pulls problem from practice problem model
+        return PracticeProblems.generate
+    end
 end
