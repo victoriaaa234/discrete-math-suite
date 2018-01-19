@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112145733) do
-
+ActiveRecord::Schema.define(version: 20180116223647) do
 
   create_table "input_mappings", force: :cascade do |t|
     t.string "outbound"
@@ -26,23 +25,6 @@ ActiveRecord::Schema.define(version: 20180112145733) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  create_table "input_mappings", force: :cascade do |t|
-    t.string "outbound"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "latex_mappings", force: :cascade do |t|
-    t.string "latex"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "response_mappings", force: :cascade do |t|
-    t.string "logic"
-    t.string "mapping"
 
   create_table "practice_problems", force: :cascade do |t|
     t.string "premise"
