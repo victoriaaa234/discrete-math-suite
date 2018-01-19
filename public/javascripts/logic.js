@@ -250,11 +250,97 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-    function generatePracticeProblems() {
-        //TODO(vwei): create database of practice problems and randomly select one.
+function generatePracticeProblems() {
+        //TODO(jason): create database of practice problems and randomly select one.
         // submitText(premise, conclusion, proof);
         console.log('Generated practice problem');
+}
+
+function submitLatexText(premise, conclusion, proof) {
+    var premise_latex = premise.substr(1, premise.length-2);
+    var premiseList = premise_latex.split(',');
+    var proofList = proof_latex.split('\n');
+
+    //adding the premises
+    for (i = 1; i <= premiseList.length; i++){
+        premiseList[i] = premiseList[i].substr(1, premiseList[i].length-2);
+        var premiseId = 'input_premise_'+i;
+        if(document.getElementById(premiseId)!==null){
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
+        }
+        else{
+            addPremiseRow();
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
+        }
+
     }
+
+    //removing extra premises
+    var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
+    if (allPremiseBoxesLength >= i)
+    {
+        for (j = allPremiseBoxesLength; j >= i; j--){
+            var premiseId = 'remove_premise_'+j;
+            deleteRow(premiseId);
+        }
+    }
+
+    //adding the conclusion
+
+    //remove spaces first
+    conclusion = removeSpaces(conclusion);
+    conclusion = conclusion.substr(1, conclusion.length-2);
+    document.getElementById('input_conclusion_1').value = conclusion;
+
+    //adding the proofs
+    for (i = 1; i <=proofList.length; i++){
+        proofList[i-1] = proofList[i-1].substr(1, proofList[i-1].length-2);
+    
+        var proofs = proofList[i-1].split(' ');
+        //TODO(vwei): finish this up and trim on \,
+        var stepId = 'proof_step_input_'+i;
+        var previousId = 'proof_previous_input_'+i;
+        var rulesId = 'proof_rules_input_'+i;
+
+        if(document.getElementById(stepId)!==null){
+            document.getElementById(stepId).value = proofs[0] || "";
+            document.getElementById(previousId).value = proofs[1] || "";
+            var string = " ";
+            for(j = 2;j<proofs.length;j++){
+                string += proofs[j] + " ";
+            }
+            string = string.substr(0, string.length-1);
+            string = removeSpaces(string);
+            document.getElementById(rulesId).value = string;
+        }
+        else{
+            addProofRow();
+            document.getElementById(stepId).value = proofs[0] || "";
+            document.getElementById(previousId).value = proofs[1] || "";
+            document.getElementById(rulesId).value = proofs[2] || "";
+            var string = " ";
+            for(i = 2;i<proofs.length;i++){
+                string += proofs[i] + " ";
+            }
+            document.getElementById(rulesId).value = string;
+        }
+    }
+
+    //removing proofs
+    var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
+    if (i > 1)
+    {
+        if (allProofRowsLength >= i)
+        {
+            for (j = allProofRowsLength; j >= i; j--){
+                var proofRowId = 'proof_remove_'+j;
+                deleteRow(proofRowId);
+            }
+        }
+    }
+}
 
 function submitText(premise, conclusion, proof) {
     var premiseList = premise.split(',');
@@ -346,7 +432,12 @@ function submitExpertMode(){
 }
 
 function submitLatexMode() {
-    //TODO(vwei): submit latex and fill out fields
+    console.log('Submitted Latex');
+    var premise = document.getElementById('premise-latex').value;
+    var conclusion = document.getElementById('conclusion-latex').value;
+    var proof = document.getElementById('proof-latex').value;
+
+    submitLatexText(premise, conclusion, proof);
 }
 
 function removeSpaces(text) {  
