@@ -9,11 +9,11 @@
 
 <!-- Dropdown Structure -->
 <ul id='dropdown1' class='dropdown-content'>
-  <li><a href="/strongInduct">Strong Induction</a></li>
+  <li><a id="load-strong" href="#!">Strong Induction</a></li>
   <li class="divider"></li>
-  <li><a href="/mathInduct">Mathematical Induction</a></li>
+  <li><a id="load-math" href="#!">Mathematical Induction</a></li>
   <li class="divider"></li>
-  <li><a href="/structInduct">Structural Induction</a></li>
+  <li><a id="load-struct" href="#!">Structural Induction</a></li>
   </ul>
 
 <!--Tutorial-->
@@ -186,5 +186,22 @@ function getKatexForm3() {
 // use an eventlistener for the event
 var convButton = document.getElementById('convButton3');
 convButton.addEventListener('click', getKatexForm3, false);
+
+var strongButton = document.getElementById('load-strong');
+strongButton.addEventListener('click', function() {
+  currentProblem.loadProblem("strong");
+})
+
+var mathButton = document.getElementById('load-math');
+mathButton.addEventListener('click', function() {
+  currentProblem.loadProblem("math");
+})
+
+var structButton = document.getElementById('load-struct');
+structButton.addEventListener('click', function() {
+  currentProblem.loadProblem("structural");
+})
+
+
 }
 </script>
