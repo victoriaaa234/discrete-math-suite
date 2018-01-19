@@ -26,11 +26,6 @@ ActiveRecord::Schema.define(version: 20180112145733) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mappings", force: :cascade do |t|
-    t.string "logic"
-    t.string "mapping"
-  end
-
   create_table "response_mappings", force: :cascade do |t|
     t.string "logic"
     t.string "mapping"
