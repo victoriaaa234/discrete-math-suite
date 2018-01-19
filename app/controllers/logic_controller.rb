@@ -37,6 +37,7 @@ class LogicController < ApplicationController
                     assumption_set[index] = Array(index + 1)
                 else
                     return
+
                     # TODO(Drew): Throw error!
                 end
             else

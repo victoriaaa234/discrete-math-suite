@@ -33,6 +33,9 @@ textarea.conclusion {
 a#expertheader.waves-effect.waves-light.btn.modal-trigger {
     float: right;
 }
+a#latexheader.waves-effect.waves-light.btn.modal-trigger {
+    font-style: italic;
+}
 .submit {
     float:right;
 }

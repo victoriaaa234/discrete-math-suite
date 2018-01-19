@@ -34,12 +34,14 @@ const createSummation = function(minNum=0,maxNum=25){   // a, b and c are intege
     return problem;
 };
 
-const createPostageStamp = function(minstamp = 1,maxstamp = 10) {
+const createPostageStamp = function(minstamp = 2,maxstamp = 10) {
     let problem = {};
-    problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
     do {
-        problem.stamp2 = Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
-    } while(problem.stamp1 == problem.stamp2);
+        problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
+        do {
+            problem.stamp2 = Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
+        } while(problem.stamp1 == problem.stamp2);
+    } while((problem.stamp1%2 == 0) && (problem.stamp2%2 == 0))
     
     problem.basis = (problem.stamp1 - 1)* (problem.stamp2 - 1);
     problem.text = `Use strong induction to prove that any amount of postage that is at least ${problem.basis} cents\

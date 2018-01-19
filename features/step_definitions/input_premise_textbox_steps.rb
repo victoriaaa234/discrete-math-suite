@@ -1,11 +1,11 @@
-Given /^I am on the logic page/ do
-    puts visit logic_path
-end
+# Given /^I am on the Logic page$/ do
+#     visit logic_path
+# end
 
-When /^I input text into premise textbox$/ do |input_term|
+When /^I input text into Premise textbox$/ do |input_term|
     fill_in('input_premise_0', with: 'PvQ->R')
 end
 
-Then /^I expect text to be inside textbox$/ do
-    expect(page).to have_field('input_premise_0', with: 'PvQ->R')
+Then /^I expect text to be inside Premise textbox$/ do
+    expect(page).should have_field('input_premise_0', :with => 'PvQ->R')
 end
