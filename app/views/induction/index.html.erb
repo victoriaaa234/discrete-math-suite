@@ -148,7 +148,9 @@
 <script src="javascripts/induction/generateProblem.js"></script>
 <script src="javascripts/induction/currentProblem.js"></script>
 <script>
-window.onload = function(){
+/*window.onload = function(){
+currentProblem.loadProblem("strong");
+}*/
 currentProblem.loadProblem("strong");
 
 function getKatexForm1() {
@@ -185,5 +187,5 @@ function getKatexForm3() {
 // use an eventlistener for the event
 var convButton = document.getElementById('convButton3');
 convButton.addEventListener('click', getKatexForm3, false);
-}
+
 </script>
