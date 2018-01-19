@@ -66,21 +66,17 @@
 </ul>
 <a href="#" data-activates="slide-out"  id = "sidenavbtn" class="button-collapse">
 <i class="material-icons" >menu</i></a>
-<h5 id = "logicheader" style = "padding-left:35px">Logic</h5>
+<h5 id = "logicheader" style = "padding-left:35px"></h5>
 
+
+<div>
+	<button type="button" onclick ="generatePracticeProblems()" class ="modal-action modal-close waves-effect waves-green btn-flat">Give me Problem</button>
+</div>
 <div class="modals">
 
 	<!-- Expert Mode Modal Trigger -->
 	<a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-	<div class="modal-content">
-		<div class="premise-text">
-			<textarea placeholder="Enter Premise..." id="premise" rows="4" cols="50">a</textarea>
-		</div>
-		<div class="conclusion-text">
-			<textarea placeholder="Enter Conclusion..." id="conclusion" rows="4" cols="50"></textarea>
 	<!-- Expert Mode Modal Structure -->
 	<div id="modal1" class="modal">
 		<div class="modal-content">
@@ -102,6 +98,8 @@
 
 	<!-- Latex Mode Modal Trigger -->
 	<a onclick="latexModalOpen()" class="waves-effect waves-light btn modal-trigger" id="latexheader" href="#modal2">Latex</a>
+
+
 
 	<!-- Latex Mode Modal Structure -->
 	<div id="modal2" class="modal">
@@ -222,3 +220,6 @@
 
 	</form>
 </div>
+
+<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {problem: @problem} do %>
+<% end %>

@@ -11,6 +11,11 @@ class LogicController < ApplicationController
             end
         end
 
+        problems = PracticeProblems.generate
+        puts "Practice Problems Generated"
+        @problem = problems
+        puts @problem.to_s
+        
         # puts parse_input("hello", "hello", "hello")
     end
 
@@ -159,8 +164,4 @@ class LogicController < ApplicationController
         return error_message
     end
 
-    def generate_problem()
-        #pulls problem from practice problem model
-        return PracticeProblems.generate
-    end
 end
