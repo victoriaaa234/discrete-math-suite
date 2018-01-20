@@ -516,7 +516,7 @@ function submit(){
         // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
             var text = "";
-            if(data.type === 'success'){
+            if(data.type === 'success' || data.line_number == null){
                text = data.reason; 
             }
             else{

@@ -36,12 +36,10 @@ class LogicController < ApplicationController
         input_proof.each_with_index do |proof_line, index|
             dependent_lines = proof_line[1].split(',')
             if dependent_lines.nil? || dependent_lines.empty?
-                if proof_line[2] == "A" || proof_line[2] == "a"
+                if proof_line[2] == "A" 
                     assumption_set[index] = Array(index + 1)
                 else
                     return
-
-                    # TODO(Drew): Throw error!
                 end
             else
                 # Use the lines used by the proof to find a valid assumption set
@@ -76,7 +74,8 @@ class LogicController < ApplicationController
         puts input_proof
         assumption_set = calc_assumption_set(input_proof)
         if assumption_set.nil? || assumption_set.empty?
-            return "Ya done goofed"
+                    data = {"reason"=>"Missing line numbers for non assumption proof line", "type"=>"error", "title"=>"Error","assumption_set"=>nil, "line_number"=>nil, "sentence"=>nil, "annotation"=>nil}
+            return data
         end
         # Format output to logic.tamu.edu format
         formatted_proof = String.new
@@ -147,8 +146,12 @@ class LogicController < ApplicationController
                 return data
 
             end
-
-            error_message = result_page.xpath('//tr/td/p').last.text
+            is_error = result_page.xpath('//tr/td/p').last
+            if is_error.nil? || is_error.empty?
+                error_message = result_page.xpath('//body/center/font').last.text
+            else 
+                error_message = result_page.xpath('//tr/td/p').last.text
+            end
             error_options = error_reason.split(/[[:space:]]+/)
             data = {"reason"=>format_output(error_message), "assumption_set"=>error_options[2], "type"=>"error", "title"=>"Error","line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
             puts "You failed. Reason: #{data["reason"]} Assumption Set: #{data["assumption_set"]}, Line Number: #{data["line_number"]}, Sentence: #{data["sentence"]}, Annotation: #{data["annotation"]}"
