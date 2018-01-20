@@ -16,12 +16,10 @@ class LogicController < ApplicationController
         @problem = problems
         puts @problem.to_s
         
-        # puts parse_input("hello", "hello", "hello")
     end
 
     # TODO
     # - WHO IS DOING INPUT CHECKING???
-    # - Reformat input to match logic.tamu.edu layout
 
     # ERROR TYPES
     # - Proof is not finished
