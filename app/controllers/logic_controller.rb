@@ -5,7 +5,7 @@ class LogicController < ApplicationController
             premises = params[:premises]
             conclusion = params[:conclusion]
             proof_lines = params[:proof_lines]
-            data = {"data" => parse_input(premises, conclusion, proof_lines) }
+            data = parse_input(premises, conclusion, proof_lines)
             respond_to do |format|
                 format.json { render json: data }
             end
@@ -122,14 +122,16 @@ class LogicController < ApplicationController
 
         error_reason = result_page.xpath("//tr/td/p/img[@src='http://logic.tamu.edu/Images/th_up.gif']").last
         unless error_reason.nil?
-            return "You did it!"
+            data = {"reason"=>"You did it!", "type"=>"success", "title"=>"Success", "assumption_set"=>nil, "line_number"=>nil, "sentence"=>nil, "annotation"=>nil}
+            return data
         end
 
         # Parse errors. First maroon errors, then red ones, then traditional errors
         error_reason = result_page.xpath("//font[@color='maroon']").text
         unless error_reason.empty?
             error_reason = format_output(error_reason)
-            return error_reason
+            data = {"reason"=>format_output(error_reason), "type"=>"error", "title"=>"Error","assumption_set"=>nil, "line_number"=>nil, "sentence"=>nil, "annotation"=>nil}
+            return data
         end
 
         # Hey. This is probably going to crash if some new edge case shows. Heads up. Should probably fix this.
@@ -138,17 +140,19 @@ class LogicController < ApplicationController
             puts "Red case"
 
             if error_reason == "'No conclusion.'"
-                return "Please enter a conclusion" # NOTE(Drew): One of the few times we manually create an error message.
+                data = {"reason"=>"Please enter a conclusion", "type"=>"error", "title"=>"Error","assumption_set"=>nil, "line_number"=>nil, "sentence"=>nil, "annotation"=>nil}
+                return data
+
             end
 
             error_message = result_page.xpath('//tr/td/p').last.text
             error_options = error_reason.split(/[[:space:]]+/)
-            data = {"reason"=>error_message, "assumption_set"=>error_options[2], "line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
+            data = {"reason"=>format_output(error_message), "assumption_set"=>error_options[2], "type"=>"error", "title"=>"Error","line_number"=>error_options[3].scan(/\d+/).first, "sentence"=>error_options[4], "annotation"=>error_options[5]}
             puts "You failed. Reason: #{data["reason"]} Assumption Set: #{data["assumption_set"]}, Line Number: #{data["line_number"]}, Sentence: #{data["sentence"]}, Annotation: #{data["annotation"]}"
-            error_message = format_output(error_message)
-            return error_message
+            return data
         end
 
+        #NOTE This should never happen
         return "You missed an error."
     end
 
