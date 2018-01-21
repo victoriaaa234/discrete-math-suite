@@ -8,7 +8,7 @@
   root 'discrete#index'
   get '/logic', to: 'logic#logic'
   get '/logic_options', to: 'logic#option'
-  get '/logic/problem', to: 'logic#logic'
+  get '/logic/problem', to: 'logic#logic_problems'
   get '/induction', to: 'induction#index'
   get '/induction/problem', to: 'induction#test_action'
   get '/profile', to: 'profile#profilePage'

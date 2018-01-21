@@ -11,12 +11,18 @@ class LogicController < ApplicationController
             end
         end
 
+        
+    end
+
+    def logic_problems
+
         problems = PracticeProblems.generate
         puts "Practice Problems Generated"
         @problem = problems
         puts @problem.to_s
-        
+
     end
+
 
     # TODO
     # - WHO IS DOING INPUT CHECKING???
