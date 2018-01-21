@@ -1,225 +1,224 @@
 <ul id="slide-out" class="side-nav">
-	<!-- Uncomment the following 8 lines to include the background/user header in the side navbar -->
-	<!-- <li><div class="user-view"> -->
-	<!-- 	<div class="background"> -->
-	<!-- 		<img src="images/office.jpg"> -->
-	<!-- 	</div> -->
-	<!-- 	<a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
-	<!-- 	<a href="#!name"><span class="white-text name">John Doe</span></a> -->
-	<!-- 	<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a> -->
-	<!-- </div></li> -->
+    <!-- Uncomment the following 8 lines to include the background/user header in the side navbar -->
+    <!-- <li><div class="user-view"> -->
+    <!-- 	<div class="background"> -->
+    <!-- 		<img src="images/office.jpg"> -->
+    <!-- 	</div> -->
+    <!-- 	<a href="#!user"><img class="circle" src="images/yuna.jpg"></a> -->
+    <!-- 	<a href="#!name"><span class="white-text name">John Doe</span></a> -->
+    <!-- 	<a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a> -->
+    <!-- </div></li> -->
 
-	<!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
-	<!-- <li><a href="#!">Second Link</a></li> -->
-	<!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
-	<li style="text-align: center"><a class="subheader">Help with symbols</a></li>
-	<li>
-		<style>
+    <!-- <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li> -->
+    <!-- <li><a href="#!">Second Link</a></li> -->
+    <!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
+    <li style="text-align: center"><a class="subheader">Help with symbols</a></li>
+    <li>
+        <style>
 
 #sidenavbtn{  position: relative; left:55px;  top:45px;}
 
 #hoverid:hover {
-	background-color: #e3eaf2;
+    background-color: #e3eaf2;
 }
-		</style>
-		<table>
+        </style>
+        <table>
 
-			<tr>
-				<th style="padding-left: 30px">Symbol</th>
-				<th>Example</th>
-			</tr>
+            <tr>
+                <th style="padding-left: 30px">Symbol</th>
+                <th>Example</th>
+            </tr>
 
-			<tr id = "hoverid">
-
-
-				<td style="padding-left: 30px">AND:&amp;</td>
-				<td>P&amp;R</td>
-
-			</tr>
+            <tr id = "hoverid">
 
 
-			<tr id = "hoverid">
-				<td style="padding-left: 30px">OR: v</td>
-				<td>PvR</td>
-			</tr>
-			<tr id = "hoverid">
-				<td style="padding-left: 30px">IMPLIES: -></td>
-				<td>P->R</td>
-			</tr>
-			<tr id = "hoverid">
-				<td style="padding-left: 30px">NOT: ~</td>
-				<td>~P</td>
-			</tr>
-			<tr id = "hoverid">
-				<td style="padding-left: 30px">BICONDITIONAL: <&#45;> </td>
-				<td>P<->Q</td>
-			</tr>
+                <td style="padding-left: 30px">AND:&amp;</td>
+                <td>P&amp;R</td>
 
-			<tr id = "hoverid">
-				<td style="padding-left: 30px">XOR: x </td>
-				<td>PxQ</td>
-			</tr>
+            </tr>
 
-		</table>
 
-	</li>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">OR: v</td>
+                <td>PvR</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">IMPLIES: -></td>
+                <td>P->R</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">NOT: ~</td>
+                <td>~P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">BICONDITIONAL: <&#45;> </td>
+                <td>P<->Q</td>
+            </tr>
+
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">XOR: x </td>
+                <td>PxQ</td>
+            </tr>
+
+        </table>
+
+    </li>
 </ul>
 <a href="#" data-activates="slide-out"  id = "sidenavbtn" class="button-collapse">
-<i class="material-icons" >menu</i></a>
+    <i class="material-icons" >menu</i></a>
 <h5 id = "logicheader" style = "padding-left:35px"></h5>
 
-
 <div>
-	<button type="button" onclick ="generatePracticeProblems()" class ="modal-action modal-close waves-effect waves-green btn-flat">Give me Problem</button>
+    <button type="button" onclick ="generatePracticeProblems()" class ="modal-action modal-close waves-effect waves-green btn-flat">Give me Problem</button>
 </div>
 <div class="modals">
 
-	<!-- Expert Mode Modal Trigger -->
-	<a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
+    <!-- Expert Mode Modal Trigger -->
+    <a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
-	<!-- Expert Mode Modal Structure -->
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<div class="premise-text">
-				<textarea class="premise" placeholder="Enter Premise..." id="premise-expert" rows="4" cols="50"></textarea>
-			</div>
-			<div class="conclusion-text">
-				<textarea class="conclusion" placeholder="Enter Conclusion..." id="conclusion-expert" rows="4" cols="50"></textarea>
-			</div>
-			<div class="proof-text">
-				<textarea class="proof" placeholder="Enter Proof..." id="proof-expert" rows="4" cols="50"></textarea>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button onclick="expertModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<button onclick="submitExpertMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
-		</div>
-	</div>
+    <!-- Expert Mode Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="premise-text">
+                <textarea class="premise" placeholder="Enter Premise..." id="premise-expert" rows="4" cols="50"></textarea>
+            </div>
+            <div class="conclusion-text">
+                <textarea class="conclusion" placeholder="Enter Conclusion..." id="conclusion-expert" rows="4" cols="50"></textarea>
+            </div>
+            <div class="proof-text">
+                <textarea class="proof" placeholder="Enter Proof..." id="proof-expert" rows="4" cols="50"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="expertModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <button onclick="submitExpertMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+        </div>
+    </div>
 
-	<!-- Latex Mode Modal Trigger -->
-	<a onclick="latexModalOpen()" class="waves-effect waves-light btn modal-trigger" id="latexheader" href="#modal2">Latex</a>
+    <!-- Latex Mode Modal Trigger -->
+    <a onclick="latexModalOpen()" class="waves-effect waves-light btn modal-trigger" id="latexheader" href="#modal2">Latex</a>
 
 
 
-	<!-- Latex Mode Modal Structure -->
-	<div id="modal2" class="modal">
-		<div class="modal-content">
-			<div class="premise-text">
-				<textarea class="premise" placeholder="Enter Premise in Latex..." id="premise-latex" rows="4" cols="50"></textarea>
-			</div>
-			<div class="conclusion-text">
-				<textarea class="conclusion" placeholder="Enter Conclusion in Latex..." id="conclusion-latex" rows="4" cols="50"></textarea>
-			</div>
-			<div class="proof-text">
-				<textarea class="proof" placeholder="Enter Proof in Latex..." id="proof-latex" rows="4" cols="50"></textarea>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button onclick="latexModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-			<button onclick="submitLatexMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
-		</div>
-	</div>
+    <!-- Latex Mode Modal Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="premise-text">
+                <textarea class="premise" placeholder="Enter Premise in Latex..." id="premise-latex" rows="4" cols="50"></textarea>
+            </div>
+            <div class="conclusion-text">
+                <textarea class="conclusion" placeholder="Enter Conclusion in Latex..." id="conclusion-latex" rows="4" cols="50"></textarea>
+            </div>
+            <div class="proof-text">
+                <textarea class="proof" placeholder="Enter Proof in Latex..." id="proof-latex" rows="4" cols="50"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="latexModalCancel()" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <button onclick="submitLatexMode()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+        </div>
+    </div>
 </div>
 
 <div class="row">
-     <div class="loader"></div> 
-	<form id="all_proof_input" class="col s12">
-		<div id="premises_conclusion_container" class="col s4">
-			<div class="row">
-				<div id="premise_1" class="input-field col s10 premise_line">
-					<input placeholder="Enter a premise..." id="input_premise_1" name="input_premise_1" type="text" class="validate premise_line_input" data-lpignore="true">
-					<label for="input_premise_1">Premise 1</label>
-				</div>
-			</div>
-			<div id="premise_secondaries" class="row secondary_line">
-				<div class="row">
-					<div id="premise_2" class="input-field col s10">
-						<input placeholder="Enter a premise..." id="input_premise_2" name="input_premise_2" type="text" class="validate premise_line_input" data-lpignore="true">
-						<label for="input_premise_2">Premise 2</label>
-					</div>
-					<div id="remove_premise_2" class="col s1">
-						<a class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('remove_premise_2')">
-							<i class="material-icons red">cancel</i>
-						</a>
-					</div>
-				</div>
-			</div>
+    <form id="all_proof_input" class="col s12">
+        <div id="premises_conclusion_container" class="col s4">
+            <div class="row">
+                <div id="premise_1" class="input-field col s10 premise_line">
+                    <input placeholder="Enter a premise..." id="input_premise_1" name="input_premise_1" type="text" class="validate premise_line_input" data-lpignore="true">
+                    <label for="input_premise_1">Premise 1</label>
+                </div>
+            </div>
+            <div id="premise_secondaries" class="row secondary_line">
+                <div class="row">
+                    <div id="premise_2" class="input-field col s10">
+                        <input placeholder="Enter a premise..." id="input_premise_2" name="input_premise_2" type="text" class="validate premise_line_input" data-lpignore="true">
+                        <label for="input_premise_2">Premise 2</label>
+                    </div>
+                    <div id="remove_premise_2" class="col s1">
+                        <a class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('remove_premise_2')">
+                            <i class="material-icons red">cancel</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-			<div id="PremisesAddLine">
-				<a class="waves-effect waves-light btn" onclick="addPremiseRow()">
-					Add Premise
-				</a>
-			</div>
+            <div id="PremisesAddLine">
+                <a class="waves-effect waves-light btn" onclick="addPremiseRow()">
+                    Add Premise
+                </a>
+            </div>
 
-			<!-- There's probably a better way to put vertical space -->
-			<div class="row"></div>
+            <!-- There's probably a better way to put vertical space -->
+            <div class="row"></div>
 
-			<div class="row">
-				<div id="conclusion_1" class="input-field col s10 conclusion_line">
-					<input placeholder="Enter a conclusion..." id="input_conclusion_1" name="input_conclusion_1" type="text" class="validate conclusion_line_input" data-lpignore="true">
-					<label for="input_conclusion_1">Conclusion</label>
-				</div>
-			</div>
-		</div>
+            <div class="row">
+                <div id="conclusion_1" class="input-field col s10 conclusion_line">
+                    <input placeholder="Enter a conclusion..." id="input_conclusion_1" name="input_conclusion_1" type="text" class="validate conclusion_line_input" data-lpignore="true">
+                    <label for="input_conclusion_1">Conclusion</label>
+                </div>
+            </div>
+        </div>
 
 
-		<div id="proof_container" class="col s7 offset-s1">
-			<div id="proof_row" class="row">
-				<div id="proof_step_1" class="input-field col s5 proof_line">
-					<input placeholder="Enter a step..." id="proof_step_input_1" name="proof_step_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
-					<label for="proof_step_input_1">Step 1</label>
-				</div>
+        <div id="proof_container" class="col s7 offset-s1">
+            <div id="proof_row" class="row">
+                <div id="proof_step_1" class="input-field col s5 proof_line">
+                    <input placeholder="Enter a step..." id="proof_step_input_1" name="proof_step_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+                    <label for="proof_step_input_1">Step 1</label>
+                </div>
 
-				<div id="proof_previous_1" class="input-field col s3 proof_line">
-					<input placeholder="Enter previous lines..." id="proof_previous_input_1" name="proof_previous_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
-					<label for="proof_previous_input_1">Previous Lines</label>
-				</div>
+                <div id="proof_previous_1" class="input-field col s3 proof_line">
+                    <input placeholder="Enter previous lines..." id="proof_previous_input_1" name="proof_previous_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+                    <label for="proof_previous_input_1">Previous Lines</label>
+                </div>
 
-				<div id="proof_rules_1" class="input-field col s2 proof_line">
-					<input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
-					<label for="proof_rules_input_1">Rules</label>
-				</div>
-			</div>
+                <div id="proof_rules_1" class="input-field col s2 proof_line">
+                    <input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+                    <label for="proof_rules_input_1">Rules</label>
+                </div>
+            </div>
 
-			<div id="proof_secondaries" class="row secondary_line">
-				<div id="proof_row" class="row">
-					<div id="proof_step_2" class="input-field col s5 proof_line">
-						<input placeholder="Enter a step..." id="proof_step_input_2" name="proof_step_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
-						<label for="proof_step_input_2">Step 2</label>
-					</div>
+            <div id="proof_secondaries" class="row secondary_line">
+                <div id="proof_row" class="row">
+                    <div id="proof_step_2" class="input-field col s5 proof_line">
+                        <input placeholder="Enter a step..." id="proof_step_input_2" name="proof_step_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+                        <label for="proof_step_input_2">Step 2</label>
+                    </div>
 
-					<div id="proof_previous_2" class="input-field col s3 proof_line">
-						<input placeholder="Enter previous lines..." id="proof_previous_input_2" name="proof_previous_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
-						<label for="proof_previous_input_2">Previous Lines</label>
-					</div>
+                    <div id="proof_previous_2" class="input-field col s3 proof_line">
+                        <input placeholder="Enter previous lines..." id="proof_previous_input_2" name="proof_previous_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+                        <label for="proof_previous_input_2">Previous Lines</label>
+                    </div>
 
-					<div id="proof_rules_2" class="input-field col s2 proof_line">
-						<input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
-						<label for="proof_rules_input_2">Rules</label>
-					</div>
+                    <div id="proof_rules_2" class="input-field col s2 proof_line">
+                        <input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+                        <label for="proof_rules_input_2">Rules</label>
+                    </div>
 
-					<div id="proof_remove_2" class="col s1">
-						<a id="proof_remove_button_2" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('proof_remove_2')">
-							<i class="material-icons red">cancel</i>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="submit_add_proof_line">
-				<div class="proof_add_line" id="ProofsAddLine">
-					<a class="waves-effect waves-light btn" onclick="addProofRow()">
-						Add Line
-					</a>
-				</div>
-				<div class="submit" id="LogicSubmit">
-					<a class="waves-effect waves-light btn" onclick="submit()">
-						Submit
-					</a>
-				</div>
-			</div>
-		</div>
+                    <div id="proof_remove_2" class="col s1">
+                        <a id="proof_remove_button_2" class="btn-floating btn-small waves-effect waves-light red" onclick="deleteRow('proof_remove_2')">
+                            <i class="material-icons red">cancel</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="submit_add_proof_line">
+                <div class="proof_add_line" id="ProofsAddLine">
+                    <a class="waves-effect waves-light btn" onclick="addProofRow()">
+                        Add Line
+                    </a>
+                </div>
+                <div class="submit" id="LogicSubmit">
+                    <a class="waves-effect waves-light btn" onclick="submit()">
+                        Submit
+                    </a>
+                </div>
+            </div>
+        </div>
 
-	</form>
+    </form>
+    <div id="loader" class="loader preloader-wrapper big active hidden" ></div>
 </div>
 
 <%= content_tag :div, class: "problems", id:"hiddenDiv", data: {problem: @problem} do %>
