@@ -515,18 +515,18 @@ function submit(){
         // TODO: Make better alert
         // TODO: Show loading solution alert for users when performing proof check
         success: function(data){
-            $('#loader').hide()
-            var text = data.data.toString();
-            var title = "Error";
-            var type = 'error';
-            if(text.includes("You did it!")){
-                title = "Success"
-                type = 'success'
+            var text = "";
+            if(data.type === 'success' || data.line_number == null){
+               text = data.reason; 
             }
+            else{
+                text = "Line " + data.line_number + ": "  + data.reason;
+            }
+            $('#loader').hide()
             swal({
-                title: title,
+                title: data.title,
                 text: text,
-                type: type,
+                type: data.type,
                 confirmButtonText: 'Continue',
                 confirmButtonColor: '#2acbb3',
                 showCancelButton: true,
