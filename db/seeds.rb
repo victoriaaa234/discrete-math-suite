@@ -116,6 +116,9 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\iff'                         , :mapping => '<->'},
                    {:latex => '\Leftrightarrow'              , :mapping => '<->'}]
 
+problem_mappings = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
+                    {:premise => 'p,p->q,(qvs)->r', :problem => 'Modus Ponens', :conclusion =>'r'}]
+
 response_mappings.each do |mapping|
   ResponseMapping.create!(mapping)
 end
@@ -126,4 +129,8 @@ end
 
 latex_mappings.each do |mapping|
   LatexMapping.create!(mapping)
+end
+
+problem_mappings.each do |mapping|
+  PracticeProblems.create(mapping)
 end
