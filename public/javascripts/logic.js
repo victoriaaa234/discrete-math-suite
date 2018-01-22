@@ -503,7 +503,7 @@ function submit(){
         stepList.push(step);
     }
     
-    $('#loader').show()
+    $('#loader').removeClass('hidden');
     $.ajax({
         url: "/logic",
         data: {
@@ -522,7 +522,7 @@ function submit(){
             else{
                 text = "Line " + data.line_number + ": "  + data.reason;
             }
-            $('#loader').hide()
+            $('#loader').addClass('hidden')
             swal({
                 title: data.title,
                 text: text,
