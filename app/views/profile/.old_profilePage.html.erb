@@ -1,0 +1,52 @@
+<div class="profile" style="text-align:center">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="profile-container">
+   <image id="profileImage" src="http://lorempixel.com/100/100" />
+</div>
+<input id="imageUpload" type="file" 
+       name="profile_photo" placeholder="Photo" required="" capture>
+
+    <h2><strong><%= current_user.name %></strong></h2>
+
+</div>
+
+<div class="row">
+
+    <div class="col s6" style="background-color:pink;">
+        <em><h5>My Achievements:</h5></em>
+        <!-- Items Column -->
+        <div class="cell gradable" style="text-align:left">
+        <h6>Summation Induction Proof Practice 1</h6>
+        <div class="activityType">Due: Mar 2, 2018</div>
+        <div class="itemCat">Test</div>
+        </div>
+        <!--  Activity Column -->
+        <div class="cell activity timestamp">
+          <span class="lastActivityDate">Completed on: Feb 3,2018</span>
+        </div>
+        <!-- Grade Column -->
+        <div class="cell grade">
+         <b> <span class="grade" tabindex="0">scored 24</span><span class="pointsPossible clearfloats">/25</span></b>
+          </div>
+    </div>
+
+      <div class="col s6" style="background-color:#85C1E9;">
+        <em><h5>My Progress:</h5></em>
+        <!-- Items Column -->
+        <div class="cell gradable" style="text-align:left">
+          <h6>Summation Induction Proofs Tutorial</h6>
+          <div class="activityType">Due: Mar 2, 2018</div>
+          <div class="itemCat">Practice</div>
+        </div>
+        <!--  Activity Column -->
+        <div class="cell activity timestamp">
+          <span class="lastActivityDate">Jan 3,2018</span>
+        </div>
+         <!-- Grade Column -->
+        <div class="cell grade">
+          <b><span class="completed" tabindex="0">completed 20 </span><span class="pointsPossible clearfloats">out of 25 questions</span> </b>
+        </div>
+      </div>
+    </div>
+
+    <script src="javascripts/induction/profilePage.js"></script>

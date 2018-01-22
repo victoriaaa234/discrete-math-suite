@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
-def profilePage
-	
+	def profilePage
+
 	end
 end
 
