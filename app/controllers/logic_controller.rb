@@ -1,6 +1,5 @@
 class LogicController < ApplicationController
     def logic
-        puts "Is this working?\n\n\n\n\n\n"
         if params[:submit] == 'Proof'
             premises = params[:premises]
             conclusion = params[:conclusion]
@@ -17,7 +16,6 @@ class LogicController < ApplicationController
     def logic_problems
 
         problems = PracticeProblems.generate
-        puts "Practice Problems Generated"
         @problem = problems
         puts @problem.to_s
 
