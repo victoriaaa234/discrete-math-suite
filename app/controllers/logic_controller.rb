@@ -71,7 +71,7 @@ class LogicController < ApplicationController
         end
         puts input_proof
         assumption_set = calc_assumption_set(input_proof)
-        if assumption_set.nil? || assumption_set.empty?
+        if assumption_set.nil?
                     data = {"reason"=>"Missing line numbers for non assumption proof line", "type"=>"error", "title"=>"Error","assumption_set"=>nil, "line_number"=>nil, "sentence"=>nil, "annotation"=>nil}
             return data
         end
@@ -145,7 +145,7 @@ class LogicController < ApplicationController
 
             end
             is_error = result_page.xpath('//tr/td/p').last
-            if is_error.nil? || is_error.empty?
+            if is_error.nil?
                 error_message = result_page.xpath('//body/center/font').last.text
             else 
                 error_message = result_page.xpath('//tr/td/p').last.text

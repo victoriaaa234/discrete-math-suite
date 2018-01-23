@@ -102,8 +102,9 @@ input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'D
              {:outbound => 'Universal Instantiation'           , :mapping => '@E'},
              {:outbound => 'Universal Generalization'          , :mapping => '@I'},
              {:outbound => 'Existential Instantiation'         , :mapping => '$E'},
-             {:outbound => 'Existential General'           , :mapping => '$I'},
-             {:outbound => 'Well Formed Formula'           , :mapping => 'WFF'}]
+             {:outbound => 'Existential General'               , :mapping => '$I'},
+             {:outbound => 'Well Formed Formula'               , :mapping => 'WFF'},
+             {:outbound => '|'                                 , :mapping => 'v'}]
 
 latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\land'                        , :mapping => '&'},
