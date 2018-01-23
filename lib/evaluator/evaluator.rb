@@ -1,11 +1,28 @@
 # TODO(Drew): Equivalence! Specifically doesn't match for implies situations that are simplified
-# TODO(Drew): Try-catch to give generic error in case of array access failures
 
-# NOTE(Drew): source_lines_target_length needs to be an array in sorted order
-# NOTE(Drew): Performs a forward check to make sure that potential lines have the correct pattern before checking in more detail
 class Evaluator
 	Proof_Line = Struct.new(:sentence, :reference_lines, :type) do end
 
+	def Forward_Check_Basic(proof, proof_line, source_line_count)
+		if proof_line[:reference_lines].count == source_line_count
+			source_line_nums = []
+			source_lines = []
+			(0..source_line_count-1).each do |idx|
+				source_line_nums << proof_line[:reference_lines][idx] - 1
+				source_lines << proof[source_line_nums[idx]][:sentence]
+			end
+
+			source_lines = source_lines.sort_by(&:length)
+
+			return true, source_lines
+		else
+			# puts "INVALID NUMBER OF REFERENCES"
+			return false, ""
+		end
+	end
+
+	# NOTE(Drew): source_lines_target_length needs to be an array in sorted order
+	# NOTE(Drew): Performs a forward check to make sure that potential lines have the correct pattern before checking in more detail
 	def Forward_Check(proof, proof_line, source_line_count, source_lines_target_length, proof_line_length)
 		if proof_line[:reference_lines].count == source_line_count
 			source_line_nums = []
@@ -24,18 +41,21 @@ class Evaluator
 
 			if continue
 				if proof_line[:sentence].length == proof_line_length
-					return true, source_lines
+					return true, source_lines, proof_line
+				elsif proof_line_length == 1
+					proof_line[:sentence] = [ proof_line[:sentence] ]
+					return true, source_lines, proof_line
 				else
 					# puts "INVALID RESULT"
-					return false, ""
+					return false, "", proof_line
 				end
 			else
 				# puts "INVALID SOURCE LINES"
-				return false, ""
+				return false, "", proof_line
 			end
 		else
 			# puts "INVALID NUMBER OF REFERENCES"
-			return false, ""
+			return false, "", proof_line
 		end
 	end
 
@@ -55,12 +75,12 @@ class Evaluator
 	def Identity(proof, proof_line)
 		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 1)
 		if forward_check[0]
-			return Identity_3(proof, proof_line, forward_check)
+			return Identity_3(proof, forward_check[2], forward_check)
 		end
 
 		forward_check = Forward_Check(proof, proof_line, 1, [ 4 ], 2)
 		if forward_check[0]
-			return Identity_4(proof, proof_line, forward_check)
+			return Identity_4(proof, forward_check[2], forward_check)
 		end
 
 		# puts "ERROR: COULDN'T MATCH SOURCE LINES TO IDENTITY PATTERN"
@@ -141,71 +161,118 @@ class Evaluator
 	def Domination(proof, proof_line)
 		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 1)
 		if forward_check[0]
-			source_lines = forward_check[1]
-			assumption_line = source_lines[0]
-			if assumption_line[1] == :or
-				if assumption_line[0] == :true
-					variable = assumption_line[2]
-				elsif assumption_line[2] == :true
-					variable = assumption_line[0]
-				else
-					puts "ERROR: NO VALID TRUE FOUND FOR OR DOMINATION"
-					return false
-				end
-			elsif assumption_line[1] == :and
-				if assumption_line[0] == :false
-					variable = assumption_line[2]
-				elsif assumption_line[2] == :true
-					variable = assumption_line[0]
-				else
-					puts "ERROR: NO VALID FALSE FOUND FOR AND DOMINATION"
-					return false
-				end
+			return Domination_3(proof, forward_check[2], forward_check)
+		end
+
+		forward_check = Forward_Check(proof, proof_line, 1, [ 4 ], 1)
+		if forward_check[0]
+			return Domination_4(proof, forward_check[2], forward_check)
+		end
+
+		# puts "ERROR: COULDN'T MATCH SOURCE LINES TO DOMINATION PATTERN"
+		return false
+	end
+
+	def Domination_3(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		assumption_line = source_lines[0]
+
+		if Check_Equals(assumption_line[1], :or)
+			if Check_Equals(assumption_line[0], :true)
+				constant_index = 0
+			elsif Check_Equals(assumption_line[2], :true)
+				constant_index = 2
 			else
-				puts "ERROR: NO VALID DOMINATION FOUND"
+				# puts "ERROR: NO VALID TRUE FOUND IN SOURCE LINE"
 				return false
 			end
-
-			return Check_Equals(proof_line, variable)
+		elsif Check_Equals(assumption_line[1], :and)
+			if Check_Equals(assumption_line[0], :false)
+				constant_index = 0
+			elsif Check_Equals(assumption_line[2], :false)
+				constant_index = 2
+			else
+				# puts "ERROR: NO VALID FALSE FOUND IN SOURCE LINE"
+				return false
+			end
 		else
+			# puts "ERROR: NO VALID OR/AND FOUND IN SOURCE LINE"
+			return false
+		end
+
+		return Check_Equals(proof_line[:sentence][0], assumption_line[constant_index])
+	end
+
+	def Domination_4(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		assumption_line = source_lines[0]
+
+		if assumption_line[0] == :not
+			operator_index = 2
+			constant_index = 3
+		elsif assumption_line[2] == :not
+			operator_index = 1
+			constant_index = 0
+		else
+			# puts "ERROR: COULDN'T FIND NOT"
+			return false
+		end
+
+		if !(Check_Equals(assumption_line[operator_index], :or) || Check_Equals(assumption_line[operator_index], :and))
+			# puts "ERROR: NO VALID OR/AND FOUND IN SOURCE LINE"
+			return false
+		end
+
+		return Check_Equals(proof_line[:sentence], assumption_line[constant_index])
+	end
+
+	def Idempotent(proof, proof_line)
+		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 1)
+		if forward_check[0]
+			return Idempotent_3(proof, forward_check[2], forward_check)
+		end
+
+		forward_check = Forward_Check(proof, proof_line, 1, [ 5 ], 2)
+		if forward_check[0]
+			return Idempotent_5(proof, forward_check[2], forward_check)
+		end
+
+		# puts "ERROR: COULDN'T MATCH SOURCE LINES TO IDEMPOTENT PATTERN"
+		return false
+	end
+
+	def Idempotent_3(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		assumption_line = source_lines[0]
+
+		if Check_Equals(assumption_line[1], :or) || Check_Equals(assumption_line[1], :and)
+			if Check_Equals(assumption_line[0], assumption_line[2])
+				return Check_Equals(assumption_line[0], proof_line[:sentence][0])
+			else
+				# puts "ERROR: VARIABLES DON'T MATCH EACH OTHER"
+				return false
+			end
+		else
+			# puts "ERROR: DIDN'T FIND AND/OR"
 			return false
 		end
 
 		return false
 	end
 
-	def Idempotent(proof, proof_line)
-		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 1)
-		if forward_check[0]
-			source_lines = forward_check[1]
-			assumption_line = source_lines[0]
+	def Idempotent_5(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		assumption_line = source_lines[0]
 
-			if assumption_set[1] == :or || assumption_set[1] == :and
-				if Check_Equals(assumption_set[0], assumption_set[2])
-					if implies_line[2].class == Symbol
-						proof_line_match = proof_line[:sentence][0]
-					else
-						proof_line_match = proof_line[:sentence]
-					end
-
-					if assumption_set[0] == proof_line_match
-						puts "CORRECT LINE"
-						return true
-					else
-						puts "ERROR: IDEMPOTENT VARIABLES DON'T MATCH RESOLUTION"
-						return false
-					end
-				else
-					puts "ERROR: IDEMPOTENT VARIABLES DON'T MATCH EACH OTHER"
-					return false
-				end
+		if Check_Equals(assumption_line[2], :or) || Check_Equals(assumption_line[2], :and)
+			if Check_Equals(assumption_line[0, 2], assumption_line[3, 2])
+				return Check_Equals(assumption_line[0, 2], proof_line[:sentence])
 			else
-				puts "ERROR: NO VALID IDEMPOTENT FOUND"
+				# puts "ERROR: VARIABLES DON'T MATCH EACH OTHER"
 				return false
 			end
-
-			return Check_Equals(proof_line, variable)
 		else
+			# puts "ERROR: DIDN'T FIND AND/OR"
 			return false
 		end
 
@@ -217,22 +284,23 @@ class Evaluator
 		if forward_check[0]
 			source_lines = forward_check[1]
 			negation_line = source_lines[0]
+			proof_line = forward_check[2]
 
 			if negation_line[0] == :not
 				if negation_line[1].length == 2
 					if negation_line[1][0] == :not
 						variable = negation_line[1][1]
-						return Check_Equals(proof_line, variable)
+						return Check_Equals(proof_line[:sentence][0], variable)
 					else
-						puts "ERROR: NO INNER NOT FOUND"
+						# puts "ERROR: NO INNER NOT FOUND"
 						return false
 					end
 				else
-					puts "ERROR: INNER NOT THE RIGHT SIZE"
+					# puts "ERROR: INNER NOT THE RIGHT SIZE"
 					return false
 				end
 			else
-				puts "ERROR: NO NOT FOUND"
+				# puts "ERROR: NO NOT FOUND"
 				return false
 			end
 		else
@@ -245,47 +313,230 @@ class Evaluator
 	def Commutative(proof, proof_line)
 		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 3)
 		if forward_check[0]
-			source_lines = forward_check[1]
-			single_line = source_lines[0]
+			return Commutative_3(proof, forward_check[2], forward_check)
+		end
 
-			if single_line[1] == :and || single_line[1] == :or
-				return Check_Equals(proof_line[:sentence][0], single_line[2]) && Check_Equals(proof_line[:sentence][2], single_line[0])
-			else
-				puts "ERROR: NO AND OR OR FOUND"
-				return false
-			end
+		forward_check = Forward_Check(proof, proof_line, 1, [ 5 ], 5)
+		if forward_check[0]
+			return Commutative_5(proof, forward_check[2], forward_check)
+		end
+
+		# puts "ERROR: COULDN'T MATCH SOURCE LINES TO COMMUTATIVE PATTERN"
+		return false
+	end
+
+	def Commutative_3(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		single_line = source_lines[0]
+
+		if single_line[1] == :and || single_line[1] == :or
+			return Check_Equals(proof_line[:sentence][0], single_line[2]) && Check_Equals(proof_line[:sentence][2], single_line[0])
+		else
+			# puts "ERROR: NO AND OR OR FOUND"
+			return false
+		end
+	end
+
+	def Commutative_5(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		single_line = source_lines[0]
+
+		if single_line[2] == :and || single_line[2] == :or
+			return Check_Equals(proof_line[:sentence][0, 2], single_line[3, 2]) && Check_Equals(proof_line[:sentence][3, 2], single_line[0, 2])
+		else
+			# puts "ERROR: NO AND OR OR FOUND"
+			return false
+		end
+	end
+
+	def Associative(proof, proof_line)
+=begin
+		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 3)
+		if forward_check[0]
+			return Associative_3_3(proof, forward_check[2], forward_check)
+		end
+
+		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 4)
+		if forward_check[0]
+			return Associative_3_4(proof, forward_check[2], forward_check)
+		end
+
+		forward_check = Forward_Check(proof, proof_line, 1, [ 4 ], 3)
+		if forward_check[0]
+			return Associative_4_3(proof, forward_check[2], forward_check)
+		end
+
+		forward_check = Forward_Check(proof, proof_line, 1, [ 4 ], 4)
+		if forward_check[0]
+			return Associative_4_4(proof, forward_check[2], forward_check)
+		end
+
+		# puts "ERROR: COULDN'T MATCH SOURCE LINES TO ASSOCIATIVE PATTERN"
+=end
+		return false
+	end
+=begin
+	def Associative_3_3(proof, proof_line, forward_check)
+		source_lines = forward_check[1]
+		single_line = source_lines[0]
+
+		if single_line[0].length == 3 # NOTE(Drew): Source: (norm, norm) norm; Proof: norm, (norm, norm)
+			source_operators = [ single_line[0][1], single_line[1] ]
+			source_elems = [ single_line[0][0], single_line[0][2], single_line[2] ]
+			proof_operators = [ proof_line[:sentence][1], proof_line[:sentence][2][1] ]
+			proof_elems = [ proof_line[:sentence][0], proof_line[:sentence][2][0], proof_line[:sentence][2][2] ]
+		elsif single_line[0].length == 4 # NOTE(Drew): Source: (norm, not) norm; Proof: norm, (not, norm)
+			source_operators = [ single_line[0][1], single_line[1] ]
+			source_elems = [ single_line[0][0], single_line[0][2, 2], single_line[2] ]
+			proof_operators = [ proof_line[:sentence][1], proof_line[:sentence][2][2] ]
+			proof_elems = [ proof_line[:sentence][0], proof_line[:sentence][2][0, 2], proof_line[:sentence][2][3] ]
+		elsif single_line[2].length == 3 # NOTE(Drew): Source: norm, (norm, norm); Proof: (norm, norm), norm
+			source_operators = [ single_line[1], single_line[2][1] ]
+			source_elems = [ single_line[0], single_line[2][0], single_line[2][2] ]
+			proof_operators = [ proof_line[:sentence][0][1], proof_line[:sentence][1] ]
+			proof_elems = [ proof_line[:sentence][0][0], proof_line[:sentence][0][2], proof_line[:sentence][2] ]
+		elsif single_line[2].length == 4 # NOTE(Drew): Source: norm, (not, norm); Proof: (norm, not), norm
+			source_operators = [ single_line[1], single_line[2][2] ]
+			source_elems = [ single_line[0], single_line[2][0, 2], single_line[2][3] ]
+			proof_operators = [ proof_line[:sentence][0][1], proof_line[:sentence][1] ]
+			proof_elems = [ proof_line[:sentence][0][0], proof_line[:sentence][0][2, 2], proof_line[:sentence][2] ]
 		else
 			return false
 		end
 
-		return false
+		return Associative_Exec(source_operators, source_elems, proof_operators, proof_elems)
 	end
 
-	# NOTE(Drew): REALLY test this one. I'm super unsure if it works
+	def Associative_3_4(proof, proof_line, forward_check) # NOTE(Drew): 'not' in uncovered element
+		source_lines = forward_check[1]
+		single_line = source_lines[0]
+
+		if single_line[0].length == 4 # NOTE(Drew): Source: (not, norm), norm; Proof: not, (norm, norm)
+			source_operators = [ single_line[0][2], single_line[1] ]
+			source_elems = [ single_line[0][0, 2], single_line[0][3], single_line[2] ]
+			proof_operators = [ proof_line[:sentence][2], proof_line[:sentence][3][1] ]
+			proof_elems = [ proof_line[:sentence][0, 2], proof_line[:sentence][3][0], proof_line[:sentence][3][2] ]
+		elsif single_line[0].length == 5 # NOTE(Drew): Source: (not, not), norm; Proof: not, (not, norm)
+			source_operators = [ single_line[0][2], single_line[1] ]
+			source_elems = [ single_line[0][0, 2], single_line[0][3, 2], single_line[2] ]
+			proof_operators = [ proof_line[:sentence][2], proof_line[:sentence][3][2] ]
+			proof_elems = [ proof_line[:sentence][0, 2], proof_line[:sentence][3][0, 2], proof_line[:sentence][3][3] ]
+		elsif single_line[2].length == 4 # NOTE(Drew): Source: norm, (norm, not); Proof: (norm, norm), not
+			source_operators = [ single_line[1], single_line[2][1] ]
+			source_elems = [ single_line[0], single_line[2][0], single_line[2][2] ]
+			proof_operators = [ proof_line[:sentence][0][1], proof_line[:sentence][1] ]
+			proof_elems = [ proof_line[:sentence][0][0], proof_line[:sentence][0][2], proof_line[:sentence][2] ]
+		elsif single_line[2].length == 5 # NOTE(Drew): Source: norm, (not, not); Proof: (norm, not), not
+			source_operators = [ single_line[1], single_line[2][2] ]
+			source_elems = [ single_line[0], single_line[2][0, 2], single_line[2][3] ]
+			proof_operators = [ proof_line[:sentence][0][1], proof_line[:sentence][1] ]
+			proof_elems = [ proof_line[:sentence][0][0], proof_line[:sentence][0][2, 2], proof_line[:sentence][2] ]
+		else
+			return false
+		end
+
+		return Associative_Exec(source_operators, source_elems, proof_operators, proof_elems)
+	end
+
+	def Associative_4_3(proof, proof_line, forward_check) # NOTE(Drew): 'not' in covered element
+	end
+
+	def Associative_4_4(proof, proof_line, forward_check) # NOTE(Drew): Multiple 'not's
+	end
+
+	def Associative_Exec(source_operators, source_elems, proof_operators, proof_elems)
+		return false
+	end
+=end
+
+=begin
+	def Associative_Depth(array, n = 0)
+		return case
+		when array.class != Array
+			n
+		when array == []
+			n + 1
+		else
+			array.collect{|x| Associative_Depth x, n + 1}.max
+		end
+	end
+
+	def Associative_Flatten(line, max_depth)
+		flattened_line = [ ]
+		line.each_with_index do |elem, idx|
+			if elem.class == Array
+				if Check_Equals(line[idx - 1], :not)
+					flattened_line << elem
+				elsif Associative_Depth(elem) != max_depth 
+					flattened_line << elem
+				else
+					elem.each do |part|
+						flattened_line << part
+					end
+				end
+			else
+				flattened_line << elem
+			end
+		end
+
+		return flattened_line
+	end
+
 	def Associative(proof, proof_line)
-		forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 3)
+		# forward_check = Forward_Check(proof, proof_line, 1, [ 3 ], 3)
+		forward_check = Forward_Check_Basic(proof, proof_line, 1)
 		if forward_check[0]
 			source_lines = forward_check[1]
 			single_line = source_lines[0]
 
-			delimeter = single_line[0]
+			delimeter = single_line[1]
+			max_depth = Associative_Depth(single_line)
+			max_depth = max_depth > 2 ? max_depth - 1 : 0; # NOTE(Drew): Clamp to avoid breaking variables, adjust to account for extra outer array
+			print "max_depth: #{max_depth}\n"
 
-			flattened_line = single_line.flatten(1)
-			symbols_only = flattened_line.reject { |elem| elem.class != Symbol }
+			flattened_line = Associative_Flatten(single_line, max_depth)
+			count = flattened_line.count { |elem| elem == delimeter }
 
-			count == flattened_line.count { |elem| elem == delimeter }
-			if count == flattened_line.length / 2
+			if count >= flattened_line.length / 4
 				flattened_line = flattened_line.reject { |elem| elem == delimeter }
-				flattened_proof_line = proof_line.flatten(1)
-				flattened_proof_line = flattened_proof_line.reject { |elem| elem.class != Symbol }
+
+				# flattened_proof_line = proof_line[:sentence].reject { |elem| elem == delimeter }
+				# flattened_proof_line = Associative_Flatten(flattened_proof_line, max_depth)
+				
+
+				flattened_proof_line = Associative_Flatten(proof_line[:sentence], max_depth)
 				flattened_proof_line = flattened_proof_line.reject { |elem| elem == delimeter }
 
-				if flattened_line.sort == flattened_proof_line.sort
-					return true
-				else
-					puts "ERROR: ASSOCIATIVE DOESN'T MATCH"
-					return false
+				print "flattened_line: #{flattened_line}\n"
+				print "flattened_proof_line: #{flattened_proof_line}\n"
+
+				idx = 0
+				while idx < flattened_line.length
+					check_idx = idx
+
+					if Check_Equals(flattened_line, :not)
+						check_idx += 1
+					end
+
+					match_index = flattened_proof_line.index(flattened_line[check_idx])
+					if match_index != nil
+						flattened_proof_line.delete_at(match_index)
+
+						if check_idx != idx
+							if Check_Equals(flattened_proof_line[idx], :not)
+								flattened_proof_line.delete_at(idx)
+							else
+								return false
+							end
+						end
+					else
+						return false
+					end
+
+					idx += 1
 				end
+
+				return true 
 			else
 				puts "ERROR: INVALID NUMBER OF DELIMETERS"
 				return false
@@ -296,6 +547,7 @@ class Evaluator
 
 		return false
 	end
+=end
 
 	# NOTE(Drew): REALLY test this one. I'm super unsure if it works
 	def Distributive(proof, proof_line)
@@ -516,7 +768,7 @@ class Evaluator
 
 	def Hypothetical_Syllogism(proof, proof_line)
 		forward_check = Forward_Check(proof_line, 2, [ 3, 3 ], 3)
-		if foward_check[0]
+		if forward_check[0]
 			source_lines = forward_check[1]
 
 			if source_lines[0][1] == :implies && source_lines[1][1] == :implies && proof_line[:sentence][1] == :implies
