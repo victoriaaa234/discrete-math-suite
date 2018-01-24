@@ -113,10 +113,13 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\forall'                      , :mapping => '@'},
                    {:latex => '\exists'                      , :mapping => 'E'},
                    {:latex => '\Longrightarrow'              , :mapping => '->'},
+                   {:latex => '\longrightarrow'              , :mapping => '->'},
                    {:latex => '\implies'                     , :mapping => '->'},
                    {:latex => '\Rightarrow'                  , :mapping => '->'},
+                   {:latex => '\rightarrow'                  , :mapping => '->'},
                    {:latex => '\iff'                         , :mapping => '<->'},
-                   {:latex => '\Leftrightarrow'              , :mapping => '<->'}]
+                   {:latex => '\Leftrightarrow'              , :mapping => '<->'},
+                   {:latex => '\leftrightarrow'              , :mapping => '<->'}]
 
 problem_categories = [
 	[0, "Identity Laws"],
