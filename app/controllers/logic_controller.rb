@@ -1,5 +1,8 @@
+require 'pry'
+
 class LogicController < ApplicationController
     def logic
+		# binding.pry
         if params[:submit] == 'Proof'
             premises = params[:premises]
             conclusion = params[:conclusion]
@@ -9,9 +12,22 @@ class LogicController < ApplicationController
                 format.json { render json: data }
             end
         end
+	end
 
-        
-    end
+	def getPremises(problem_uid)
+		getProblemParts(problem_uid)[0]
+	end
+	helper_method :getPremises
+
+	def getConclusion(problem_uid)
+		getProblemParts(problem_uid)[1]
+	end
+	helper_method :getConclusion
+
+	def getProblemParts(problem_uid)
+		PracticeProblem.getPremisesAndConclusion(problem_uid)[0]
+	end
+	# helper_method :getProblemParts
 
     def logic_problems
 
