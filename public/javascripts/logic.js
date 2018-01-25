@@ -250,40 +250,39 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-    function generatePracticeProblems(generatedProblem) {
-        //TODO(vwei): create database of practice problems and randomly select one.
-        // submitText(premise, conclusion, proof);
-        var problemObject = $('.problems').data('problem');
-        var premiseList = problemObject.premise.split(',');
-        var conclusion = problemObject.conclusion;
-        console.log(premiseList);
-        //adding premises
-        for(i = 1; i <=premiseList.length; i++){
-            var premiseId = 'input_premise_'+i;
-            if(document.getElementById(premiseId)!==null){
-                document.getElementById(premiseId).value = premiseList[i-1].trim();
-                console.log(premiseList[i-1]);
-            }
-            else{
-                addPremiseRow();
-                document.getElementById(premiseId).value = premiseList[i-1].trim();
-                console.log(premiseList[i-1]);
-            }
+function generatePracticeProblems(generatedProblem) {
+    //TODO(vwei): create database of practice problems and randomly select one.
+    // submitText(premise, conclusion, proof);
+    var problemObject = $('.problems').data('problem');
+    var premiseList = problemObject.premise.split(',');
+    var conclusion = problemObject.conclusion;
+    console.log(premiseList);
+    //adding premises
+    for(i = 1; i <=premiseList.length; i++){
+        var premiseId = 'input_premise_'+i;
+        if(document.getElementById(premiseId)!==null){
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
         }
+        else{
+            addPremiseRow();
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
+        }
+    }
 
-        document.getElementById('input_conclusion_1').value = conclusion;
+    document.getElementById('input_conclusion_1').value = conclusion;
 
-        console.log('Generated practice problem');
+    console.log('Generated practice problem');
 }
 
 function submitLatexText(premise, conclusion, proof) {
     var premise_latex = premise.substr(1, premise.length-2);
     var premiseList = premise_latex.split(',');
-    var proofList = proof_latex.split('\n');
-
+    var proofList = proof.split('\n');
+    console.log(proofList.length);
     //adding the premises
     for (i = 1; i <= premiseList.length; i++){
-        premiseList[i] = premiseList[i].substr(1, premiseList[i].length-2);
         var premiseId = 'input_premise_'+i;
         if(document.getElementById(premiseId)!==null){
             document.getElementById(premiseId).value = premiseList[i-1].trim();
@@ -315,15 +314,16 @@ function submitLatexText(premise, conclusion, proof) {
     document.getElementById('input_conclusion_1').value = conclusion;
 
     //adding the proofs
-    for (i = 1; i <=proofList.length; i++){
+    for (i = 1; i <=proofList.length; i++) {
         proofList[i-1] = proofList[i-1].substr(1, proofList[i-1].length-2);
-    
-        var proofs = proofList[i-1].split(' ');
-        //TODO(vwei): finish this up and trim on \,
+        proofList[i-1] = proofList[i-1].replace(/\s/g, '');
+        
+        proofList[i-1] = proofList[i-1].replace(/\\,/g, " ");
         var stepId = 'proof_step_input_'+i;
         var previousId = 'proof_previous_input_'+i;
         var rulesId = 'proof_rules_input_'+i;
 
+        var proofs = proofList[i-1].split(' ');
         if(document.getElementById(stepId)!==null){
             document.getElementById(stepId).value = proofs[0] || "";
             document.getElementById(previousId).value = proofs[1] || "";
@@ -335,7 +335,7 @@ function submitLatexText(premise, conclusion, proof) {
             string = removeSpaces(string);
             document.getElementById(rulesId).value = string;
         }
-        else{
+        else {
             addProofRow();
             document.getElementById(stepId).value = proofs[0] || "";
             document.getElementById(previousId).value = proofs[1] || "";
@@ -344,6 +344,8 @@ function submitLatexText(premise, conclusion, proof) {
             for(i = 2;i<proofs.length;i++){
                 string += proofs[i] + " ";
             }
+            string = string.substr(0, string.length-1);
+            string = removeSpaces(string);
             document.getElementById(rulesId).value = string;
         }
     }
@@ -456,7 +458,6 @@ function submitLatexMode() {
     var premise = document.getElementById('premise-latex').value;
     var conclusion = document.getElementById('conclusion-latex').value;
     var proof = document.getElementById('proof-latex').value;
-
     submitLatexText(premise, conclusion, proof);
 }
 
