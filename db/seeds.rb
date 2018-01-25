@@ -154,25 +154,25 @@ problem_mappings = [
 
 
 response_mappings.each do |mapping|
-	ResponseMapping.create!(mapping)
+	ResponseMapping.where(mapping).first_or_create
 end
 
 input_mappings.each do |mapping|
-    InputMapping.create(mapping)
+	InputMapping.where(mapping).first_or_create
 end
 
 latex_mappings.each do |mapping|
-	LatexMapping.create!(mapping)
+	LatexMapping.where(mapping).first_or_create
 end
 
 problem_categories.each do |category_uid, category_name|
-	ProblemCategory.create(category_uid: category_uid,
-						   category_name: category_name)
+	ProblemCategory.where(category_uid: category_uid,
+					      category_name: category_name).first_or_create
 end
 
 problem_mappings.each do |problem_uid, premises, conclusion, category_uid|
-	PracticeProblem.create(problem_uid: problem_uid,
+	PracticeProblem.where(problem_uid: problem_uid,
 						   premises: premises, 
 						   conclusion: conclusion, 
-						   category_uid: category_uid)
+						   category_uid: category_uid).first_or_create
 end
