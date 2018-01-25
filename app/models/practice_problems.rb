@@ -1,5 +1,8 @@
 class PracticeProblems < ActiveRecord::Base
 
+	# TODO
+	# This model should be deprecated for the PracticeProblem (singular) model
+
 	def self.generate()
 		return self.order("Random()").first
 	end
