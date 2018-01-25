@@ -39,6 +39,9 @@ a#latexheader.waves-effect.waves-light.btn.modal-trigger {
 .submit {
     float:right;
 }
+.sub-btn {
+    left: 10% ;
+}
 .proof_add_line {
     float:left;
 }
@@ -51,7 +54,10 @@ i.material-icons {
 #premise_2 {
     margin-bottom: -6%;
 }
-#proof_row{
+.proof_rules_1 {
+    margin-left: 1% !important;
+}
+#proof_row {
     margin-bottom: -6%;
 }
 @media only screen and (min-width: 601px) {
