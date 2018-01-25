@@ -122,8 +122,16 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\iff'                         , :mapping => '<->'},
                    {:latex => '\Leftrightarrow'              , :mapping => '<->'}]
 
-problem_mappings = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
-                    {:premise => 'p,p->q,(qvs)->r', :problem => 'Modus Ponens', :conclusion =>'r'}]
+problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
+                    {:premise => 'p,p->q,(qvs)->r', :problem => 'Modus Ponens', :conclusion =>'r'},
+                    {:premise => '~q,p->q', :problem => 'Modus Tollens', :conclusion =>'~p'},
+                    {:premise => 'p->q,q->r', :problem => 'Hypothesical Syllogism', :conclusion =>'p->r'},
+                    {:premise => 'pvq,~p', :problem => 'Disjuctive Syllogism', :conclusion =>'q'},
+                    {:premise => 'p', :problem => 'Addition', :conclusion =>'pvq'},
+                    {:premise => 'p&q', :problem => 'Simplification', :conclusion =>'p'},
+                    {:premise => 'p,q', :problem => 'Conjuction', :conclusion =>'p&q'},
+                    {:premise => 'pvq,~pvr', :problem => 'Resolution', :conclusion =>'qvr'}]
+
 
 response_mappings.each do |mapping|
   ResponseMapping.create!(mapping)
@@ -137,6 +145,6 @@ latex_mappings.each do |mapping|
   LatexMapping.create!(mapping)
 end
 
-problem_mappings.each do |mapping|
-  PracticeProblems.create(mapping)
+problems.each do |problem|
+  PracticeProblems.create(problem)
 end
