@@ -147,6 +147,16 @@ problem_categories = [
 	[25, "Random Completions"]
 ]
 
+# problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
+#                     {:premise => 'p,p->q,(qvs)->r', :problem => 'Modus Ponens', :conclusion =>'r'},
+#                     {:premise => '~q,p->q', :problem => 'Modus Tollens', :conclusion =>'~p'},
+#                     {:premise => 'p->q,q->r', :problem => 'Hypothesical Syllogism', :conclusion =>'p->r'},
+#                     {:premise => 'pvq,~p', :problem => 'Disjuctive Syllogism', :conclusion =>'q'},
+#                     {:premise => 'p', :problem => 'Addition', :conclusion =>'pvq'},
+#                     {:premise => 'p&q', :problem => 'Simplification', :conclusion =>'p'},
+#                     {:premise => 'p,q', :problem => 'Conjuction', :conclusion =>'p&q'},
+#                     {:premise => 'pvq,~pvr', :problem => 'Resolution', :conclusion =>'qvr'}]
+
 problem_mappings = [
 	[1, 'p,p->q', 'q', 13],
 	[2, 'p,p->q,(qvs)->r','r', 13]
