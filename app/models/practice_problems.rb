@@ -8,6 +8,6 @@ class PracticeProblems < ActiveRecord::Base
 	end
 	
 	def to_s()
-		"Premise:#{self.premise}|Problem:#{self.problem}|Conclusion:#{self.conclusion}|ID:#{self.id}"
+		"Premise:#{self.premises}|Problem:#{self.problem_uid}|Conclusion:#{self.conclusion}|ID:#{self.id}"
 	end
 end
