@@ -30,6 +30,9 @@ gem 'sweetalert2'
 # Use nokogiri to parse HTML
 # gem 'nokogiri'
 
+# Use pry for debugging
+gem 'pry'
+
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
