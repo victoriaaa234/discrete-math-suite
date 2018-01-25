@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116223647) do
+ActiveRecord::Schema.define(version: 20180125160044) do
 
   create_table "input_mappings", force: :cascade do |t|
     t.string "outbound"
@@ -26,12 +26,36 @@ ActiveRecord::Schema.define(version: 20180116223647) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mappings", force: :cascade do |t|
+    t.string "logic"
+    t.string "mapping"
+  end
+
   create_table "practice_problems", force: :cascade do |t|
-    t.string "premise"
-    t.string "problem"
+    t.string "problem_uid"
+    t.string "premises"
     t.string "conclusion"
+    t.string "category_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_uid"], name: "index_practice_problems_on_category_uid"
+    t.index ["problem_uid"], name: "index_practice_problems_on_problem_uid"
+  end
+
+  create_table "problem_categories", force: :cascade do |t|
+    t.string "category_uid"
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_uid"], name: "index_problem_categories_on_category_uid"
+  end
+
+  create_table "profile_problem_junctions", force: :cascade do |t|
+    t.string "profile_uid"
+    t.string "problem_uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_uid"], name: "index_profile_problem_junctions_on_profile_uid"
   end
 
   create_table "response_mappings", force: :cascade do |t|
