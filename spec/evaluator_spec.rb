@@ -274,7 +274,7 @@ describe Evaluator do
 			end
 		end
 
-		context "Given a proof using modus_ponens and introduction" do
+		context "Given a proof using modus_ponens and implies introduction" do
 			premesis = [ [ :p, :implies, :r ], [ :r, :implies, :q ] ]
 			conclusion = [ :p, :implies, :q ]
 
@@ -283,7 +283,7 @@ describe Evaluator do
 			line_3 = Proof_Line.new([ :p ], [ 3 ], :assumption)
 			line_4 = Proof_Line.new([ :r ], [ 1, 3 ], :modus_ponens)
 			line_5 = Proof_Line.new([ :q ], [ 2, 4 ], :modus_ponens)
-			line_6 = Proof_Line.new([ :p, :implies, :q ], [ 3, 5 ], :introduction)
+			line_6 = Proof_Line.new([ :p, :implies, :q ], [ 3, 5 ], :implies_introduction)
 			proof = [ line_1, line_2, line_3, line_4, line_5, line_6 ]
 
 			it "returns true" do

@@ -678,6 +678,51 @@ class Evaluator
 		end
 	end
 
+	def self.Implies_Introduction(proof, proof_line, extra_assumptions)
+		forward_check = Forward_Check_Basic(proof, proof_line, 2)
+		if forward_check[0]
+			source_lines = forward_check[1]
+			left_line = source_lines[0]
+			right_line = source_lines[1]
+
+			match_index = nil
+
+			extra_assumptions.each_with_index do |assumption, index|
+				if Check_Equals(assumption, left_line)
+					match_index = index
+					break
+				elsif Check_Equals(assumption, right_line)
+					match_index = index
+					temp = left_line
+					left_line = right_line
+					right_line = temp
+					break
+				end
+			end
+
+			if !match_index.nil?
+				if Check_Equals(proof_line[:sentence][1], :implies)
+					if Check_Equals(left_line, proof_line[:sentence][0])
+						if Check_Equals(right_line, proof_line[:sentence][2])
+							extra_assumptions.delete_at(match_index)
+							return true, extra_assumptions
+						else
+							return false, extra_assumptions
+						end
+					else
+						return false, extra_assumptions
+					end
+				else
+					return false, extra_assumptions
+				end
+			else
+				return false, extra_assumptions
+			end
+		else
+			return false
+		end
+	end
+
 	def self.Reducto_Ad_Absurdum(proof, proof_line, conclusion, extra_assumptions)
 		forward_check = Forward_Check_Basic(proof, proof_line, 2)
 		if forward_check[0]
@@ -692,7 +737,7 @@ class Evaluator
 			end
 
 			assumption_index = extra_assumptions.index(negated_line)
-			if assumption_index != nil
+			if !assumption_index.nil?
 				if Check_Equals(false_line, :false)
 					if Check_Equals(negated_line[0][0], :not)
 						if Check_Equals(negated_line[0][1], conclusion)
@@ -721,10 +766,9 @@ class Evaluator
 	def self.Evaluate(premesis, conclusion, proof)
 		continue = true
 		extra_assumptions = []
-		# conclusion_negation = [ :not, [ conclusion[0] ] ]
 
 		proof.each_with_index do |line, index|
-			print "New proof line: #{line[:sentence]}\n"
+			# print "New proof line: #{line[:sentence]}\n"
 
 			case line[:type]
 			when :assumption
@@ -768,12 +812,14 @@ class Evaluator
 				continue = Conjunction(proof, line)
 			when :resolution
 				continue = Resolution(proof, line)
+			when :implies_introduction
+				continue = Implies_Introduction(proof, line, extra_assumptions)
 			when :reducto_ad_absurdum
 				result = Reducto_Ad_Absurdum(proof, line, conclusion, extra_assumptions)
 				continue = result[0]
 				extra_assumptions = result[1]
 			else
-				puts "ERROR: UNKNOWN EXPLAINATION. BREAKING."
+				# puts "ERROR: UNKNOWN EXPLAINATION. BREAKING."
 				continue = false
 			end
 
@@ -781,15 +827,15 @@ class Evaluator
 		end
 
 		if extra_assumptions.length > 0
-			puts "Extra assumptions used in proof"
+			# puts "Extra assumptions used in proof"
 			return false
 		end
 
 		if continue
-			puts "Proof is correct!"
+			# puts "Proof is correct!"
 			return true
 		else
-			puts "Error in proof."
+			# puts "Error in proof."
 			return false
 		end
 	end
