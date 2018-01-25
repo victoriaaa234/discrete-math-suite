@@ -1,0 +1,2 @@
+class ProfileProblemJunction < ApplicationRecord
+end

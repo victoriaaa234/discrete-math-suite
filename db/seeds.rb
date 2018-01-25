@@ -104,7 +104,6 @@ input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'D
              {:outbound => 'Existential Instantiation'         , :mapping => '$E'},
              {:outbound => 'Existential General'               , :mapping => '$I'},
              {:outbound => 'Well Formed Formula'               , :mapping => 'WFF'},
-             {:outbound => '|'                                 , :mapping => 'v'}]
              {:outbound => '|'                                 , :mapping => 'v'},
              {:outbound => '!'                                 , :mapping => '~'}]
 
@@ -119,29 +118,61 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\iff'                         , :mapping => '<->'},
                    {:latex => '\Leftrightarrow'              , :mapping => '<->'}]
 
-problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
-                    {:premise => 'p,p->q,(qvs)->r', :problem => 'Modus Ponens', :conclusion =>'r'},
-                    {:premise => '~q,p->q', :problem => 'Modus Tollens', :conclusion =>'~p'},
-                    {:premise => 'p->q,q->r', :problem => 'Hypothesical Syllogism', :conclusion =>'p->r'},
-                    {:premise => 'pvq,~p', :problem => 'Disjuctive Syllogism', :conclusion =>'q'},
-                    {:premise => 'p', :problem => 'Addition', :conclusion =>'pvq'},
-                    {:premise => 'p&q', :problem => 'Simplification', :conclusion =>'p'},
-                    {:premise => 'p,q', :problem => 'Conjuction', :conclusion =>'p&q'},
-                    {:premise => 'pvq,~pvr', :problem => 'Resolution', :conclusion =>'qvr'}]
+problem_categories = [
+	[0, "Identity Laws"],
+	[1, "Domination Laws"],
+	[2, "Idempotent Laws"],
+	[3, "Double Negation Laws"],
+	[4, "Commutative Laws"],
+	[5, "Associative Laws"],
+	[6, "Distributive Laws"],
+	[7, "DeMorgan's Laws"],
+	[8, "Absorption Laws"],
+	[9, "Negation Laws"],
+	[10, "Logical Equivalence Conditional"],
+	[11, "Logical Equivalence Biconditional"],
+	[12, "De Morgan Laws"],
+	[13, "Modus Ponens"],
+	[14, "Modus Tollens"],
+	[15, "Hypothetical Syllogism"],
+	[16, "Disjunctive Syllogism"],
+	[17, "Addition"],
+	[18, "Simplification"],
+	[19, "Conjunction"],
+	[20, "Resolution"],
+	[21, "Universal Instantiation"],
+	[22, "Universal Generalization"],
+	[23, "Existential Instantiation"],
+	[24, "Existential Generalization"],
+	[25, "Random Completions"]
+]
+
+problem_mappings = [
+	[1, 'p,p->q', 'q', 13],
+	[2, 'p,p->q,(qvs)->r','r', 13]
+]
 
 
 response_mappings.each do |mapping|
-  ResponseMapping.create!(mapping)
+	ResponseMapping.where(mapping).first_or_create
 end
 
 input_mappings.each do |mapping|
-    InputMapping.create(mapping)
+	InputMapping.where(mapping).first_or_create
 end
 
 latex_mappings.each do |mapping|
-  LatexMapping.create!(mapping)
+	LatexMapping.where(mapping).first_or_create
 end
 
-problems.each do |problem|
-  PracticeProblems.create(problem)
+problem_categories.each do |category_uid, category_name|
+	ProblemCategory.where(category_uid: category_uid,
+					      category_name: category_name).first_or_create
+end
+
+problem_mappings.each do |problem_uid, premises, conclusion, category_uid|
+	PracticeProblem.where(problem_uid: problem_uid,
+						   premises: premises, 
+						   conclusion: conclusion, 
+						   category_uid: category_uid).first_or_create
 end

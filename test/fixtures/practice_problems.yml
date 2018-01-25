@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  problem_uid: MyString
+  premises: MyString
+  conclusion: MyString
+  category_uid: MyString
+
+two:
+  problem_uid: MyString
+  premises: MyString
+  conclusion: MyString
+  category_uid: MyString

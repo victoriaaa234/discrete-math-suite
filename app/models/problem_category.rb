@@ -1,0 +1,2 @@
+class ProblemCategory < ApplicationRecord
+end
