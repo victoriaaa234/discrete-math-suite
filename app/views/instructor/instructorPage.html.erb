@@ -1,0 +1,70 @@
+<!-- With assistance from Mike North, who helped with the CSS / layout for cards -->
+<!-- https://codepen.io/mike-north/pen/MwVoYp -->
+
+<h5>
+	Profile Page
+</h5>
+
+<!-- <div class="col s3"> -->
+<!-- 	<div class="card small"> -->
+<!--     <div class="card-content"> -->
+<!--       <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span> -->
+<!--       <p><a href="#">This is a link</a></p> -->
+<!--     </div> -->
+<!--     <div class="card-reveal"> -->
+<!--       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span> -->
+<!--       <p>Here is some more information about this product that is only revealed once clicked on.</p> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
+
+
+<div class="container">
+	<div class="row">
+		<div class="col s12 cards-container">
+
+			<% @topics.each do |category_uid, category_name| %>
+
+
+
+				<div class="card blue-grey darken-1">
+					<div class="card-content white-text">
+						<span class="card-title"><%= category_name %></span>
+						<p>I am a very simple card. I am good at containing small bits of information.
+						I am convenient because I require little markup to use effectively.</p>
+					</div>
+					<div class="card-action">
+						<!-- Essentially we want to --> 
+						<!-- link all practice problems for each topic here. -->
+						<!-- So given a topic name, get its corresponding category_uid -->
+						<!-- from the ProblemCategory table. -->
+						<!-- Then select all problems with that category_uid from -->
+						<!-- the PracticeProblem table. -->
+						<!-- This logic should go in the controller, not here. -->
+
+						<!-- We also need to grab whether the currently logged in -->
+						<!-- user has solved these problems yet. -->
+						<!-- Finally, we need to have the links forward you to the -->
+						<!-- main logic page which will fill out the fields with -->
+						<!-- the premises, conclusion, etc. from the DB. -->
+						<!-- But grabbing that info can be a function for the logic -->
+						<!-- page's controller. -->
+
+						<!-- <a href="#">This is a link</a> -->
+						<!-- <a href="#">This is a link</a> -->
+
+						<% getProblems(category_uid).each do |problem_uid| %>
+							<a href="#">
+								<%= "Problem " + problem_uid + ":" %>
+							</a>
+						<% end %>
+					</div>
+				</div>
+
+
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
