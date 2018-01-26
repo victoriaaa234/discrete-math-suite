@@ -70,9 +70,6 @@
 
 <div class="modals">
 
-    <div>
-        <button type="button" onclick ="generatePracticeProblems()" class ="modal-action modal-close waves-effect waves-green btn-flat">Give me Problem</button>
-    </div>
     <!-- Expert Mode Modal Trigger -->
     <a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
@@ -119,7 +116,11 @@
         </div>
     </div>
 </div>
-
+<script type ="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    loadProblem();
+}, false)
+</script>
 <div class="row">
     <form id="all_proof_input" class="col s12">
         <div id="premises_conclusion_container" class="col s4">
@@ -129,7 +130,6 @@
                     <label for="input_premise_1">Premise 1</label>
                 </div>
             </div>
-						<% "Premises: " + String(getPremises("1")) + " and Conclusion: " + String(getConclusion("1"))%>
             <div id="premise_secondaries" class="row secondary_line">
                 <div class="row">
                     <div id="premise_2" class="input-field col s10">
@@ -221,6 +221,6 @@
     </form>
     <div id="loader" class="loader preloader-wrapper big active hidden" ></div>
 </div>
-
-<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {problem: @problem} do %>
+<% "Premises: " + String(getPremises("1")) + " and Conclusion: " + String(getConclusion("1"))%>
+<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {premise:String(getPremises("1")),conclusion:String(getConclusion("1"))} do %>
 <% end %>

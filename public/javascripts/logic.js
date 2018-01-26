@@ -250,31 +250,7 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-function generatePracticeProblems(generatedProblem) {
-    //TODO(vwei): create database of practice problems and randomly select one.
-    // submitText(premise, conclusion, proof);
-    var problemObject = $('.problems').data('problem');
-    var premiseList = problemObject.premise.split(',');
-    var conclusion = problemObject.conclusion;
-    console.log(premiseList);
-    //adding premises
-    for(i = 1; i <=premiseList.length; i++){
-        var premiseId = 'input_premise_'+i;
-        if(document.getElementById(premiseId)!==null){
-            document.getElementById(premiseId).value = premiseList[i-1].trim();
-            console.log(premiseList[i-1]);
-        }
-        else{
-            addPremiseRow();
-            document.getElementById(premiseId).value = premiseList[i-1].trim();
-            console.log(premiseList[i-1]);
-        }
-    }
 
-    document.getElementById('input_conclusion_1').value = conclusion;
-
-    console.log('Generated practice problem');
-}
 
 function submitLatexText(premise, conclusion, proof) {
     var premise_latex = premise.substr(1, premise.length-2);
@@ -362,6 +338,33 @@ function submitLatexText(premise, conclusion, proof) {
             }
         }
     }
+}
+
+function loadProblem(){
+    console.log('problem loaded');
+    var premiseList = $('.problems').data('premise').split(',');
+    var conclusion = $('.problems').data('conclusion');
+
+    //adding the premises
+    for (i = 1; i <= premiseList.length; i++){
+        var premiseId = 'input_premise_'+i;
+        if(document.getElementById(premiseId)!==null){
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
+        }
+        else{
+            addPremiseRow();
+            document.getElementById(premiseId).value = premiseList[i-1].trim();
+            console.log(premiseList[i-1]);
+        }
+
+    }
+
+    //remove spaces first
+    conclusion = removeSpaces(conclusion);
+    document.getElementById('input_conclusion_1').value = conclusion;
+
+
 }
 
 function submitText(premise, conclusion, proof) {
