@@ -1,0 +1,23 @@
+<h5>
+	Instructor Page
+</h5>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col s12 ">
+            <table class="highlight bordered">
+                <tr>
+                    <td><h5>Student Name</h5></td>
+                    <td><h5>Score</h5></td>
+                </td>
+            <!-- Add column for each user with their current score -->
+			<% @users.each do |user| %>
+				<tr>
+                    <td><%= user.name %></td>
+				</tr>
+			<% end %>
+            </table>
+		</div>
+	</div>
+</div>

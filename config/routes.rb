@@ -12,6 +12,7 @@
   get '/induction', to: 'induction#index'
   get '/induction/problem', to: 'induction#test_action'
   get '/profile', to: 'profile#profilePage'
+  get '/instructor', to: 'instructor#instructor'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'

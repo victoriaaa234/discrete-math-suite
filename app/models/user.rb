@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
 			user.save!
 		end
 	end
+    def self.instructor_list()
+        return self.order("name")
+    end
 end
