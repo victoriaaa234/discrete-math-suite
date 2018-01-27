@@ -19,6 +19,7 @@ const generateProblem = function(type) {
     }
 };
 
+
 const createSummation = function(minNum=0,maxNum=25){   // a, b and c are integers (decimals not covered in class??)
     let problem = {};
     problem.a = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
@@ -34,17 +35,48 @@ const createSummation = function(minNum=0,maxNum=25){   // a, b and c are intege
     return problem;
 };
 
+//Finds combination of a and b that equals total, for postage stamp
+const subsetSum = function(a, b, total){
+    for(let i = 0; i <= total/a; i++){
+        for(let j=0; j<=total/b; j++) {
+            let sum = a*i + b*j;
+            if(sum == total){
+                return [i,j];
+            }
+            else if(sum > total){
+                break;
+            }
+        }
+    }
+    return [0,0];
+};
+//greatest common factor of two numbers
+var gcd = function(a, b) {
+    if ( ! b) {
+        return a;
+    }
+    return gcd(b, a % b);
+};
+
+
 const createPostageStamp = function(minstamp = 2,maxstamp = 10) {
-    let problem = {};
+    let problem = {type: 'postage'};
     do {
         problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
         do {
             problem.stamp2 = Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
         } while(problem.stamp1 == problem.stamp2);
-    } while((problem.stamp1%2 == 0) && (problem.stamp2%2 == 0))
+    } while(gcd(problem.stamp1,problem.stamp2) != 1);
     
-    problem.basis = (problem.stamp1 - 1)* (problem.stamp2 - 1);
-    problem.text = `Use strong induction to prove that any amount of postage that is at least ${problem.basis} cents\
+    problem.basis = {}; 
+    problem.basis.total = (problem.stamp1 - 1)* (problem.stamp2 - 1);
+    var basisCount = subsetSum(problem.stamp1,problem.stamp2,problem.basis.total); //find the combination needed for basis
+    problem.basis.count1 = basisCount[0];
+    problem.basis.count2 = basisCount[1];
+    problem.basis.text = `Prove that there is a combination of ${problem.stamp1} and ${problem.stamp2} cent stamps that totals\
+    ${problem.basis.total}`
+
+    problem.text = `Use strong induction to prove that any amount of postage that is at least ${problem.basis.total} cents\
     can be made with ${problem.stamp1} and ${problem.stamp2} cent stamps.`;
     return problem;
 };

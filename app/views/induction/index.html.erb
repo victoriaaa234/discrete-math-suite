@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.css" integrity="sha384-exe4Ak6B0EoJI0ogGxjJ8rn+RN3ftPnEQrGwX59KTCl5ybGzvHGKjhPKk/KC3abb"
   crossorigin="anonymous">
+<link rel="stylesheet" href="stylesheets/induction.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha2/katex.min.js" integrity="sha384-OMvkZ24ANLwviZR2lVq8ujbE/bUO8IR1FdBrKLQBI14Gq5Xp/lksIccGkmKL8m+h"
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="javascripts/algebra-0.2.6.min.js"></script>
@@ -17,7 +18,7 @@
   </ul>
 
 <!--Tutorial-->
-<div class="row">
+<!--<div class="row">
   <div class="col s6 offset-s3">
     <div id="tutorial" class="card blue-grey darken-1">
       <div class="card-content white-text">
@@ -27,7 +28,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!--Problem-->
 <div class="row">
@@ -40,14 +41,14 @@
         </p>
       </div>
     </div>
-    <div class="right-align">
+    <!--<div class="right-align">
       <button class="btn waves-effect waves-light align-left" type="submit" name="action">Prev
         <i class="material-icons left">keyboard_arrow_left</i>
       </button>
       <button class="btn waves-effect waves-light align-right" type="submit" name="action">Next
         <i class="material-icons right">keyboard_arrow_right</i>
       </button>
-    </div>
+    </div>-->
   </div>
 </div>
 
@@ -57,16 +58,29 @@
     <div id="basis" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Basis Step</span>
-        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
-          markup to use effectively.</p>
+        <p id="basis-text"></p>
         <div class='wrapper'>
             <form id='basis-step-form'>
-            <div class='form-uname'>
-               <input id='basis-input' type='text'></input>
-            </div>
-            <div class='form-sub'>
+              <div class="row">
+                <div class='col s1 form-uname'>
+                  <input id='stamp1-input' type='text'></input>
+                </div>
+                <div class="col s1 stamp">
+                  <div id='stamp1-amount'></div>
+                </div>
+                <div class='col s1 form-uname'>
+                  <input id='stamp2-input' type='text'></input>
+                </div>
+                <div class="col s1 stamp">
+                  <div id='stamp2-amount'></div>                
+                </div>
+                <div class="col s1 stamp">
+                  <div id='total-amount'></div>                
+                </div>
+              </div>
+            <!--<div class='form-sub'>
               <button id='convButton1' type='button'>Convert</button>
-            </div>
+            </div>-->
         </form>
         <br />
         <div>
@@ -88,7 +102,7 @@
     <div id="inductive-hypothesis" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Inductive Hypothesis</span>
-        <p id="problem-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
+        <p id="inductive-hypothesis-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
         <div class='wrapper'>
             <form id='inductive-hypothesis-form'>
@@ -119,7 +133,7 @@
     <div id="inductive" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Inductive Step</span>
-        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
+        <p id="inductive-step-text">I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
           markup to use effectively.</p>
         <div class='wrapper'>
             <form id='inductive-step-form'>
@@ -152,7 +166,7 @@ window.onload = function(){
 currentProblem.loadProblem("strong");
 stepManager.init();
 
-function getKatexForm1() {
+/*function getKatexForm1() {
     var inputField = document.getElementById('basis-input').value;
     var result = document.getElementById('result1');
     
@@ -161,7 +175,7 @@ function getKatexForm1() {
 }
 // use an eventlistener for the event
 var convButton = document.getElementById('convButton1');
-convButton.addEventListener('click', getKatexForm1, false);
+convButton.addEventListener('click', getKatexForm1, false);*/
 
 
 function getKatexForm2() {
