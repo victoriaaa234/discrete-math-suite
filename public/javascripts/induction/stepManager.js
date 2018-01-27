@@ -31,7 +31,7 @@ const stepManager = {
                 }
                 break;
             case 'inductive-hypothesis':
-                if (this.inductiveHypothesis.check()) {
+                if (this.checkHypothesis()) {
                     this.inductiveHypothesis.hideButton();
                     this.currentStep = 'inductive-step';
                     this.inductiveStep.show();
@@ -56,5 +56,13 @@ const stepManager = {
         let stamp2Answer = document.getElementById('stamp2-input');
     
         return ((stamp1Count == stamp1Answer.value) && (stamp2Count == stamp2Answer.value))
+    },
+    checkHypothesis: function() {
+        let hypothesisAnswer1 = document.getElementById('hypothesis-input-1');
+        let hypothesisAnswer2 = document.getElementById('hypothesis-input-2');
+
+        return ((hypothesisAnswer1.value == currentProblem.problem.basis.total) && 
+            (hypothesisAnswer2.value == 'k'));
+        
     }
 };
