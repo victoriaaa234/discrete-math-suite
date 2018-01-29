@@ -169,7 +169,8 @@ problem_mappings = [
   [6, 'p','pvq',17],
   [7, 'p&q','p',18],
   [8, 'p,q','p&q',19],
-  [9, 'pvq,~pvr','qvr',20]
+  [9, 'pvq,~pvr','qvr',20] 
+
 ]
 
 
