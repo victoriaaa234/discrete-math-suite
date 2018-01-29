@@ -162,7 +162,15 @@ problem_categories = [
 
 problem_mappings = [
 	[1, 'p,p->q', 'q', 13],
-	[2, 'p,p->q,(qvs)->r','r', 13]
+	[2, 'p,p->q,(qvs)->r','r', 13],
+  [3, '~q,p->q','~p',14],
+  [4, 'p->q,q->r','p->r',15],
+  [5, 'pvq,~p','q',16],
+  [6, 'p','pvq',17],
+  [7, 'p&q','p',18],
+  [8, 'p,q','p&q',19],
+  [9, 'pvq,~pvr','qvr',20] 
+
 ]
 
 
