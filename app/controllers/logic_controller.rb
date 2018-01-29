@@ -14,19 +14,19 @@ class LogicController < ApplicationController
         end
 	end
 
-# 	def getPremises(problem_uid)
-# 		getProblemParts(problem_uid)[0]
-# 	end
-# 	helper_method :getPremises
+ 	def getPremises(problem_uid)
+ 		getProblemParts(problem_uid)[0]
+ 	end
+ 	helper_method :getPremises
 
 	def getConclusion(problem_uid)
 		getProblemParts(problem_uid)[1]
 	end
 	helper_method :getConclusion
 
-# 	def getProblemParts(problem_uid)
-# 		PracticeProblem.getPremisesAndConclusion(problem_uid)[0]
-# 	end
+ 	def getProblemParts(problem_uid)
+ 		PracticeProblem.getPremisesAndConclusion(problem_uid)[0]
+ 	end
 	# helper_method :getProblemParts
 
     def logic_problems
