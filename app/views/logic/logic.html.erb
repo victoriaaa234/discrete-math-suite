@@ -221,6 +221,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </form>
     <div id="loader" class="loader preloader-wrapper big active hidden" ></div>
 </div>
-<% "Premises: " + String(getPremises("1")) + " and Conclusion: " + String(getConclusion("1"))%>
-<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {premise:String(getPremises("1")),conclusion:String(getConclusion("1"))} do %>
+<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {premise:String(getPremises("3")),conclusion:String(getConclusion("1"))} do %>
 <% end %>
