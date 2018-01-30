@@ -11,7 +11,17 @@ class LogicController < ApplicationController
             respond_to do |format|
                 format.json { render json: data }
             end
+
         end
+
+        if params[:problem_uid]
+            id = String(params[:problem_uid])
+            puts "UID:"+id
+            @id = id
+        else
+            @id = "0"
+        end
+            
 	end
 
  	def getPremises(problem_uid)

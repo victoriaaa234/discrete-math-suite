@@ -146,8 +146,7 @@ problem_categories = [
 	[21, "Universal Instantiation"],
 	[22, "Universal Generalization"],
 	[23, "Existential Instantiation"],
-	[24, "Existential Generalization"],
-	[25, "Random Completions"]
+	[24, "Existential Generalization"]
 ]
 
 # problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
@@ -160,7 +159,10 @@ problem_categories = [
 #                     {:premise => 'p,q', :problem => 'Conjuction', :conclusion =>'p&q'},
 #                     {:premise => 'pvq,~pvr', :problem => 'Resolution', :conclusion =>'qvr'}]
 
+
+
 problem_mappings = [
+  [0,'','',-1],
 	[1, 'p,p->q', 'q', 13],
 	[2, 'p,p->q,(qvs)->r','r', 13],
   [3, '~q,p->q','~p',14],
@@ -169,10 +171,18 @@ problem_mappings = [
   [6, 'p','pvq',17],
   [7, 'p&q','p',18],
   [8, 'p,q','p&q',19],
-  [9, 'pvq,~pvr','qvr',20] 
-
-]
-
+  [9,'`~(p->q)','p&~q',3],
+  [10,'~(pv(~p&q))','~p&~q',4],
+  [11,'(p&q)->(pvq)','(~pvp)v(~qvq)',5],
+  [12,'(~p&(pv~q)','~p&~q',6],
+  [13,'~(pv(~p&q))','~p&~q',7],
+  [14,'p->q','~q->~p',10],
+  [15,'p<->q','(p&q)v(~p&~q)',11],
+  [16,'$(Px&Rx)','Pa',21],
+  [17,'$(PxVQx)','$(Pxv$Qx)',22],
+  [18,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',23],
+  [19,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',24]
+  ]
 
 response_mappings.each do |mapping|
 	ResponseMapping.where(mapping).first_or_create
