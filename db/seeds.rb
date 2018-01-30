@@ -41,7 +41,7 @@
   # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
   # |   | Rando Completions    | ???                   | WFF => Well Formed Formulae                  |                       |
 
-response_mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
+response_mappings = [{:logic => 'Double Negation'            , :mapping => 'Double Negation Laws'},
              {:logic => 'Ampersand Commutativity'            , :mapping => 'Commutative Law'},
              {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},
              {:logic => 'Ampersand Associativity'            , :mapping => 'Associative Law'},
