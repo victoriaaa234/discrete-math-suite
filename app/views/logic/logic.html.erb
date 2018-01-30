@@ -33,7 +33,7 @@
             <tr id = "hoverid">
 
 
-                <td style="padding-left: 30px">AND:&amp;</td>
+                <td style="padding-left: 30px">AND: &amp;</td>
                 <td>P&amp;R</td>
 
             </tr>
@@ -57,14 +57,18 @@
             </tr>
 
             <tr id = "hoverid">
-                <td style="padding-left: 30px">XOR: x </td>
-                <td>PxQ</td>
+                <td style="padding-left: 30px">UNIVERSAL: @ </td>
+                <td>@xFx</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">EXISTENTIAL: $ </td>
+                <td>$xFx</td>
             </tr>
     </table>
     <table>
     
             <tr>
-                <th style="padding-left: 30px">Law</th>
+                <th style="padding-left: 30px">Law Name</th>
                 <th>Input</th>
                 <th>Output</th>
             </tr>
@@ -111,83 +115,154 @@
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Logic Equiv. Condit.</td>
-                <td>~PvQ PvQ PvQ Pv~Q</td>
-                <td>P->Q ~P->Q ~Q->P Q->P</td>
+                <td>
+                    <ul>
+                        <li>~@xfx</li>
+                        <li>~$xfx</li>
+                        <li>~@x~fx</li>
+                        <li>~$xfx</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P->Q</li>
+                        <li>~P->Q</li>
+                        <li>~Q->P</li>
+                        <li>Q->P</li>
+                    </ul>
+                </td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Logic Equiv. Condit. Negated</td>
-                <td>~(P->Q) ~(P->~Q) P->Q P->~Q</td>
-                <td>P&~Q P&Q ~(P&~Q) ~(P&Q)</td>
+                <td>
+                    <ul>
+                        <li>~(P->Q) </li>
+                        <li>~(P->~Q)</li>
+                        <li>P->Q</li>
+                        <li>P->~Q</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P&~Q</li>
+                        <li>P&Q</li>
+                        <li>~(P&~Q)</li>
+                        <li>~(P&Q) </li>
+                    </ul>
+                </td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Logic Equiv. Bicond.</td>
-                <td>P<->Q P<->Q</td>
-                <td>P->Q Q->P</td>
+                <td>
+                    <ul>
+                        <li>P<->Q</li>
+                        <li>P<->Q</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P->Q</li>
+                        <li>Q->P</li>
+                    </ul>
+                </td>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Reverse Logic Equiv. Bicond.</td>
+                <td>
+                    P->Q, Q->P
+                </td>
+                <td>
+                    P<->Q
+                </td>
+            </tr>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Logic Equiv. Bicond. Negated</td>
-                <td>~(P<->Q) ~(P<->Q)</td>
-                <td>P<->~Q ~P<->Q</td>
+                <td>
+                    <ul>
+                        <li>~(P<->Q)</li>
+                        <li>~(P<->Q)</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P<->~Q</li>
+                        <li>~P<->Q</li>
+                    </ul>
+                </td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">De Morgan's Quantif.</td>
-                <td>~@xFx ~$xFx ~@x~Fx ~$xFx</td>
-                <td>$x~Fx @x~Fx $xFx @xFx</td>
+                <td>
+                    <ul>
+                        <li>~@xfx</li>
+                        <li>~$xfx</li>
+                        <li>~@x~fx</li>
+                        <li>~$xfx</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>$x~Fx</li>
+                        <li>@x~Fx</li>
+                        <li>$xFx</li>
+                        <li>@xFx</li>
+                    </ul>
+                </td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Modus Ponens</td>
-                <td></td>
-                <td></td>
+                <td>P->Q, P</td>
+                <td>Q</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Modus Tollens</td>
-                <td></td>
-                <td></td>
+                <td>P->Q, ~Q</td>
+                <td>~P</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Hypothetical Syllog.</td>
-                <td></td>
-                <td></td>
+                <td>P->Q, Q->R</td>
+                <td>P->R</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Disjunctive Syllog.</td>
-                <td></td>
-                <td></td>
+                <td>PvQ, ~P</td>
+                <td>Q</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Addition</td>
-                <td></td>
-                <td></td>
+                <td>P</td>
+                <td>PvQ</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Simplification</td>
-                <td></td>
-                <td></td>
+                <td>P&Q</td>
+                <td>P</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Conjunction</td>
-                <td></td>
-                <td></td>
+                <td>P,Q</td>
+                <td>P&Q</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Universal Instantiation</td>
-                <td></td>
-                <td></td>
+                <td>@xFx</td>
+                <td>Fa</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Universal Generalization</td>
-                <td></td>
-                <td></td>
+                <td>Fa</td>
+                <td>@xFx</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Existential Instantiation</td>
-                <td></td>
-                <td></td>
+                <td>$xFx, F[a]...P</td>
+                <td>P</td>
             </tr>
             <tr id = "hoverid">
                 <td style="padding-left: 30px">Existential Generalization</td>
-                <td></td>
-                <td></td>
+                <td>Fa</td>
+                <td>$xFx</td>
             </tr>
         </table>
 

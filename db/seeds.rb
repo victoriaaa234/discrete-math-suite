@@ -88,6 +88,7 @@ input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'D
              {:outbound => "DeMorgan's Laws"                   , :mapping => "DM"},
              {:outbound => 'Logic Equiv. Condit.'              , :mapping => 'v->'},
              {:outbound => 'Logic Equiv. Condit. Negated'      , :mapping => 'Neg->'},
+             {:outbound => 'Reverse Logic Equiv. Bicond.'              , :mapping => '<->I'},
              {:outbound => 'Logic Equiv. Bicond.'              , :mapping => '<->E'},
              {:outbound => 'Logic Equiv. Bicond. Negated'      , :mapping => 'Neg<->'},
              {:outbound => "De Morgan's Quantif."              , :mapping => "QE"},
