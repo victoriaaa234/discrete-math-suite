@@ -3,6 +3,7 @@
 
 <h5>
 	Profile Page
+	Practice Problems
 </h5>
 
 <!-- <div class="col s3"> -->
@@ -47,7 +48,8 @@
 						<!-- <a href="#">This is a link</a> -->
 
 						<% getProblems(category_uid).each do |problem_uid| %>
-							<a href="#">
+							<%= puts(problem_uid) %>
+							<a href="/logic?problem_uid= <%= problem_uid %>">
 								<%= "Problem " + problem_uid + ":" %>
 							</a>
 						<% end %>

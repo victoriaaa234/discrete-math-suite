@@ -11,22 +11,32 @@ class LogicController < ApplicationController
             respond_to do |format|
                 format.json { render json: data }
             end
+
         end
+
+        if params[:problem_uid]
+            id = String(params[:problem_uid])
+            puts "UID:"+id
+            @id = id
+        else
+            @id = "0"
+        end
+            
 	end
 
-	def getPremises(problem_uid)
-		getProblemParts(problem_uid)[0]
-	end
-	helper_method :getPremises
+ 	def getPremises(problem_uid)
+ 		getProblemParts(problem_uid)[0]
+ 	end
+ 	helper_method :getPremises
 
 	def getConclusion(problem_uid)
 		getProblemParts(problem_uid)[1]
 	end
 	helper_method :getConclusion
 
-	def getProblemParts(problem_uid)
-		PracticeProblem.getPremisesAndConclusion(problem_uid)[0]
-	end
+ 	def getProblemParts(problem_uid)
+ 		PracticeProblem.getPremisesAndConclusion(problem_uid)[0]
+ 	end
 	# helper_method :getProblemParts
 
     def logic_problems
