@@ -145,7 +145,7 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     newProofElemInput.id = prefix + "input_" + String(newIndex);
     newProofElemInput.name = newProofElemInput.id;
     switch(labelString) {
-        case "Step":
+        case "Line":
             newProofElemInput.placeholder = "Enter a step...";
             break;
         case "Previous Lines":
@@ -169,7 +169,7 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     newProofElemLabel.className = "active";
     var labelText = document.createTextNode(labelString);
     newProofElemLabel.appendChild(labelText);
-    if(labelString == "Step") {
+    if(labelString == "Line") {
         labelText = document.createTextNode(" " + newIndex);
         newProofElemLabel.appendChild(labelText)
     }
@@ -215,7 +215,7 @@ function addProofRow() {
     rowWrapper.id = "proof_row";
     rowWrapper.style = "margin-bottom: -6%";
 
-    var newStep = getProofLine("proof_step_", "s5", newIndex, "Step");
+    var newStep = getProofLine("proof_step_", "s5", newIndex, "Line");
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
 
