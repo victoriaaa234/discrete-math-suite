@@ -181,7 +181,8 @@ problem_mappings = [
   [16,'$(Px&Rx)','Pa',21],
   [17,'$(PxVQx)','$(Pxv$Qx)',22],
   [18,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',23],
-  [19,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',24]
+  [19,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',24],
+  [20,'~~p','p',3]
   ]
 
 response_mappings.each do |mapping|

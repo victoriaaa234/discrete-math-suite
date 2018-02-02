@@ -250,9 +250,8 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-
-
 function submitLatexText(premise, conclusion, proof) {
+
     var premise_latex = premise.substr(1, premise.length-2);
     var premiseList = premise_latex.split(',');
     var proofList = proof.split('\n');
@@ -549,6 +548,36 @@ function submit(){
 
         var globalExpertModalData = [];
         function expertModalOpen(){
+
+
+            var premiseList = $('[id*=input_premise]');
+            var conclusion = $('#input_conclusion_1').val();
+            var proofInputList = $('[id*=proof_step_input_]');
+            var premise ='';
+            var proof = '';
+            for(var i = 0; i < premiseList.length; i++){
+                var text = $('#input_premise_'+(i+1)).val();
+                if (i == 0){
+                    premise += text;
+                }
+                else{
+                    premise += ','+text;
+                }
+            }
+            
+            
+            for(var i = 0; i <proofInputList.length; i++){
+                var step = $('#proof_step_input_'+(i+1)).val();
+                var prev = $('#proof_previous_input_'+(i+1)).val();
+                var rules = $('#proof_rules_input_'+(i+1)).val();
+                
+                proof += step +' '+prev+' '+rules+'\n';
+
+            }
+
+            console.log(premise+'\n'+conclusion+'\n'+proof);
+
+
             globalExpertModalData.length = 0; // Reset array
             globalExpertModalData.push(document.getElementById('premise-expert').value);
             globalExpertModalData.push(document.getElementById('conclusion-expert').value);
@@ -557,6 +586,9 @@ function submit(){
             $('.modal').modal({
                 dismissible: false
             });
+            $('#premise-expert').val(premise);
+            $('#conclusion-expert').val(conclusion);
+            $('#proof-expert').val(proof);
         }
 
         function expertModalCancel(){
