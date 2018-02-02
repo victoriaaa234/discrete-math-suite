@@ -3,6 +3,7 @@
 
 <h5>
 	Profile Page
+	Practice Problems
 </h5>
 
 <!-- <div class="col s3"> -->
@@ -34,13 +35,6 @@
 						I am convenient because I require little markup to use effectively.</p>
 					</div>
 					<div class="card-action">
-						<!-- Essentially we want to --> 
-						<!-- link all practice problems for each topic here. -->
-						<!-- So given a topic name, get its corresponding category_uid -->
-						<!-- from the ProblemCategory table. -->
-						<!-- Then select all problems with that category_uid from -->
-						<!-- the PracticeProblem table. -->
-						<!-- This logic should go in the controller, not here. -->
 
 						<!-- We also need to grab whether the currently logged in -->
 						<!-- user has solved these problems yet. -->
@@ -54,7 +48,8 @@
 						<!-- <a href="#">This is a link</a> -->
 
 						<% getProblems(category_uid).each do |problem_uid| %>
-							<a href="#">
+							<%= puts(problem_uid) %>
+							<a href="/logic?problem_uid= <%= problem_uid %>">
 								<%= "Problem " + problem_uid + ":" %>
 							</a>
 						<% end %>

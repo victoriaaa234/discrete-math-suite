@@ -41,7 +41,7 @@
   # |   | Existential General. | ???                   | Existential Intro  | Introduction            | $I                    |
   # |   | Rando Completions    | ???                   | WFF => Well Formed Formulae                  |                       |
 
-response_mappings = [{:logic => 'Double Negation'                     , :mapping => 'Double Negation Laws'},
+response_mappings = [{:logic => 'Double Negation'            , :mapping => 'Double Negation Laws'},
              {:logic => 'Ampersand Commutativity'            , :mapping => 'Commutative Law'},
              {:logic => 'Wedge Commutativity'                , :mapping => 'Commutative Law'},
              {:logic => 'Ampersand Associativity'            , :mapping => 'Associative Law'},
@@ -79,15 +79,16 @@ response_mappings = [{:logic => 'Double Negation'                     , :mapping
              {:logic => 'WFF'                                , :mapping => 'Well Formed Formula'}]
 
 input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'DN'},
-             {:outbound => 'Commutative Law'                   , :mapping => '&Comm'},
-             {:outbound => 'Commutative Law'                   , :mapping => 'vComm'},
-             {:outbound => 'Associative Law'                   , :mapping => '&Assoc'},
-             {:outbound => 'Associative Law'                   , :mapping => 'vAssoc'},
-             {:outbound => 'Distributive Law'                  , :mapping => '&/v Dist'},
-             {:outbound => 'Distributive Law'                  , :mapping => 'v/& Dist'},
+             {:outbound => 'Commutative Law AND'                   , :mapping => '&Comm'},
+             {:outbound => 'Commutative Law OR'                   , :mapping => 'vComm'},
+             {:outbound => 'Associative Law AND'                   , :mapping => '&Assoc'},
+             {:outbound => 'Associative Law OR'                   , :mapping => 'vAssoc'},
+             {:outbound => 'Distributive Law AND to OR'                  , :mapping => '&/v Dist'},
+             {:outbound => 'Distributive Law OR to AND'                  , :mapping => 'v/& Dist'},
              {:outbound => "DeMorgan's Laws"                   , :mapping => "DM"},
              {:outbound => 'Logic Equiv. Condit.'              , :mapping => 'v->'},
              {:outbound => 'Logic Equiv. Condit. Negated'      , :mapping => 'Neg->'},
+             {:outbound => 'Reverse Logic Equiv. Bicond.'              , :mapping => '<->I'},
              {:outbound => 'Logic Equiv. Bicond.'              , :mapping => '<->E'},
              {:outbound => 'Logic Equiv. Bicond. Negated'      , :mapping => 'Neg<->'},
              {:outbound => "De Morgan's Quantif."              , :mapping => "QE"},
@@ -98,11 +99,10 @@ input_mappings = [{:outbound => 'Double Negation Laws'          , :mapping => 'D
              {:outbound => 'Addition'                          , :mapping => 'vI'},
              {:outbound => 'Simplification'                    , :mapping => '&E'},
              {:outbound => 'Conjunction'                       , :mapping => '&I'},
-             {:outbound => 'Conjunction'                       , :mapping => '&I'},
              {:outbound => 'Universal Instantiation'           , :mapping => '@E'},
              {:outbound => 'Universal Generalization'          , :mapping => '@I'},
              {:outbound => 'Existential Instantiation'         , :mapping => '$E'},
-             {:outbound => 'Existential General'               , :mapping => '$I'},
+             {:outbound => 'Existential Generalization'               , :mapping => '$I'},
              {:outbound => 'Well Formed Formula'               , :mapping => 'WFF'},
              {:outbound => '|'                                 , :mapping => 'v'},
              {:outbound => '!'                                 , :mapping => '~'}]
@@ -146,8 +146,7 @@ problem_categories = [
 	[21, "Universal Instantiation"],
 	[22, "Universal Generalization"],
 	[23, "Existential Instantiation"],
-	[24, "Existential Generalization"],
-	[25, "Random Completions"]
+	[24, "Existential Generalization"]
 ]
 
 # problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
@@ -160,7 +159,10 @@ problem_categories = [
 #                     {:premise => 'p,q', :problem => 'Conjuction', :conclusion =>'p&q'},
 #                     {:premise => 'pvq,~pvr', :problem => 'Resolution', :conclusion =>'qvr'}]
 
+
+
 problem_mappings = [
+  [0,'','',-1],
 	[1, 'p,p->q', 'q', 13],
 	[2, 'p,p->q,(qvs)->r','r', 13],
   [3, '~q,p->q','~p',14],
@@ -169,10 +171,18 @@ problem_mappings = [
   [6, 'p','pvq',17],
   [7, 'p&q','p',18],
   [8, 'p,q','p&q',19],
-  [9, 'pvq,~pvr','qvr',20] 
-
-]
-
+  [9,'`~(p->q)','p&~q',3],
+  [10,'~(pv(~p&q))','~p&~q',4],
+  [11,'(p&q)->(pvq)','(~pvp)v(~qvq)',5],
+  [12,'(~p&(pv~q)','~p&~q',6],
+  [13,'~(pv(~p&q))','~p&~q',7],
+  [14,'p->q','~q->~p',10],
+  [15,'p<->q','(p&q)v(~p&~q)',11],
+  [16,'$(Px&Rx)','Pa',21],
+  [17,'$(PxVQx)','$(Pxv$Qx)',22],
+  [18,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',23],
+  [19,'@~Px,$(PxvQx),$(~QxvSx),$(Rx->~Sx)','@~Rx',24]
+  ]
 
 response_mappings.each do |mapping|
 	ResponseMapping.where(mapping).first_or_create

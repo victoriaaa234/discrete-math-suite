@@ -7,6 +7,7 @@
 require 'cucumber/rails'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
+require 'rspec/expectations'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -60,9 +61,18 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 #Capybara.default_driver = :selenium
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
+
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, {js_errors: false, window_size: [1280, 600]})
+end
+
 #Capybara.register_driver :selenium do |app|
 #  profile = Selenium::WebDriver::Firefox::Profile.new
 #  client = Selenium::WebDriver::Remote::Http::Default.new
 #  client.timeout = 600 # instead of the default 60
 #  Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
 #end
+
+Capybara.ignore_hidden_elements = false
+# Capybara.default_max_wait_time = 60 
+Capybara.automatic_reload = true

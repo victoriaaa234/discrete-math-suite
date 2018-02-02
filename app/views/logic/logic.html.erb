@@ -20,6 +20,7 @@
 
 #hoverid:hover {
     background-color: #e3eaf2;
+    margin: 15px;
 }
         </style>
         <table>
@@ -32,7 +33,7 @@
             <tr id = "hoverid">
 
 
-                <td style="padding-left: 30px">AND:&amp;</td>
+                <td style="padding-left: 30px">AND: &amp;</td>
                 <td>P&amp;R</td>
 
             </tr>
@@ -56,10 +57,213 @@
             </tr>
 
             <tr id = "hoverid">
-                <td style="padding-left: 30px">XOR: x </td>
-                <td>PxQ</td>
+                <td style="padding-left: 30px">UNIVERSAL: @ </td>
+                <td>@xFx</td>
             </tr>
-
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">EXISTENTIAL: $ </td>
+                <td>$xFx</td>
+            </tr>
+    </table>
+    <table>
+    
+            <tr>
+                <th style="padding-left: 30px">Law Name</th>
+                <th>Input</th>
+                <th>Output</th>
+            </tr>
+            
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Double Negation Laws</td>
+                <td>~~P</td>
+                <td>P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Commutative Law AND</td>
+                <td>P&Q</td>
+                <td>Q&P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Commutative Law OR </td>
+                <td>PvQ</td>
+                <td>QvP</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Associative Law OR</td>
+                <td>Pv(QvR)</td>
+                <td>(PvQ)vR</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Associative Law AND</td>
+                <td>P&(Q&R)</td>
+                <td>(P&Q)&R</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Distributive Law AND to OR</td>
+                <td>P&(QvR)</td>
+                <td>(P&Q)v(P&R)</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Distributive Law OR to AND</td>
+                <td>Pv(Q&R)</td>
+                <td>(PvQ)&(PvR)</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">DeMorgan's Laws</td>
+                <td>~(PvQ)</td>
+                <td>~P&~Q</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Logic Equiv. Condit.</td>
+                <td>
+                    <ul>
+                        <li>~PvQ</li>
+                        <li>PvQ</li>
+                        <li>PvQ</li>
+                        <li>Pv~Q</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P->Q</li>
+                        <li>~P->Q</li>
+                        <li>~Q->P</li>
+                        <li>Q->P</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Logic Equiv. Condit. Negated</td>
+                <td>
+                    <ul>
+                        <li>~(P->Q) </li>
+                        <li>~(P->~Q)</li>
+                        <li>P->Q</li>
+                        <li>P->~Q</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P&~Q</li>
+                        <li>P&Q</li>
+                        <li>~(P&~Q)</li>
+                        <li>~(P&Q) </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Logic Equiv. Bicond.</td>
+                <td>
+                    <ul>
+                        <li>P<->Q</li>
+                        <li>P<->Q</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P->Q</li>
+                        <li>Q->P</li>
+                    </ul>
+                </td>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Reverse Logic Equiv. Bicond.</td>
+                <td>
+                    P->Q, Q->P
+                </td>
+                <td>
+                    P<->Q
+                </td>
+            </tr>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Logic Equiv. Bicond. Negated</td>
+                <td>
+                    <ul>
+                        <li>~(P<->Q)</li>
+                        <li>~(P<->Q)</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>P<->~Q</li>
+                        <li>~P<->Q</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">De Morgan's Quantif.</td>
+                <td>
+                    <ul>
+                        <li>~@xfx</li>
+                        <li>~$xfx</li>
+                        <li>~@x~fx</li>
+                        <li>~$xfx</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>$x~Fx</li>
+                        <li>@x~Fx</li>
+                        <li>$xFx</li>
+                        <li>@xFx</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Modus Ponens</td>
+                <td>P->Q, P</td>
+                <td>Q</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Modus Tollens</td>
+                <td>P->Q, ~Q</td>
+                <td>~P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Hypothetical Syllog.</td>
+                <td>P->Q, Q->R</td>
+                <td>P->R</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Disjunctive Syllog.</td>
+                <td>PvQ, ~P</td>
+                <td>Q</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Addition</td>
+                <td>P</td>
+                <td>PvQ</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Simplification</td>
+                <td>P&Q</td>
+                <td>P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Conjunction</td>
+                <td>P,Q</td>
+                <td>P&Q</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Universal Instantiation</td>
+                <td>@xFx</td>
+                <td>Fa</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Universal Generalization</td>
+                <td>Fa</td>
+                <td>@xFx</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Existential Instantiation</td>
+                <td>$xFx, F[a]...P</td>
+                <td>P</td>
+            </tr>
+            <tr id = "hoverid">
+                <td style="padding-left: 30px">Existential Generalization</td>
+                <td>Fa</td>
+                <td>$xFx</td>
+            </tr>
         </table>
 
     </li>
@@ -70,6 +274,9 @@
 
 <div class="modals">
 
+    <!-- <div> -->
+    <!--     <button type="button" onclick ="generatePracticeProblems()" class ="modal-action modal-close waves-effect waves-green btn-flat">Give me Problem</button> -->
+    <!-- </div> -->
     <!-- Expert Mode Modal Trigger -->
     <a onclick="expertModalOpen()" class="waves-effect waves-light btn modal-trigger" id="expertheader" href="#modal1">Expert</a>
 
@@ -117,9 +324,10 @@
     </div>
 </div>
 <script type ="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+    console.log("Loaded");
     loadProblem();
-}, false)
+});
 </script>
 <div class="row">
     <form id="all_proof_input" class="col s12">
@@ -221,5 +429,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </form>
     <div id="loader" class="loader preloader-wrapper big active hidden" ></div>
 </div>
-<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {premise:String(getPremises("3")),conclusion:String(getConclusion("1"))} do %>
+<%# "Premises: " + String(getPremises("1")) + " and Conclusion: " + String(getConclusion("1"))%>
+<%@id %>
+<%= content_tag :div, class: "problems", id:"hiddenDiv", data: {premise:getPremises(String(@id).strip),conclusion:getConclusion(String(@id).strip)} do %>
+>>>>>>> master
 <% end %>
