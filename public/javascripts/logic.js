@@ -600,6 +600,36 @@ function submit(){
 
         var globalLatexModalData = [];
         function latexModalOpen() {
+            var premiseList = $('[id*=input_premise]');
+            var conclusion = '$' + $('#input_conclusion_1').val() + '$';
+            var proofInputList = $('[id*=proof_step_input_]');
+            var premise ='';
+            var proof = '';
+            for(var i = 0; i < premiseList.length; i++){
+                var text = $('#input_premise_'+(i+1)).val();
+                if (i == 0) {
+                    premise += text;
+                }
+                else{
+                    premise += ','+ text;
+                }
+            }
+            premise = '$' + premise + '$';
+             
+            for(var i = 0; i <proofInputList.length; i++){
+                var step = $('#proof_step_input_'+(i+1)).val();
+                var prev = $('#proof_previous_input_'+(i+1)).val();
+                var rules = $('#proof_rules_input_'+(i+1)).val();
+                if(i == 0) {
+                    proof += '$' + step + '\\,' + prev + '\\,' + rules + '$';
+                }
+                else {
+                    proof += '\n' + '$' + step + '\\,' + prev + '\\,' + rules + '$';
+                }
+            }
+ 
+            console.log(premise+'\n'+conclusion+'\n'+proof);
+ 
             globalLatexModalData.length = 0; // Reset array
             globalLatexModalData.push(document.getElementById('premise-latex').value);
             globalLatexModalData.push(document.getElementById('conclusion-latex').value);
@@ -608,6 +638,9 @@ function submit(){
             $('.modal').modal({
                 dismissible: false
             });
+            $('#premise-latex').val(premise);
+            $('#conclusion-latex').val(conclusion);
+            $('#proof-latex').val(proof);
         }
 
         function latexModalCancel() {
