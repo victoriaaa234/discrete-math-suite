@@ -8,3 +8,7 @@
     padding-left: -10px !important;
     display: inline !important;
 }
+
+.incorrect {
+    color: red !important;
+}

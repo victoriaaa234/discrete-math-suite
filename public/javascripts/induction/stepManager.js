@@ -20,34 +20,39 @@ const stepManager = {
         });
     },
     nextStep: function () {
+        var incorrectText = {};
         switch (this.currentStep) {
             case 'basis-step':
+                incorrectText = document.getElementById('basis-step-incorrect');        
                 if (this.checkBasis()) {
                     this.basis.hideButton();
                     this.currentStep = 'inductive-hypothesis';
                     this.inductiveHypothesis.show();
-                    alert('Correct!');
+                    incorrectText.classList.add('scale-out');
                     return;
                 }
                 break;
             case 'inductive-hypothesis':
+                incorrectText = document.getElementById('inductive-hypothesis-incorrect');        
                 if (this.checkHypothesis()) {
                     this.inductiveHypothesis.hideButton();
                     this.currentStep = 'inductive-step';
                     this.inductiveStep.show();
-                    alert('Correct!');                    
+                    incorrectText.classList.add('scale-out');                                     
                     return;
                 }
                 break;
             case 'inductive-step':
+                incorrectText = document.getElementById('inductive-step-incorrect');
                 if (this.inductiveStep.check()) {
                     this.inductiveStep.hideButton();
-                    alert('Correct!');                    
+                    incorrectText.classList.add('scale-out');                                      
                     return;
                 }
                 break;
-        }
-        alert('Incorrect Answer');
+            }
+        incorrectText.classList.add('incorrect');
+        incorrectText.classList.remove('scale-out');
     },
     checkBasis: function() {
         let stamp1Count = currentProblem.problem.basis.count1;
