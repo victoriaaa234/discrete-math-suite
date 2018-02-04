@@ -383,7 +383,7 @@ $(document).ready(function() {
                 </div>
 
                 <div id="proof_rules_1" class="input-field col s2 proof_line proof_rules_1">
-                    <input placeholder="Enter rules..." id="proof_rules_input_1" name="proof_rules_input_1" type="text" class="validate proof_line_input" data-lpignore="true">
+                    <%= select("proof_rules_input", '1',  @dropdownValues, {:include_blank => false, :constrainWidth => false}, :class => "validate proof_line") %>
                     <label for="proof_rules_input_1">Rules</label>
                 </div>
             </div>
@@ -401,7 +401,7 @@ $(document).ready(function() {
                     </div>
 
                     <div id="proof_rules_2" class="input-field col s2 proof_line">
-                        <input placeholder = "Enter rules..." id="proof_rules_input_2" name="proof_rules_input_2" type="text" class="validate proof_line_input" data-lpignore="true">
+                        <%= select("proof_rules_input", '2',  @dropdownValues, {:include_blank => false}, :class => "validate proof_line") %>
                         <label for="proof_rules_input_2">Rules</label>
                     </div>
 

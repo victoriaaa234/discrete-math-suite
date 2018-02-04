@@ -13,6 +13,11 @@ class LogicController < ApplicationController
             end
 
         end
+        @dropdownValues = []
+        InputMapping.select("outbound").each do |t|
+            @dropdownValues.push(t.outbound)
+        end
+        puts(@dropdownValues)
 
         if params[:problem_uid]
             id = String(params[:problem_uid])

@@ -2,7 +2,38 @@ $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('#modal1').modal();
     $('#modal2').modal();
+    $('select').material_select();
+
 });
+
+var dropdown = [
+    'A'
+    ,'Double Negation Laws'
+    ,'Commutative Law AND'
+    ,'Commutative Law OR'
+    ,'Associative Law AND'
+    ,'Associative Law OR'
+    ,'Distributive Law AND to OR'
+    ,'Distributive Law OR to AND'
+    ,"DeMorgan's Laws"
+    ,'Logic Equivalent Conditional'
+    ,'Logic Equivalent Conditional Negated'
+    ,'Reverse Logic Equivalent Biconditional'
+    ,'Logic Equivalent Biconditional'
+    ,'Logic Equivalent Biconditional Negated'
+    ,"De Morgan's Quantifier"
+    ,'Modus Ponens'
+    ,'Modus Tollens'
+    ,'Hypothetical Syllogism'
+    ,'Disjunctive Syllogism'
+    ,'Addition'
+    ,'Simplification'
+    ,'Conjunction'
+    ,'Universal Instantiation'
+    ,'Universal Generalization'
+    ,'Existential Instantiation'
+    ,'Existential Generalization'
+]
 
 function addPremiseRow() {
     var premiseSecondaries = document.getElementById("premise_secondaries");
@@ -140,33 +171,47 @@ function getProofLine(prefix, sizeStr, newIndex, labelString) {
     var newProofElem = document.createElement("div");
     newProofElem.id = prefix + String(newIndex);
     newProofElem.className = "input-field col " + sizeStr + " proof_line";
+    var snewProofElemInput;
+    if(labelString == 'Rules'){
+        newProofElemInput = document.createElement("select");
+        for (var i = 0; i < dropdown.length; i++) {
+            var option = document.createElement("option");
+            option.value = dropdown[i];
+            option.text = dropdown[i];
+            newProofElemInput.appendChild(option);
+        }
+    }
+    else{
+        newProofElemInput = document.createElement("input");
+    }
 
-    var newProofElemInput = document.createElement("input");
     newProofElemInput.id = prefix + "input_" + String(newIndex);
     newProofElemInput.name = newProofElemInput.id;
     switch(labelString) {
         case "Line":
             newProofElemInput.placeholder = "Enter a step...";
+            newProofElemInput.type = "text";
             break;
         case "Previous Lines":
             newProofElemInput.placeholder = "Enter previous lines...";
+            newProofElemInput.type = "text";
             break;
         case "Rules":
-            newProofElemInput.placeholder = "Enter rules...";
             break;
         default:
     }
-    newProofElemInput.type = "text";
     newProofElemInput.className = "validate proof_line_input";
-
 
     var lastPassAttrib = document.createAttribute("data-lpignore");
     lastPassAttrib.value = "true";
     newProofElemInput.setAttributeNode(lastPassAttrib);
+    var width = document.createAttribute("data-constrainwidth");
+    width.value = "false";
+    newProofElemInput.setAttributeNode(width);
 
     var newProofElemLabel = document.createElement("label");
     newProofElemLabel.htmlFor = newProofElemInput.id;
-    newProofElemLabel.className = "active";
+    //newProofElemLabel.className = "active";
     var labelText = document.createTextNode(labelString);
     newProofElemLabel.appendChild(labelText);
     if(labelString == "Line") {
@@ -219,7 +264,6 @@ function addProofRow() {
     var newPrevious = getProofLine("proof_previous_", "s3", newIndex, "Previous Lines");
     var newRules = getProofLine("proof_rules_", "s2", newIndex, "Rules");
 
-
     // Build new delete button
     var buttonDiv = getProofButton(newIndex);
 
@@ -229,6 +273,7 @@ function addProofRow() {
     rowWrapper.appendChild(newRules);
     rowWrapper.appendChild(buttonDiv);
     proofSecondaries.appendChild(rowWrapper);
+    $('select').material_select();
 }
 
 /*
@@ -250,94 +295,94 @@ function deleteProofRow(buttonDivId) {
 }
 */
 
-function submitLatexText(premise, conclusion, proof) {
+    function submitLatexText(premise, conclusion, proof) {
 
-    var premise_latex = premise.substr(1, premise.length-2);
-    var premiseList = premise_latex.split(',');
-    var proofList = proof.split('\n');
-    console.log(proofList.length);
-    //adding the premises
-    for (i = 1; i <= premiseList.length; i++){
-        var premiseId = 'input_premise_'+i;
-        if(document.getElementById(premiseId)!==null){
-            document.getElementById(premiseId).value = premiseList[i-1].trim();
-            console.log(premiseList[i-1]);
-        }
-        else{
-            addPremiseRow();
-            document.getElementById(premiseId).value = premiseList[i-1].trim();
-            console.log(premiseList[i-1]);
-        }
-
-    }
-
-    //removing extra premises
-    var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
-    if (allPremiseBoxesLength >= i)
-    {
-        for (j = allPremiseBoxesLength; j >= i; j--){
-            var premiseId = 'remove_premise_'+j;
-            deleteRow(premiseId);
-        }
-    }
-
-    //adding the conclusion
-
-    //remove spaces first
-    conclusion = removeSpaces(conclusion);
-    conclusion = conclusion.substr(1, conclusion.length-2);
-    document.getElementById('input_conclusion_1').value = conclusion;
-
-    //adding the proofs
-    for (i = 1; i <=proofList.length; i++) {
-        proofList[i-1] = proofList[i-1].substr(1, proofList[i-1].length-2);
-        proofList[i-1] = proofList[i-1].replace(/\s/g, '');
-        
-        proofList[i-1] = proofList[i-1].replace(/\\,/g, " ");
-        var stepId = 'proof_step_input_'+i;
-        var previousId = 'proof_previous_input_'+i;
-        var rulesId = 'proof_rules_input_'+i;
-
-        var proofs = proofList[i-1].split(' ');
-        if(document.getElementById(stepId)!==null){
-            document.getElementById(stepId).value = proofs[0] || "";
-            document.getElementById(previousId).value = proofs[1] || "";
-            var string = " ";
-            for(j = 2;j<proofs.length;j++){
-                string += proofs[j] + " ";
+        var premise_latex = premise.substr(1, premise.length-2);
+        var premiseList = premise_latex.split(',');
+        var proofList = proof.split('\n');
+        console.log(proofList.length);
+        //adding the premises
+        for (i = 1; i <= premiseList.length; i++){
+            var premiseId = 'input_premise_'+i;
+            if(document.getElementById(premiseId)!==null){
+                document.getElementById(premiseId).value = premiseList[i-1].trim();
+                console.log(premiseList[i-1]);
             }
-            string = string.substr(0, string.length-1);
-            string = removeSpaces(string);
-            document.getElementById(rulesId).value = string;
-        }
-        else {
-            addProofRow();
-            document.getElementById(stepId).value = proofs[0] || "";
-            document.getElementById(previousId).value = proofs[1] || "";
-            document.getElementById(rulesId).value = proofs[2] || "";
-            var string = " ";
-            for(i = 2;i<proofs.length;i++){
-                string += proofs[i] + " ";
+            else{
+                addPremiseRow();
+                document.getElementById(premiseId).value = premiseList[i-1].trim();
+                console.log(premiseList[i-1]);
             }
-            string = string.substr(0, string.length-1);
-            string = removeSpaces(string);
-            document.getElementById(rulesId).value = string;
-        }
-    }
 
-    //removing proofs
-    var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
-    if (i > 1)
-    {
-        if (allProofRowsLength >= i)
+        }
+
+        //removing extra premises
+        var allPremiseBoxesLength = document.querySelectorAll("[id*='input_premise_']").length;
+        if (allPremiseBoxesLength >= i)
         {
-            for (j = allProofRowsLength; j >= i; j--){
-                var proofRowId = 'proof_remove_'+j;
-                deleteRow(proofRowId);
+            for (j = allPremiseBoxesLength; j >= i; j--){
+                var premiseId = 'remove_premise_'+j;
+                deleteRow(premiseId);
+            }
+        }
+
+        //adding the conclusion
+
+        //remove spaces first
+        conclusion = removeSpaces(conclusion);
+        conclusion = conclusion.substr(1, conclusion.length-2);
+        document.getElementById('input_conclusion_1').value = conclusion;
+
+        //adding the proofs
+        for (i = 1; i <=proofList.length; i++) {
+            proofList[i-1] = proofList[i-1].substr(1, proofList[i-1].length-2);
+            proofList[i-1] = proofList[i-1].replace(/\s/g, '');
+
+            proofList[i-1] = proofList[i-1].replace(/\\,/g, " ");
+            var stepId = 'proof_step_input_'+i;
+            var previousId = 'proof_previous_input_'+i;
+            var rulesId = 'proof_rules_input_'+i;
+
+            var proofs = proofList[i-1].split(' ');
+            if(document.getElementById(stepId)!==null){
+                document.getElementById(stepId).value = proofs[0] || "";
+                document.getElementById(previousId).value = proofs[1] || "";
+                var string = " ";
+                for(j = 2;j<proofs.length;j++){
+                    string += proofs[j] + " ";
+                }
+                string = string.substr(0, string.length-1);
+                string = removeSpaces(string);
+                document.getElementById(rulesId).value = string;
+            }
+            else {
+                addProofRow();
+                document.getElementById(stepId).value = proofs[0] || "";
+                document.getElementById(previousId).value = proofs[1] || "";
+                document.getElementById(rulesId).value = proofs[2] || "";
+                var string = " ";
+                for(i = 2;i<proofs.length;i++){
+                    string += proofs[i] + " ";
+                }
+                string = string.substr(0, string.length-1);
+                string = removeSpaces(string);
+                document.getElementById(rulesId).value = string;
+            }
+        }
+
+        //removing proofs
+        var allProofRowsLength = document.querySelectorAll("[id*='proof_step_input_']").length;
+        if (i > 1)
+        {
+            if (allProofRowsLength >= i)
+            {
+                for (j = allProofRowsLength; j >= i; j--){
+                    var proofRowId = 'proof_remove_'+j;
+                    deleteRow(proofRowId);
+                }
             }
         }
     }
-}
 
 function loadProblem(){
     console.log('problem loaded');
@@ -492,6 +537,7 @@ function submit(){
             break;
         }
     }
+    
     premises = premises.substr(0,premises.length -1);
     conclusion = formList[conclusionLocation].value;
     var index = conclusionLocation + 1;
@@ -503,9 +549,10 @@ function submit(){
             index++;
             counter--;
         }
+        console.log(step);
         stepList.push(step);
     }
-    
+
     $('#loader').removeClass('hidden');
     $.ajax({
         url: "/logic",
@@ -520,7 +567,7 @@ function submit(){
         success: function(data){
             var text = "";
             if(data.type === 'success' || data.line_number == null){
-               text = data.reason; 
+                text = data.reason; 
             }
             else{
                 text = "Line " + data.line_number + ": "  + data.reason;
@@ -540,111 +587,111 @@ function submit(){
                     window.location.href = "/logic_options";
                 }
             });
-            },
-                dataType: 'json'
-            });
-            // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+        },
+        dataType: 'json'
+    });
+    // var result = "<%= LogicController.parse_input(premises, conclusion, stepList) %>";
+}
+
+var globalExpertModalData = [];
+function expertModalOpen(){
+
+
+    var premiseList = $('[id*=input_premise]');
+    var conclusion = $('#input_conclusion_1').val();
+    var proofInputList = $('[id*=proof_step_input_]');
+    var premise ='';
+    var proof = '';
+    for(var i = 0; i < premiseList.length; i++){
+        var text = $('#input_premise_'+(i+1)).val();
+        if (i == 0){
+            premise += text;
         }
-
-        var globalExpertModalData = [];
-        function expertModalOpen(){
-
-
-            var premiseList = $('[id*=input_premise]');
-            var conclusion = $('#input_conclusion_1').val();
-            var proofInputList = $('[id*=proof_step_input_]');
-            var premise ='';
-            var proof = '';
-            for(var i = 0; i < premiseList.length; i++){
-                var text = $('#input_premise_'+(i+1)).val();
-                if (i == 0){
-                    premise += text;
-                }
-                else{
-                    premise += ','+text;
-                }
-            }
-            
-            
-            for(var i = 0; i <proofInputList.length; i++){
-                var step = $('#proof_step_input_'+(i+1)).val();
-                var prev = $('#proof_previous_input_'+(i+1)).val();
-                var rules = $('#proof_rules_input_'+(i+1)).val();
-                
-                proof += step +' '+prev+' '+rules+'\n';
-
-            }
-
-            console.log(premise+'\n'+conclusion+'\n'+proof);
-
-
-            globalExpertModalData.length = 0; // Reset array
-            globalExpertModalData.push(document.getElementById('premise-expert').value);
-            globalExpertModalData.push(document.getElementById('conclusion-expert').value);
-            globalExpertModalData.push(document.getElementById('proof-expert').value);
-
-            $('.modal').modal({
-                dismissible: false
-            });
-            $('#premise-expert').val(premise);
-            $('#conclusion-expert').val(conclusion);
-            $('#proof-expert').val(proof);
+        else{
+            premise += ','+text;
         }
+    }
 
-        function expertModalCancel(){
-            document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
-            document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
-            document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
-            globalExpertModalData.length = 0;
+
+    for(var i = 0; i <proofInputList.length; i++){
+        var step = $('#proof_step_input_'+(i+1)).val();
+        var prev = $('#proof_previous_input_'+(i+1)).val();
+        var rules = $('#proof_rules_input_'+(i+1)).val();
+
+        proof += step +' '+prev+' '+rules+'\n';
+
+    }
+
+    console.log(premise+'\n'+conclusion+'\n'+proof);
+
+
+    globalExpertModalData.length = 0; // Reset array
+    globalExpertModalData.push(document.getElementById('premise-expert').value);
+    globalExpertModalData.push(document.getElementById('conclusion-expert').value);
+    globalExpertModalData.push(document.getElementById('proof-expert').value);
+
+    $('.modal').modal({
+        dismissible: false
+    });
+    $('#premise-expert').val(premise);
+    $('#conclusion-expert').val(conclusion);
+    $('#proof-expert').val(proof);
+}
+
+function expertModalCancel(){
+    document.getElementById('premise-expert').value = globalExpertModalData[0] || "";
+    document.getElementById('conclusion-expert').value = globalExpertModalData[1] || "";
+    document.getElementById('proof-expert').value = globalExpertModalData[2] || "";
+    globalExpertModalData.length = 0;
+}
+
+var globalLatexModalData = [];
+function latexModalOpen() {
+    var premiseList = $('[id*=input_premise]');
+    var conclusion = '$' + $('#input_conclusion_1').val() + '$';
+    var proofInputList = $('[id*=proof_step_input_]');
+    var premise ='';
+    var proof = '';
+    for(var i = 0; i < premiseList.length; i++){
+        var text = $('#input_premise_'+(i+1)).val();
+        if (i == 0) {
+            premise += text;
         }
-
-        var globalLatexModalData = [];
-        function latexModalOpen() {
-            var premiseList = $('[id*=input_premise]');
-            var conclusion = '$' + $('#input_conclusion_1').val() + '$';
-            var proofInputList = $('[id*=proof_step_input_]');
-            var premise ='';
-            var proof = '';
-            for(var i = 0; i < premiseList.length; i++){
-                var text = $('#input_premise_'+(i+1)).val();
-                if (i == 0) {
-                    premise += text;
-                }
-                else{
-                    premise += ','+ text;
-                }
-            }
-            premise = '$' + premise + '$';
-             
-            for(var i = 0; i <proofInputList.length; i++){
-                var step = $('#proof_step_input_'+(i+1)).val();
-                var prev = $('#proof_previous_input_'+(i+1)).val();
-                var rules = $('#proof_rules_input_'+(i+1)).val();
-                if(i == 0) {
-                    proof += '$' + step + '\\,' + prev + '\\,' + rules + '$';
-                }
-                else {
-                    proof += '\n' + '$' + step + '\\,' + prev + '\\,' + rules + '$';
-                }
-            }
- 
-            console.log(premise+'\n'+conclusion+'\n'+proof);
- 
-            globalLatexModalData.length = 0; // Reset array
-            globalLatexModalData.push(document.getElementById('premise-latex').value);
-            globalLatexModalData.push(document.getElementById('conclusion-latex').value);
-            globalLatexModalData.push(document.getElementById('proof-latex').value);
-
-            $('.modal').modal({
-                dismissible: false
-            });
-            $('#premise-latex').val(premise);
-            $('#conclusion-latex').val(conclusion);
-            $('#proof-latex').val(proof);
+        else{
+            premise += ','+ text;
         }
+    }
+    premise = '$' + premise + '$';
 
-        function latexModalCancel() {
-            document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
-            document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
-            document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
+    for(var i = 0; i <proofInputList.length; i++){
+        var step = $('#proof_step_input_'+(i+1)).val();
+        var prev = $('#proof_previous_input_'+(i+1)).val();
+        var rules = $('#proof_rules_input_'+(i+1)).val();
+        if(i == 0) {
+            proof += '$' + step + '\\,' + prev + '\\,' + rules + '$';
         }
+        else {
+            proof += '\n' + '$' + step + '\\,' + prev + '\\,' + rules + '$';
+        }
+    }
+
+    console.log(premise+'\n'+conclusion+'\n'+proof);
+
+    globalLatexModalData.length = 0; // Reset array
+    globalLatexModalData.push(document.getElementById('premise-latex').value);
+    globalLatexModalData.push(document.getElementById('conclusion-latex').value);
+    globalLatexModalData.push(document.getElementById('proof-latex').value);
+
+    $('.modal').modal({
+        dismissible: false
+    });
+    $('#premise-latex').val(premise);
+    $('#conclusion-latex').val(conclusion);
+    $('#proof-latex').val(proof);
+}
+
+function latexModalCancel() {
+    document.getElementById('premise-latex').value = globalLatexModalData[0] || "";
+    document.getElementById('conclusion-latex').value = globalLatexModalData[1] || "";
+    document.getElementById('proof-latex').value = globalLatexModalData[2] || "";
+}
