@@ -1,0 +1,14 @@
+.stamp {
+    padding-top: 15px !important;
+}
+
+.hypothesis {
+    padding-top: 15px !important;
+    padding-right: 0px !important;
+    padding-left: -10px !important;
+    display: inline !important;
+}
+
+.incorrect {
+    color: red !important;
+}

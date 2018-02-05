@@ -1,12 +1,9 @@
-function step(elementId, checkBtn) {
+function step(type,elementId, checkBtn) {
+    this.type = type;
     this.element = document.getElementById(elementId);
     this.checkBtn = document.getElementById(checkBtn);
     this.hidden = true;
 }
-
-step.prototype.check = function(answer) {
-    return true;
-};
 
 step.prototype.toggle = function() {
     if(this.hidden) {
