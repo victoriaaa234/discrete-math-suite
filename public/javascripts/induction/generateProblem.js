@@ -176,27 +176,7 @@ const geometricSolution = function(problemParameters){
 
 const strongSolution = function(problemParameters){
     let solution = {};
-    solution.text = `12 cents uses three 4-cent stamps. 13 cents of postage uses two 4-cent 
-    stamps plus a 5-cent stamp. 14 uses one 4-cent stamp plus two 5-cent stamps. 
-    The formula for making k cents of postage depends on the one for making
-    k−4 cents of postage. That is, you take the stamps for k−4 cents and add
-    another 4-cent stamp. We can make this into an inductive proof as follows:
-    Proof: by induction on the amount of postage.
-    Base: If the postage is 12 cents, we can make it with three 4-cent
-    stamps. If the postage is 13 cents, we can make it with two 4-cent
-    stamps. plus a 5-cent stamp. If it is 14, we use one 4-cent stamp
-    plus two 5-cent stamps. If it is 15, we use three 5-cent stamps.
-    Induction: Suppose that we have show how to construct postage
-    for every value from 12 up through k. We need to show how to
-    construct k+1 cents of postage. Since we’ve alread proved base
-    cases up through 15 cents, we’ll assume that k+1 ≥ 16.
-    Since k+1 ≥ 16, (k+1)−4 ≥ 12. So by the inductive hypothesis,
-    we can construct postage for (k+1)−4 cents using m 4-cent
-    stamps and n 5-cent stamps, for some natural numbers m and n.
-    In other words (k+1)−4) = 4m+5n.
-    But then k+1 = 4(m+1) + 5n. So we can construct k+1 cents
-    of postage using m+ 1 4-cent stamps and n 5-cent stamps, which
-    is what we needed to show.`;
+    solution.text = ``;
 
     return solution;
 };
