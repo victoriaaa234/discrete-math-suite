@@ -8,31 +8,31 @@ $(document).ready(function(){
 
 var dropdown = [
     'A'
-    ,'Double Negation Laws'
-    ,'Commutative Law AND'
-    ,'Commutative Law OR'
+    ,'Addition'
     ,'Associative Law AND'
     ,'Associative Law OR'
+    ,'Commutative Law AND'
+    ,'Commutative Law OR'
+    ,'Conjunction'
+    ,'Double Negation Laws'
+    ,"DeMorgan's Laws"
+    ,"De Morgan's Quantifier"
     ,'Distributive Law AND to OR'
     ,'Distributive Law OR to AND'
-    ,"DeMorgan's Laws"
-    ,'Logic Equivalent Conditional'
-    ,'Logic Equivalent Conditional Negated'
-    ,'Reverse Logic Equivalent Biconditional'
-    ,'Logic Equivalent Biconditional'
-    ,'Logic Equivalent Biconditional Negated'
-    ,"De Morgan's Quantifier"
-    ,'Modus Ponens'
-    ,'Modus Tollens'
-    ,'Hypothetical Syllogism'
     ,'Disjunctive Syllogism'
-    ,'Addition'
-    ,'Simplification'
-    ,'Conjunction'
-    ,'Universal Instantiation'
-    ,'Universal Generalization'
     ,'Existential Instantiation'
     ,'Existential Generalization'
+    ,'Hypothetical Syllogism'
+    ,'Logic Equivalent Conditional'
+    ,'Logic Equivalent Conditional Negated'
+    ,'Logic Equivalent Biconditional'
+    ,'Logic Equivalent Biconditional Negated'
+    ,'Modus Ponens'
+    ,'Modus Tollens'
+    ,'Reverse Logic Equivalent Biconditional'
+    ,'Simplification'
+    ,'Universal Instantiation'
+    ,'Universal Generalization'
 ]
 
 function addPremiseRow() {
@@ -549,6 +549,7 @@ function submit(){
             index++;
             counter--;
         }
+            index++;
         console.log(step);
         stepList.push(step);
     }
