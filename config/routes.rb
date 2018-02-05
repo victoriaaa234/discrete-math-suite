@@ -1,4 +1,10 @@
+<<<<<<< HEAD
   Rails.application.routes.draw do
+=======
+Rails.application.routes.draw do
+  get 'users/new'
+
+>>>>>>> induction
   get 'sessions/create'
 
   get 'sessions/destroy'
