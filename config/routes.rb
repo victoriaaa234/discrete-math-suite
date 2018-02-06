@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 Rails.application.routes.draw do
-=======
-Rails.application.routes.draw do
->>>>>>> 1c0ccba9843472649c28e41bf34ec2da93df18cf
   get 'users/new'
   get 'sessions/create'
-
-<<<<<<< HEAD
   get 'sessions/destroy'
 
   get 'home/show'
