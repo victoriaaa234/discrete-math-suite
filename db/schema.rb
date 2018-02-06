@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180125160044) do
-=======
-ActiveRecord::Schema.define(version: 20180205012104) do
->>>>>>> induction
+ActiveRecord::Schema.define(version: 20180206223123) do
 
   create_table "input_mappings", force: :cascade do |t|
     t.string "outbound"
@@ -46,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180205012104) do
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category_description"
     t.index ["category_uid"], name: "index_problem_categories_on_category_uid"
   end
 

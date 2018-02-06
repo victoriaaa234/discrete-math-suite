@@ -123,31 +123,32 @@ latex_mappings =  [{:latex => '\lor'                         , :mapping => 'v'},
                    {:latex => '\leftrightarrow'              , :mapping => '<->'}]
 
 problem_categories = [
-	[0, "Identity Laws"],
-	[1, "Domination Laws"],
-	[2, "Idempotent Laws"],
-	[3, "Double Negation Laws"],
-	[4, "Commutative Laws"],
-	[5, "Associative Laws"],
-	[6, "Distributive Laws"],
-	[7, "DeMorgan's Laws"],
-	[8, "Absorption Laws"],
-	[9, "Negation Laws"],
-	[10, "Logical Equivalence Conditional"],
-	[11, "Logical Equivalence Biconditional"],
-	[12, "De Morgan Laws"],
-	[13, "Modus Ponens"],
-	[14, "Modus Tollens"],
-	[15, "Hypothetical Syllogism"],
-	[16, "Disjunctive Syllogism"],
-	[17, "Addition"],
-	[18, "Simplification"],
-	[19, "Conjunction"],
-	[20, "Resolution"],
-	[21, "Universal Instantiation"],
-	[22, "Universal Generalization"],
-	[23, "Existential Instantiation"],
-	[24, "Existential Generalization"]
+	[0, "Identity Laws", "One of three principles in logic: 1 : a statement (as “a house is a house”) in which the subject and predicate are the same is true. 2 : the copula in an identity affirms an existent of which the identity is true."],
+	[1, "Domination Laws", "Gregor Mendel's law stating that when two alleles of an inherited pair is heterozygous, then, the allele that is expressed is dominant whereas the allele that is not expressed is recessive."],
+	[2, "Idempotent Laws", "Combining a quantity with itself either by logical addition or logical multiplication will result in a logical sum or product that is the equivalent of the quantity (ex- A + A = A; A x A = A)."],
+	[3, "Double Negation Laws", "The law of double negation is the statement that the double negation of a proposition implies that proposition. ¬¬A->A."],
+	[4, "Commutative Laws", "Either of two laws relating to number operations of addition and multiplication, stated symbolically: a + b = b + a and ab = ba."],
+	[5, "Associative Laws", "Either of two laws relating to number operations of addition and multiplication, stated symbolically: a + (b + c) = (a + b) + c, and a(bc) = (ab)c; that is, the terms or factors may be associated in any way desired."],
+	[6, "Distributive Laws", "Multiplying a number by a group of numbers added together is the same as doing each multiplication separately."],
+	[7, "DeMorgan's Laws", "The complement of the union of two sets is equal to the intersection of their complements and the complement of the intersection of two sets is equal to the union of their complements."],
+	[8, "Absorption Laws", "An identity linking a pair of binary operations. Two binary operations, ¤ and ⁂, are said to be connected by the absorption law if: a ¤ (a ⁂ b) = a ⁂ (a ¤ b) = a."],
+	[9, "Negation Laws", "Negate means to make ineffective or invalid; to deny the truth or existence of something."],
+	[10, "Logical Equivalence Conditional", "p->q is false if, and only if, its hypothesis, p, is true and its conclusion, q, is false. The converse and inverse of a conditional statement are logically equivalent to each other, but neither of them are logically equivalent to the conditional statement."],
+	[11, "Logical Equivalence Biconditional", ""],
+	[12, "De Morgan Laws", "The complement of the union of two sets is equal to the intersection of their complements and the complement of the intersection of two sets is equal to the union of their complements."],
+	[13, "Modus Ponens", "The rule of logic stating that if a conditional statement (“if p then q ”) is accepted, and the antecedent ( p ) holds, then the consequent ( q ) may be inferred."],
+	[14, "Modus Tollens", "The rule of logic stating that if a conditional statement (“if p then q ”) is accepted, and the consequent does not hold ( not-q ), then the negation of the antecedent ( not-p ) can be inferred."],
+	[15, "Hypothetical Syllogism", "A valid argument form which is a syllogism having a conditional statement for one or both of its premises.
+"],
+[16, "Disjunctive Syllogism", "A valid argument form which is a syllogism having a disjunctive statement for one of its premises."],
+	[17, "Addition", "When two events, A and B, are mutually exclusive, the probability that A or B will occur is the sum of the probability of each event."],
+	[18, "Simplification", "The rule of simplification is a valid deduction sequent in propositional logic."],
+	[19, "Conjunction", "A conjunction is a compound statement formed by joining two statements with the connector AND."],
+	[20, "Resolution", "A rule of inference leading to a refutation theorem-proving technique for sentences in propositional logic and first-order logic"],
+	[21, "Universal Instantiation", "A valid rule of inference from a truth about each member of a class of individuals to the truth about a particular individual of that class"],
+	[22, "Universal Generalization", "...is a valid inference rule. It states that if has been derived, then can be derived."],
+	[23, "Existential Instantiation", "A valid rule of inference which says that, given a formula of the form , one may infer for a new constant or variable symbol c"],
+	[24, "Existential Generalization", "A valid rule of inference that allows one to move from a specific statement, or one instance, to a quantified generalized statement, or existential proposition."]
 ]
 
 # problems = [{:premise => 'p,p->q',   :problem => 'Modus Ponens',  :conclusion => 'q'},
@@ -198,9 +199,10 @@ latex_mappings.each do |mapping|
 	LatexMapping.where(mapping).first_or_create
 end
 
-problem_categories.each do |category_uid, category_name|
+problem_categories.each do |category_uid, category_name, category_description|
 	ProblemCategory.where(category_uid: category_uid,
-					      category_name: category_name).first_or_create
+					      category_name: category_name,
+						  category_description: category_description).first_or_create
 end
 
 problem_mappings.each do |problem_uid, premises, conclusion, category_uid|
