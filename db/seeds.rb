@@ -212,4 +212,4 @@ problem_mappings.each do |problem_uid, premises, conclusion, category_uid|
 						   category_uid: category_uid).first_or_create
 end
 
-User.create(:id=>2)
+
