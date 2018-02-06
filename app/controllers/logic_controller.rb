@@ -14,7 +14,7 @@ class LogicController < ApplicationController
 
         end
         @dropdownValues = []
-        InputMapping.select("outbound").order("outbound").each do |t|
+        InputMapping.where.not(outbound: ['!', '|']).select("outbound").order("outbound").each do |t|
             @dropdownValues.push(t.outbound)
         end
         puts(@dropdownValues)
