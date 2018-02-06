@@ -9,7 +9,7 @@ When /^I click Practice Problems$/ do
 end
 
 Then /^I am on the Practice Problems page$/ do
-    expect(page).to have_current_path('/logic/problem')
+    expect(page).to have_current_path('/profile')
 end
 
 #Scenario: Click Manual Input
