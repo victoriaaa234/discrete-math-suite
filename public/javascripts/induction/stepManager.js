@@ -55,19 +55,26 @@ const stepManager = {
         incorrectText.classList.remove('scale-out');
     },
     checkBasis: function() {
-        let stamp1Count = currentProblem.problem.basis.count1;
-        let stamp2Count = currentProblem.problem.basis.count2;
-        let stamp1Answer = document.getElementById('stamp1-input');
-        let stamp2Answer = document.getElementById('stamp2-input');
-    
-        return ((stamp1Count == stamp1Answer.value) && (stamp2Count == stamp2Answer.value))
+        let x = currentProblem.problem.stamp1;
+        let y = currentProblem.problem.stamp2;
+        let t = currentProblem.problem.basis.total;
+        for(var i = 0; i < x; i++) {
+            let stamp1Answer = parseInt(document.getElementById(`stamp1-input-${i}`).value);
+            let stamp2Answer = parseInt(document.getElementById(`stamp2-input-${i}`).value);
+
+            if((stamp1Answer * x + stamp2Answer * y)  != t + i) {
+                return false;
+            } 
+            
+        }
+        return true;
     },
     checkHypothesis: function() {
         let hypothesisAnswer1 = document.getElementById('hypothesis-input-1');
         let hypothesisAnswer2 = document.getElementById('hypothesis-input-2');
 
         return ((hypothesisAnswer1.value == currentProblem.problem.basis.total) && 
-            (hypothesisAnswer2.value == 'k'));
+            (hypothesisAnswer2.value == currentProblem.problem.basis.total + currentProblem.problem.stamp1 - 1));
         
     }
 };

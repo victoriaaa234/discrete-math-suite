@@ -67,7 +67,7 @@
         <p id="basis-text"></p>
         <div class='wrapper'>
           <form id='basis-step-form'>
-            <div class="row">
+            <!--<div class="row">
               <div class='col s1 form-uname'>
                 <input id='stamp1-input' type='text'></input>
               </div>
@@ -83,7 +83,7 @@
               <div class="col s1 stamp">
                 <div id='total-amount'></div>
               </div>
-            </div>
+            </div>-->
           </form>
           <br />
           <div>
@@ -111,16 +111,17 @@
         <span class="card-title">Inductive Hypothesis</span>
         <form id='inductive-hypothesis-form'>
           <div class="row">
-            <div class="col s3 hypothesis">Assume that P(</div>
-            <div class='col s2 form-uname'>
+            <div class="col s3 hypothesis">Assume that P(i) for </div>
+            <div class='col s1 form-uname'>
               <input id='hypothesis-input-1' type='text'></input>
             </div>
-            <div class="col s2 hypothesis">) ... P(</div>
-            <div class='col s2 form-uname'>
+            <div class="col s1 hypothesis"><=i<=k</div>
+            <div class="col s3 hypothesis">for some k >=</div>
+            <div class='col s1 form-uname'>
               <input id='hypothesis-input-2' type='text'></input>
-            </div>
-            <div class="col s3 hypothesis">) is true.</div>            
+            </div>            
           </div>
+          <p id="hypothesis-text"></p>
         </form>
       </div>
     </div>
@@ -141,7 +142,7 @@
     <div id="inductive" class="card blue-grey darken-1">
       <div class="card-content white-text">
         <span class="card-title">Inductive Step</span>
-        <p id="inductive-step-text">Prove P(k+1) is true.</p>
+        <p id="inductive-step-text"></p>
         <div class='wrapper'>
         </div>
       </div>
@@ -150,7 +151,7 @@
         <p  id="inductive-step-incorrect" class="scale-transition scale-out">
           Incorrect
         </p>
-        <button id="inductive-btn" class="btn waves-effect waves-light align-right" type="submit" name="action">Check
+        <button id="inductive-btn" class="btn waves-effect waves-light align-right" type="submit" name="action">Finished
           <i class="material-icons right">send</i>
         </button>
       </div>
