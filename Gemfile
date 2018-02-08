@@ -28,7 +28,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'curb'
 gem 'sweetalert2'
 # Use nokogiri to parse HTML
-# gem 'nokogiri'
+gem 'nokogiri'
 
 # Use pry for debugging
 gem 'pry'
