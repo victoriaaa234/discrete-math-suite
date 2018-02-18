@@ -59,7 +59,7 @@ var gcd = function(a, b) {
 };
 
 
-const createPostageStamp = function(minstamp = 2,maxstamp = 10) {
+const createPostageStamp = function(minstamp = 2,maxstamp = 7) {
     let problem = {type: 'postage'};
     do {
         problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
@@ -67,6 +67,12 @@ const createPostageStamp = function(minstamp = 2,maxstamp = 10) {
             problem.stamp2 = Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
         } while(problem.stamp1 == problem.stamp2);
     } while(gcd(problem.stamp1,problem.stamp2) != 1);
+
+    if(problem.stamp1 > problem.stamp2) {
+        var temp_stamp = problem.stamp1;
+        problem.stamp1 = problem.stamp2;
+        problem.stamp2 = temp_stamp;
+    }
     
     problem.basis = {}; 
     problem.basis.total = (problem.stamp1 - 1)* (problem.stamp2 - 1);
@@ -75,9 +81,9 @@ const createPostageStamp = function(minstamp = 2,maxstamp = 10) {
     problem.basis.count2 = basisCount[1];
     problem.basis.text = `Prove that there is a combination of ${problem.stamp1} and ${problem.stamp2} cent stamps that totals\
     ${problem.basis.total}`
-
+    
     problem.text = `Use strong induction to prove that any amount of postage that is at least ${problem.basis.total} cents\
-    can be made with ${problem.stamp1} and ${problem.stamp2} cent stamps.`;
+        can be made with ${problem.stamp1} and ${problem.stamp2} cent stamps.`;
     return problem;
 };
 
