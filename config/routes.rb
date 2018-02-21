@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/induction/problem', to: 'induction#test_action'
   get '/profile', to: 'profile#options'
   get '/student_profile', to: 'profile#profilePage'
-  get '/instructor_profile', to: 'profile#instructorPage'
+  get '/instructor_profile', to: 'users#index'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'

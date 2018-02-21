@@ -81,3 +81,15 @@ mappings = [{:logic => 'Double Negation'                     , :mapping => 'Doub
 mappings.each do |mapping|
   Mapping.create!(mapping)
 end
+
+#User.destroy_all
+
+User.create!(name:  "Example User",
+             email: "example@railstutorial.org")
+
+99.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  User.create!(name:  name,
+               email: email)
+end

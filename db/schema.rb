@@ -10,43 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205012104) do
-
-  create_table "input_mappings", force: :cascade do |t|
-    t.string "outbound"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "latex_mappings", force: :cascade do |t|
-    t.string "latex"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20180109072627) do
 
   create_table "mappings", force: :cascade do |t|
     t.string "logic"
     t.string "mapping"
   end
 
-  create_table "response_mappings", force: :cascade do |t|
-    t.string "logic"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.string "email"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
   end
 
 end
