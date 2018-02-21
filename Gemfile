@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #tzinfo for Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+# create samper users
+gem 'faker', '1.7.3'
 
 # gem 'cucumber-rails'
 # Use curb to curl logic.tamu.edu

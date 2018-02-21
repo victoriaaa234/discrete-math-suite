@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180206223123) do
 
   create_table "input_mappings", force: :cascade do |t|
@@ -25,6 +26,9 @@ ActiveRecord::Schema.define(version: 20180206223123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20180109072627) do
+>>>>>>> induction
 
   create_table "practice_problems", force: :cascade do |t|
     t.string "problem_uid"
@@ -54,22 +58,15 @@ ActiveRecord::Schema.define(version: 20180206223123) do
     t.index ["profile_uid"], name: "index_profile_problem_junctions_on_profile_uid"
   end
 
-  create_table "response_mappings", force: :cascade do |t|
-    t.string "logic"
-    t.string "mapping"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.string "email"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email"
   end
 
 end
