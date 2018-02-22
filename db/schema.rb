@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180206223123) do
 
   create_table "input_mappings", force: :cascade do |t|
@@ -19,6 +20,9 @@ ActiveRecord::Schema.define(version: 20180206223123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 20180222003745) do
+>>>>>>> induction
 
   create_table "latex_mappings", force: :cascade do |t|
     t.string "latex"
@@ -67,6 +71,8 @@ ActiveRecord::Schema.define(version: 20180109072627) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_seen_at"
+    t.datetime "last_seen"
   end
 
 end
