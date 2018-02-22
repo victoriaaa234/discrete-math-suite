@@ -24,6 +24,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 # create samper users
 gem 'faker', '1.7.3'
+# track user login time
+gem 'devise_lastseenable'
+gem 'devise'
 
 # gem 'cucumber-rails'
 
