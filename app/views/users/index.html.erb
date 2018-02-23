@@ -41,6 +41,14 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            <% if user.num_attempt.nil? %>
+              <%= "No attempts"%>
+            <% else %>
+              <%= "Number of Attemps:"%>
+              <%= user.num_attempt%>
+              
+            <%end%>
+            
           <% end %>
         </li>
       <% end %>

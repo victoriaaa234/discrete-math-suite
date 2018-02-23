@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223232512) do
+ActiveRecord::Schema.define(version: 20180223234930) do
 
   create_table "mappings", force: :cascade do |t|
     t.string "logic"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180223232512) do
     t.datetime "last_seen"
     t.integer "num_correct"
     t.integer "num_attempt"
+    t.string "image"
   end
 
 end

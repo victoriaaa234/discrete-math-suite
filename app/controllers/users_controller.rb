@@ -37,10 +37,7 @@ class UsersController < ApplicationController
 
   def complete_problem
     user = User.find(session[:user_id])
-    puts("test")
-
     user[:num_attempt] += 1
-    puts(user[:num_attempt])
     user.save()
   end
 
