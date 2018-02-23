@@ -63,10 +63,11 @@ end
 
 group :test do
   gem 'rspec'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
