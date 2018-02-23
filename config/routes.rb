@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'profile#options'
   get '/student_profile', to: 'profile#profilePage'
   get '/instructor_profile', to: 'users#index'
+  put '/user/problems', to: 'users#complete_problem'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
