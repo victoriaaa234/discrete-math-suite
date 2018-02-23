@@ -15,11 +15,15 @@
 <div class="row">
 
   <div class="col s6" style="background-color:pink;">
-    <em><h5>User Name</h5></em>
+    <em><h5>User Information</h5></em>
     <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
+          
+          <%= "User_ID: " %>
+          <%= user.id %>
+          <%= "--" %>
           <%= link_to user.name %>
         </li>
       <% end %>
