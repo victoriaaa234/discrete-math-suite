@@ -1,8 +1,8 @@
-# feature/features/generateProblem.feature
-@wip
+# features/features/generateProblem.feature
 Feature: User can generate a problem
 
+@javascript
 Scenario:
     Given I am on the Induction page
-    When I click on Next
-    Then I am given a new problem
+    When I click on Strong Induction
+    Then I am given a new Strong Induction problem

@@ -5,9 +5,12 @@
 # files.
 
 require 'cucumber/rails'
+<<<<<<< HEAD
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
 require 'rspec/expectations'
+=======
+>>>>>>> induction
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -58,6 +61,7 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+<<<<<<< HEAD
 #Capybara.default_driver = :selenium
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
@@ -76,3 +80,6 @@ end
 Capybara.ignore_hidden_elements = false
 # Capybara.default_max_wait_time = 60 
 Capybara.automatic_reload = true
+=======
+
+>>>>>>> induction

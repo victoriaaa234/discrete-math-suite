@@ -8,8 +8,14 @@ Bundler.require(*Rails.groups)
 
 module DiscreteMathSuite
   class Application < Rails::Application
+<<<<<<< HEAD
 	config.assets.paths << Rails.root.join("app", "assets", "fonts")
     
+=======
+  config.assets.paths << Rails.root.join("app", "assets", "fonts")
+  config.time_zone = 'Central Time (US & Canada)'
+  config.active_record.default_timezone = :local # Or :utc
+>>>>>>> induction
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
