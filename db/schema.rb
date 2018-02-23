@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20180223220149) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "correct"
     t.string "num_correct"
     t.string "num_attempt"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
