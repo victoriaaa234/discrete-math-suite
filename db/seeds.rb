@@ -85,11 +85,17 @@ end
 #User.destroy_all
 
 User.create!(name:  "Example User",
-             email: "example@railstutorial.org")
+             email: "example@railstutorial.org",
+             num_correct: "0",
+             num_attempt: "0")
 
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
+  num_correct = "0"
+  num_attempt = "0"
   User.create!(name:  name,
-               email: email)
+               email: email,
+               num_correct: num_attempt,
+               num_attempt: num_attempt)
 end

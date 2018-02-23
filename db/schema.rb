@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223180708) do
+ActiveRecord::Schema.define(version: 20180223220149) do
 
   create_table "mappings", force: :cascade do |t|
     t.string "logic"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180223180708) do
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.string "email"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
@@ -35,6 +36,9 @@ ActiveRecord::Schema.define(version: 20180223180708) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "correct"
+    t.string "num_correct"
+    t.string "num_attempt"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
