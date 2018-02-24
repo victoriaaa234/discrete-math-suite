@@ -25,6 +25,7 @@
           <%= user.id %>
           <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, method: :delete %>
         <% end %>
         </li>
       <% end %>
@@ -75,6 +76,7 @@
           <%= user.id %>
           <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, method: :delete %>
         <% end %>
         </li>
       <% end %>
@@ -125,6 +127,7 @@
           <%= user.id %>
           <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, method: :delete %>
         <% end %>
         </li>
       <% end %>

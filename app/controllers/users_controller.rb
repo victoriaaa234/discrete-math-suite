@@ -37,11 +37,14 @@ class UsersController < ApplicationController
 
   def complete_problem
     user = User.find(session[:user_id])
-    if (@user.num_attempt.nil?)
-      user[:num_attempt] = 1
-    else
-      user[:num_attempt] += 1
+    user[:num_attempt] += 1
     user.save()
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
 
 end
