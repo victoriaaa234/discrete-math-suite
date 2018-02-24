@@ -86,45 +86,31 @@ User.destroy_all
 
 User.create!(name:  "User Database",
              email: "example@railstutorial.org",
-             section: "1"
-             num_correct: "0",
-             num_attempt: "0")
+             section: "1")
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
-  num_correct = "0"
-  num_attempt = "0"
   section = "1"
   User.create!(name:  name,
                email: email,
-               section: section,
-               num_correct: num_attempt,
-               num_attempt: num_attempt)
+               section: section)
 end
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
-  num_correct = "0"
-  num_attempt = "0"
   section = "2"
   User.create!(name:  name,
                email: email,
-               section: section,
-               num_correct: num_attempt,
-               num_attempt: num_attempt)
+               section: section)
 end
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
-  num_correct = "0"
-  num_attempt = "0"
   section = "3"
   User.create!(name:  name,
                email: email,
-               section: section,
-               num_correct: num_attempt,
-               num_attempt: num_attempt)
+               section: section)
 end
