@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:index]
+  before_action :current_user, only: [:index, :destroy]
   def index
     @users = User.all
   end
@@ -33,6 +33,18 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def complete_problem
+    user = User.find(session[:user_id])
+    user[:num_attempt] += 1
+    user.save()
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
 
 end

@@ -13,6 +13,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180206223123) do
 
   create_table "input_mappings", force: :cascade do |t|
@@ -26,6 +27,9 @@ ActiveRecord::Schema.define(version: 20180222003745) do
 >>>>>>> induction
 =======
 ActiveRecord::Schema.define(version: 20180223180708) do
+>>>>>>> induction
+=======
+ActiveRecord::Schema.define(version: 20180223234930) do
 >>>>>>> induction
 
   create_table "latex_mappings", force: :cascade do |t|
@@ -70,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180109072627) do
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.string "email"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
@@ -84,6 +89,11 @@ ActiveRecord::Schema.define(version: 20180109072627) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "correct"
+    t.integer "num_correct"
+    t.integer "num_attempt"
+    t.string "section"
+    t.string "image"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

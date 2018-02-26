@@ -8,41 +8,157 @@
     </li>
 </ul>
 
-<h4>All Users</h4>
+<h4>All Users: CSCE-222</h4>
+
 
 <ul class="users">
-
 <div class="row">
-
+<em><h5>Section 1</h5></em>
   <div class="col s6" style="background-color:pink;">
-    <em><h5>User Name</h5></em>
+    <em><h6>User Information</h6></em>
     <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
-          <%= link_to user.name %>
+        <% if user.section == "1" %>
+          <%= "User_ID: " %>
+          <%= user.id %>
+          <%= "--" %>
+          <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
         </li>
       <% end %>
     </div>
   </div>
 
   <div class="col s6" style="background-color:#85C1E9;">
-    <em><h5>Lastest Activities</h5></em>
+    <em><h6>Lastest Activities</h6></em>
     <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
+        <% if user.section == "1" %>
           <% if user.last_seen.nil? %>
             <%= "Never logged in" %>
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            <% if user.num_attempt.nil? %>
+              <%= "No attempts"%>
+            <% else %>
+              <%= "Number of Attemps: "%>
+              <%= user.num_attempt%> 
+            <%end%>
+            
           <% end %>
+        <% end %>
         </li>
       <% end %>
     </div>
   </div>
 
 </div>
+</ul>
 
+
+<ul class="users">
+<div class="row">
+<em><h5>Section 2</h5></em>
+  <div class="col s6" style="background-color:pink;">
+    <em><h6>User Information</h6></em>
+    <!-- Items Column -->
+    <div class="cell gradable" style="text-align:left">
+      <% @users.each do |user| %>
+        <li>
+        <% if user.section == "2" %>
+          <%= "User_ID: " %>
+          <%= user.id %>
+          <%= "--" %>
+          <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col s6" style="background-color:#85C1E9;">
+    <em><h6>Lastest Activities</h6></em>
+    <!-- Items Column -->
+    <div class="cell gradable" style="text-align:left">
+      <% @users.each do |user| %>
+        <li>
+        <% if user.section == "2" %>
+          <% if user.last_seen.nil? %>
+            <%= "Never logged in" %>
+          <% else %>
+            <%= "Last seen on: " %>
+            <%= user.last_seen %>
+            <% if user.num_attempt.nil? %>
+              <%= "No attempts"%>
+            <% else %>
+              <%= "Number of Attemps: "%>
+              <%= user.num_attempt%> 
+            <%end%>
+            
+          <% end %>
+        <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+</ul>
+
+
+<ul class="users">
+<div class="row">
+<em><h5>Section 3</h5></em>
+  <div class="col s6" style="background-color:pink;">
+    <em><h6>User Information</h6></em>
+    <!-- Items Column -->
+    <div class="cell gradable" style="text-align:left">
+      <% @users.each do |user| %>
+        <li>
+        <% if user.section == "3" || user.section.nil? %>
+          <%= "User_ID: " %>
+          <%= user.id %>
+          <%= "--" %>
+          <%= link_to user.name, "/student_profile" %>
+          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col s6" style="background-color:#85C1E9;">
+    <em><h6>Lastest Activities</h6></em>
+    <!-- Items Column -->
+    <div class="cell gradable" style="text-align:left">
+      <% @users.each do |user| %>
+        <li>
+        <% if user.section == "3" || user.section.nil? %>
+          <% if user.last_seen.nil? %>
+            <%= "Never logged in" %>
+          <% else %>
+            <%= "Last seen on: " %>
+            <%= user.last_seen %>
+            <% if user.num_attempt.nil? %>
+              <%= "No attempts"%>
+            <% else %>
+              <%= "Number of Attemps: "%>
+              <%= user.num_attempt%> 
+            <%end%>
+            
+          <% end %>
+        <% end %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+
+</div>
 </ul>
