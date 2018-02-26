@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'users/new'
   get 'users/destroy'
+  get 'users/show'
 
   get 'sessions/create'
 
@@ -17,13 +18,14 @@ Rails.application.routes.draw do
   get '/student_profile', to: 'profile#profilePage'
   get '/instructor_profile', to: 'users#index'
   put '/user/problems', to: 'users#complete_problem'
-  get 'users_destroy_path', to:'users#destroy'
+  delete '/instructor_profile', to:'users#destroy'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   post '/logic', to: 'logic#logic'
 
   resources :sessions, only: [:create, :destroy]
+  resources :users
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

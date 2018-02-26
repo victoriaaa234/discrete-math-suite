@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:index, :destroy]
+  before_action :current_user, only: [:index, :show, :destroy]
   def index
     @users = User.all
   end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to "/instructor_profile"
   end
 
 end
