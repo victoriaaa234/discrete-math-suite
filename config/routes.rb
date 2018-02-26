@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'users/new'
+  get 'users/destroy'
 
   get 'sessions/create'
 
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
   get '/student_profile', to: 'profile#profilePage'
   get '/instructor_profile', to: 'users#index'
   put '/user/problems', to: 'users#complete_problem'
+  get 'users_destroy_path', to:'users#destroy'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'

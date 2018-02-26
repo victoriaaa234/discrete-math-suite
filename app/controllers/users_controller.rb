@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:index]
+  before_action :current_user, only: [:index, :destroy]
   def index
     @users = User.all
   end
