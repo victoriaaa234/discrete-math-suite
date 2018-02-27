@@ -1,13 +1,17 @@
 <div class="profile" style="text-align:center">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div id="profile-container" >
-   <image id="profileImage" style="width: 200px; height: auto;" src="<%= @user.image %>" />
+   <image id="profileImage" style="width: 200px; height: 200px;" src="<%= @user.image %>" />
 </div>
       <h2><strong><%= @user.name %></strong></h2>
     <div class="row">
     <div class="col s6 left-align" style="background-color:pink;">
       <h4><%= @user.email%></h4>
-      <h4><%= @user.last_seen%></h4>
+          <% if @user.last_seen.nil? %>
+            <h4><%= "Never logged in" %></h4>
+          <% else %>
+            <h4><%= @user.last_seen%></h4>
+          <% end %>
     </div>
     <div class="col s6 left-align" style="background-color:#85C1E9;">
       <%if @user.num_attempt.nil?%>
