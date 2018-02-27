@@ -3,8 +3,11 @@
 <h4>Currently Logged In</h4>
 <ul class="users">
     <li>
-      <%= link_to current_user.name %>
+      <%= "| " %>
+      <%= current_user.name %>
+      <%= " | " %>
       <%= current_user.last_seen %>
+      <%= " |" %>
     </li>
 </ul>
 
@@ -13,7 +16,7 @@
 
   <div class="row">
     <form class="col s2">
-      <label class="active" for="first_name2">Search</label>
+      <label class="active" for="first_name2">Search User by Email Address</label>
       <input value="" name="email" type="text" class="validate">
         <button class="btn waves-effect waves-light" type="submit">Submit
           <i class="material-icons right">send</i>
@@ -21,6 +24,7 @@
     </form>
   </div>
 
+  
 <ul class="users">
 <div class="row">
 <em><h5>Section 1</h5></em>
@@ -57,14 +61,14 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
-            
+            <%= " | " %>
             <% if user.num_attempt.nil? %>
               <%= "No attempts"%>
             <% else %>
-              <%= "Number of Attemps: "%>
+              <%= "Number of attempts: "%>
               <%= user.num_attempt%> 
             <%end%>
-
+            <%= " | " %>
             <% if user.num_correct.nil? %>
               <%= "None complete"%>
             <% else %>
@@ -117,12 +121,14 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            <%= " | " %>
             <% if user.num_attempt.nil? %>
               <%= "No attempts"%>
             <% else %>
-              <%= "Number of Attemps: "%>
+              <%= "Number of attempts: "%>
               <%= user.num_attempt%> 
             <%end%>
+            <%= " | " %>
             <% if user.num_correct.nil? %>
               <%= "None complete"%>
             <% else %>
@@ -173,12 +179,14 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            <%= " | " %>
             <% if user.num_attempt.nil? %>
               <%= "No attempts"%>
             <% else %>
-              <%= "Number of Attemps: "%>
+              <%= "Number of attempts: "%>
               <%= user.num_attempt%> 
             <%end%>
+            <%= " | " %>
             <% if user.num_correct.nil? %>
               <%= "None complete"%>
             <% else %>
