@@ -62,7 +62,7 @@ group :production do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
