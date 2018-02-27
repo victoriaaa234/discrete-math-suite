@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :current_user, only: [:index, :show, :destroy, :to_section_1]
   def index
     @users = User.all
-    if params[:]
-      
+    if params[:email]
+      @users = User.where(email: params[:email])
     end
   end
 

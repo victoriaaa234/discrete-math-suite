@@ -8,8 +8,18 @@
     </li>
 </ul>
 
+
 <h4>All Users: CSCE-222</h4>
 
+  <div class="row">
+    <form class="col s2">
+      <label class="active" for="first_name2">Search</label>
+      <input value="" name="email" type="text" class="validate">
+        <button class="btn waves-effect waves-light" type="submit">Submit
+          <i class="material-icons right">send</i>
+        </button>
+    </form>
+  </div>
 
 <ul class="users">
 <div class="row">
@@ -24,7 +34,7 @@
           <%= "User_ID: " %>
           <%= user.id %>
           <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
           <%= link_to "| Move to: " %>
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
@@ -87,7 +97,7 @@
           <%= "User_ID: " %>
           <%= user.id %>
           <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
           <%= link_to "| Move to: " %>
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
@@ -147,7 +157,7 @@
           <%= "User_ID: " %>
           <%= user.id %>
           <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
           <%= link_to "| Move to: " %>
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
