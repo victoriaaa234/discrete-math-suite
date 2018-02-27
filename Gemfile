@@ -27,6 +27,7 @@ gem 'faker', '1.7.3'
 # track user login time
 gem 'devise_lastseenable'
 gem 'devise'
+gem 'figaro'
 
 # gem 'cucumber-rails'
 
@@ -62,12 +63,11 @@ group :production do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'selenium-webdriver'
 end
