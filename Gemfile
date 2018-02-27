@@ -27,6 +27,7 @@ gem 'faker', '1.7.3'
 # track user login time
 gem 'devise_lastseenable'
 gem 'devise'
+gem 'figaro'
 
 # gem 'cucumber-rails'
 
