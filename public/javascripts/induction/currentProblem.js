@@ -69,10 +69,11 @@ var currentProblem = {
     loadInductiveStep: function(){ 
         return `Show P(k+1): k+1 can be represented as a*${this.problem.stamp1}+b*${this.problem.stamp2}<br><br>
         Since k >= ${this.problem.basis.total + this.problem.stamp1 - 1}, 
-        P(k-${this.problem.stamp1 - 1}) holds (by inductive hypothesis).<br>
+        P(___) holds (by inductive hypothesis).<br>
         <input type="text" id="induction-input-1"/>
         Form k+1 as follows: <br>
-        Form k-${this.problem.stamp1-1}=a*${this.problem.stamp1}+b*${this.problem.stamp2} (by inductive hypothesis).
+        Form k-___=a*${this.problem.stamp1}+b*${this.problem.stamp2} (by inductive hypothesis).
+        <input type="text" id="induction-input-2"/>
         add 1 x ${this.problem.stamp1}<br>
         k+1 = k-${this.problem.stamp1-1} + ${this.problem.stamp1}<br>
         thus k+1 = a'*${this.problem.stamp1}+b'*${this.problem.stamp2}, where a'=a+1, b'=b<br>

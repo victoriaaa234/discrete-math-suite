@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :current_user, only: [:index, :show, :destroy]
   def index
     @users = User.all
+    if params[:]
+      
+    end
   end
 
   def new

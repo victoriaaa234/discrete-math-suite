@@ -62,7 +62,7 @@ var stepManager = {
             let stamp1Answer = parseInt(document.getElementById(`stamp1-input-${i}`).value);
             let stamp2Answer = parseInt(document.getElementById(`stamp2-input-${i}`).value);
 
-            if((stamp1Answer * x + stamp2Answer * y)  != t + i && (stamp1Answer > 0) && (stamp2Answer > 0)) {
+            if(((stamp1Answer * x + stamp2Answer * y)  != t + i) || (stamp1Answer < 0) || (stamp2Answer < 0)) {
                 return false;
             } 
             
@@ -78,6 +78,16 @@ var stepManager = {
         
     },
     checkInductiveStep: function(){
+        let inductiveStepAnswer1 = document.getElementById('induction-input-1');
+        if(inductiveStepAnswer1 != parseInt(currentProblem.problem.stamp1 - 1)) {
+            return false;
+        }
+        let inductiveStepAnswer2 = document.getElementById('induction-input-2');
+        if(inductiveStepAnswer2 != parseInt(currentProblem.problem.stamp1-1)) {
+            return false;
+        }
+
+        let inductiveStepAnswer3 = document.getElementById('induction-input-3');
         window.location = "/induction?check=true"
     }
 };
