@@ -69,5 +69,4 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'selenium-webdriver'
 end
