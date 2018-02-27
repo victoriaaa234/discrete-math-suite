@@ -8,9 +8,19 @@ class InductionController < ApplicationController
     user = User.find(session[:user_id])
     puts("test")
 
-    
-    user[:num_attempt] += 1
-    puts(user[:num_attempt])
+    if params[:check]
+      if user[:num_correct] == nil
+        user[:num_correct] = 1
+      else
+        user[:num_correct] += 1
+      end
+    end
+
+    if user[:num_attempt] == nil
+      user[:num_attempt] = 1
+    else
+      user[:num_attempt] += 1
+    end
     user.save()
   end
 end

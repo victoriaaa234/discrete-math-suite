@@ -1,4 +1,4 @@
-const createBasisRow = function (x, y, t, i) {
+var createBasisRow = function (x, y, t, i) {
     
     let input1 = document.createElement('input');
     input1.setAttribute('type', 'text');
@@ -47,7 +47,7 @@ const createBasisRow = function (x, y, t, i) {
 
 }
 
-const currentProblem = {
+var currentProblem = {
     problem: {},
     loadProblem: function (type) {
         this.problem = generateProblem(type);
@@ -70,6 +70,7 @@ const currentProblem = {
         return `Show P(k+1): k+1 can be represented as a*${this.problem.stamp1}+b*${this.problem.stamp2}<br><br>
         Since k >= ${this.problem.basis.total + this.problem.stamp1 - 1}, 
         P(k-${this.problem.stamp1 - 1}) holds (by inductive hypothesis).<br>
+        <input type="text" id="induction-input-1"/>
         Form k+1 as follows: <br>
         Form k-${this.problem.stamp1-1}=a*${this.problem.stamp1}+b*${this.problem.stamp2} (by inductive hypothesis).
         add 1 x ${this.problem.stamp1}<br>
