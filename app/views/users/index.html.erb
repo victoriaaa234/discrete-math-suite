@@ -44,11 +44,19 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            
             <% if user.num_attempt.nil? %>
               <%= "No attempts"%>
             <% else %>
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
+            <%end%>
+
+            <% if user.num_correct.nil? %>
+              <%= "None complete"%>
+            <% else %>
+              <%= "Number completed: "%>
+              <%= user.num_correct%> 
             <%end%>
             
           <% end %>
@@ -101,7 +109,12 @@
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
             <%end%>
-            
+            <% if user.num_correct.nil? %>
+              <%= "None complete"%>
+            <% else %>
+              <%= "Number completed: "%>
+              <%= user.num_correct%> 
+            <%end%>
           <% end %>
         <% end %>
         </li>
@@ -152,7 +165,12 @@
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
             <%end%>
-            
+            <% if user.num_correct.nil? %>
+              <%= ", None complete"%>
+            <% else %>
+              <%= ", Number completed: "%>
+              <%= user.num_correct%> 
+            <%end%>
           <% end %>
         <% end %>
         </li>
