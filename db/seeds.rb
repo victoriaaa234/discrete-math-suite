@@ -86,31 +86,38 @@ User.destroy_all
 
 User.create!(name:  "User Database",
              email: "example@railstutorial.org",
-             section: "1")
+             section: "1",
+             image: "https://images.petsmartassets.com/is/image/PetSmart/ARHERO-GrumpyCatTellsAll-20170102?$AR0301$")
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   section = "1"
+  image = "https://images.petsmartassets.com/is/image/PetSmart/ARHERO-GrumpyCatTellsAll-20170102?$AR0301$"
   User.create!(name:  name,
                email: email,
-               section: section)
+               section: section,
+               image: image)
 end
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   section = "2"
+  image = "https://images.petsmartassets.com/is/image/PetSmart/ARHERO-GrumpyCatTellsAll-20170102?$AR0301$"
   User.create!(name:  name,
                email: email,
-               section: section)
+               section: section,
+               image: image)
 end
 
 30.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   section = "3"
+  image = "https://images.petsmartassets.com/is/image/PetSmart/ARHERO-GrumpyCatTellsAll-20170102?$AR0301$"
   User.create!(name:  name,
                email: email,
-               section: section)
+               section: section,
+               image: image)
 end
