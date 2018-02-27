@@ -35,7 +35,9 @@
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
-          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= "| " %>
+          <%= link_to "Delete", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= " |" %>
           <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
@@ -94,7 +96,9 @@
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
-          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= "| " %>
+          <%= link_to "Delete", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= " |" %>
           <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
@@ -148,7 +152,9 @@
           <a href="/user/section?id=<%=user.id%>&section=1">1</a>
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
-          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= "| " %>
+          <%= link_to "Delete", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= " |" %>
           <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
