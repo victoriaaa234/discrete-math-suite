@@ -1,24 +1,31 @@
 <div class="profile" style="text-align:center">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div id="profile-container" >
-   <image id="profileImage" style="width: 200px; height: auto;" src="<%= @user.image %>" />
+   <image id="profileImage" style="width: 200px; height: 200px;" src="<%= @user.image %>" />
 </div>
       <h2><strong><%= @user.name %></strong></h2>
     <div class="row">
     <div class="col s6 left-align" style="background-color:pink;">
-      <h4><%= @user.email%></h4>
-      <h4><%= @user.last_seen%></h4>
+    <em><h4>Account Information</h4></em>
+      <h5><%= @user.email%></h5>
+          <% if @user.section.nil? %>
+            <h5>Section: 4</h5>
+          <% else %>
+              <h5>Section: 
+              <%= @user.section%></h5>
+          <% end %>
     </div>
     <div class="col s6 left-align" style="background-color:#85C1E9;">
+    <em><h4>My Activities</h4></em>
       <%if @user.num_attempt.nil?%>
-        <h4>None Attempted</h4>
+        <h5>None Attempted</h4>
       <%else%>
-        <h4> Attempts: <%= @user.num_attempt%></h4>
+        <h5> Attempts: <%= @user.num_attempt%></h5>
       <%end%>
       <%if @user.num_correct.nil?%>
-        <h4>None Completed</h4>
+        <h5>None Completed</h4>
       <%else%>
-        <h4> Completed: <%= @user.num_correct%></h4>
+        <h5> Completed: <%= @user.num_correct%></h5>
       <%end%>
     </div>
     </div>
