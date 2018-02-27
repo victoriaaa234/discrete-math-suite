@@ -74,8 +74,11 @@ var currentProblem = {
         Form k+1 as follows: <br>
         Form k-___=a*${this.problem.stamp1}+b*${this.problem.stamp2} (by inductive hypothesis).
         <input type="text" id="induction-input-2"/>
-        add 1 x ${this.problem.stamp1}<br>
-        k+1 = k-${this.problem.stamp1-1} + ${this.problem.stamp1}<br>
+        add 1 x ___<br>
+        <input type="text" id="induction-input-3"/>        
+        k+1 = k-___ + ___<br>
+        <input type="text" id="induction-input-4"/>        
+        <input type="text" id="induction-input-5"/>        
         thus k+1 = a'*${this.problem.stamp1}+b'*${this.problem.stamp2}, where a'=a+1, b'=b<br>
         thus, (P(${this.problem.basis.total}),...,P(k))--> P(k+1) for k >= ${this.problem.basis.total + this.problem.stamp1 - 1}<br>
         therefore, P(n) holds for all n>=${this.problem.basis.total} by the principle of mathematical induction`
