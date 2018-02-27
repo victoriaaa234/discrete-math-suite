@@ -4,5 +4,5 @@ Given(/^I run my test Code$/) do
 end
 
 Then(/^My code is on Induction page$/) do
-  expect(page).to have_content("Problem Use mathematical induction")
+  expect(page).to have_content("Basis Step")
 end

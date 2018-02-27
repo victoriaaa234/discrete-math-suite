@@ -70,4 +70,5 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'rails-controller-testing'
 end

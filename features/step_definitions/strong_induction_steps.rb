@@ -4,7 +4,8 @@ Given(/^I am on the Induction page$/) do
 end
 
 When(/^I click on the Strong Induction button$/) do
-	find('load-strong').find(:xpath, 'option[1]').select_option
+	find('load-strong', :text => 'Strong Induction', :visible => false).click
+	#find('load-strong').find(:xpath, 'option[1]').select_option
 
 	#select('Strong Induction', :from=>'dropdown-content', visible: false)
  	#find("input.dropdown-button btn", :visible => false).click
