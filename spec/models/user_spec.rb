@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe UsersController do
-  def test_index
+class UsersController < ActionController::TestCase
+  test "Index action succeeded" do
     get :index
-    assert_equal User.all, assigns(:users)
+    assert_response :success
   end
 end
