@@ -4,15 +4,43 @@
 =======
 <div class="profile" style="text-align:center">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div id="profile-container">
-   <image id="profileImage" src="<%= current_user.image %>" />
+<div id="profile-container" >
+   <image id="profileImage" style="width: 200px; height: 200px;" src="<%= @user.image %>" />
 </div>
+<<<<<<< HEAD
 >>>>>>> induction
 
 <h5>
 	Profile Page
 	Practice Problems
 </h5>
+=======
+      <h2><strong><%= @user.name %></strong></h2>
+    <div class="row">
+    <div class="col s6 left-align" style="background-color:pink;">
+      <h4><%= @user.email%></h4>
+          <% if @user.last_seen.nil? %>
+            <h4><%= "Never logged in" %></h4>
+          <% else %>
+            <h4><%= @user.last_seen%></h4>
+          <% end %>
+    </div>
+    <div class="col s6 left-align" style="background-color:#85C1E9;">
+      <%if @user.num_attempt.nil?%>
+        <h4>None Attempted</h4>
+      <%else%>
+        <h4> Attempts: <%= @user.num_attempt%></h4>
+      <%end%>
+      <%if @user.num_correct.nil?%>
+        <h4>None Completed</h4>
+      <%else%>
+        <h4> Completed: <%= @user.num_correct%></h4>
+      <%end%>
+    </div>
+    </div>
+
+    
+>>>>>>> induction
 
 <!-- <div class="col s3"> -->
 <!-- 	<div class="card small"> -->
@@ -45,6 +73,7 @@
 					</div>
 					<div class="card-action">
 
+<<<<<<< HEAD
 						<!-- We also need to grab whether the currently logged in -->
 						<!-- user has solved these problems yet. -->
 						<!-- Finally, we need to have the links forward you to the -->
@@ -72,3 +101,5 @@
 		</div>
 	</div>
 </div>
+=======
+>>>>>>> induction

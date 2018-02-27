@@ -1,4 +1,4 @@
-const generateProblem = function(type) {
+var generateProblem = function(type) {
     switch (type) {
         case "math": // choose between createSummation, createGeometric and createDivision
             x = Math.random();
@@ -20,7 +20,7 @@ const generateProblem = function(type) {
 };
 
 
-const createSummation = function(minNum=0,maxNum=25){   // a, b and c are integers (decimals not covered in class??)
+var createSummation = function(minNum=0,maxNum=25){   // a, b and c are integers (decimals not covered in class??)
     let problem = {};
     problem.a = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
     problem.b = Math.floor(Math.random() * (maxNum - minNum)) + minNum;
@@ -36,7 +36,7 @@ const createSummation = function(minNum=0,maxNum=25){   // a, b and c are intege
 };
 
 //Finds combination of a and b that equals total, for postage stamp
-const subsetSum = function(a, b, total){
+var subsetSum = function(a, b, total){
     for(let i = 0; i <= total/a; i++){
         for(let j=0; j<=total/b; j++) {
             let sum = a*i + b*j;
@@ -59,7 +59,7 @@ var gcd = function(a, b) {
 };
 
 
-const createPostageStamp = function(minstamp = 2,maxstamp = 7) {
+var createPostageStamp = function(minstamp = 2,maxstamp = 7) {
     let problem = {type: 'postage'};
     do {
         problem.stamp1 =  Math.floor(Math.random()*(maxstamp-minstamp))+minstamp;
@@ -87,7 +87,7 @@ const createPostageStamp = function(minstamp = 2,maxstamp = 7) {
     return problem;
 };
 
-const createGeometric = function(minR=1, maxR=100){
+var createGeometric = function(minR=1, maxR=100){
     let problem = {};
     problem.r = Math.floor(Math.random() * (maxR - minR)) + minR;
     problem.oneMinusR = 1-problem.r;
@@ -106,7 +106,7 @@ const createGeometric = function(minR=1, maxR=100){
     return problem;
 };
 
-const createDivision = function(minB=0, maxB=30){
+var createDivision = function(minB=0, maxB=30){
     let problem = {};
     problem.b = Math.floor(Math.random() * (maxB - minB)) + minB;
     problem.a = Math.floor(Math.random() * (maxB+1 - problem.b+1)) + problem.b+1;
@@ -117,7 +117,7 @@ const createDivision = function(minB=0, maxB=30){
     return problem;
 };
 
-const heightOfTree = function(){
+var heightOfTree = function(){
     let problem = {
 
     }
@@ -125,7 +125,7 @@ const heightOfTree = function(){
     return problem;
 };
 
-const generateSolution = function(problemParameters) {
+var generateSolution = function(problemParameters) {
     switch (problemParameters.type) {
         case "summation":
             return polynomialSoluton(problemParameters);
@@ -142,7 +142,7 @@ const generateSolution = function(problemParameters) {
     }
 };
 
-const summationSolution = function(problemParameters){
+var summationSolution = function(problemParameters){
     let solution = {};
     solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
     solution.hypothesis_text = `Assume that the statement holds when n = k`;
@@ -155,7 +155,7 @@ const summationSolution = function(problemParameters){
     return solution;
 };
 
-const divisionSolution = function(problemParameters){
+var divisionSolution = function(problemParameters){
     let solution = {};
     solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
     solution.hypothesis_text = `Assume that the statement holds when n = k`;
@@ -167,7 +167,7 @@ const divisionSolution = function(problemParameters){
     return solution;
 };
 
-const geometricSolution = function(problemParameters){
+var geometricSolution = function(problemParameters){
     let solution = {};
     solution.basecase_text = `Base Case: Prove that the statements holds true when n = 1`;
     solution.hypothesis_text = `Assume that the statement holds when n = k`;
@@ -180,14 +180,14 @@ const geometricSolution = function(problemParameters){
     return solution;
 };
 
-const strongSolution = function(problemParameters){
+var strongSolution = function(problemParameters){
     let solution = {};
     solution.text = ``;
 
     return solution;
 };
 
-const structuralSolution = function(problemParameters){
+var structuralSolution = function(problemParameters){
     let solution = {};
 
     return solution;

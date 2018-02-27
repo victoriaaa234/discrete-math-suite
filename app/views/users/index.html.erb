@@ -8,8 +8,18 @@
     </li>
 </ul>
 
+
 <h4>All Users: CSCE-222</h4>
 
+  <div class="row">
+    <form class="col s2">
+      <label class="active" for="first_name2">Search</label>
+      <input value="" name="email" type="text" class="validate">
+        <button class="btn waves-effect waves-light" type="submit">Submit
+          <i class="material-icons right">send</i>
+        </button>
+    </form>
+  </div>
 
 <ul class="users">
 <div class="row">
@@ -20,12 +30,13 @@
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
-        <% if user.section == "1" %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
-          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+        <% if user.section == "1" %>     
+          <%= "Move: " %>
+          <a href="/user/section?id=<%=user.id%>&section=1">1</a>
+          <a href="/user/section?id=<%=user.id%>&section=2">2</a>
+          <a href="/user/section?id=<%=user.id%>&section=3">3</a>
+          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
       <% end %>
@@ -44,11 +55,19 @@
           <% else %>
             <%= "Last seen on: " %>
             <%= user.last_seen %>
+            
             <% if user.num_attempt.nil? %>
               <%= "No attempts"%>
             <% else %>
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
+            <%end%>
+
+            <% if user.num_correct.nil? %>
+              <%= "None complete"%>
+            <% else %>
+              <%= "Number completed: "%>
+              <%= user.num_correct%> 
             <%end%>
             
           <% end %>
@@ -67,16 +86,16 @@
 <em><h5>Section 2</h5></em>
   <div class="col s6" style="background-color:pink;">
     <em><h6>User Information</h6></em>
-    <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
         <% if user.section == "2" %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
-          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= "Move: " %>
+          <a href="/user/section?id=<%=user.id%>&section=1">1</a>
+          <a href="/user/section?id=<%=user.id%>&section=2">2</a>
+          <a href="/user/section?id=<%=user.id%>&section=3">3</a>
+          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
       <% end %>
@@ -85,7 +104,6 @@
 
   <div class="col s6" style="background-color:#85C1E9;">
     <em><h6>Lastest Activities</h6></em>
-    <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
@@ -101,7 +119,12 @@
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
             <%end%>
-            
+            <% if user.num_correct.nil? %>
+              <%= "None complete"%>
+            <% else %>
+              <%= "Number completed: "%>
+              <%= user.num_correct%> 
+            <%end%>
           <% end %>
         <% end %>
         </li>
@@ -112,22 +135,21 @@
 </div>
 </ul>
 
-
 <ul class="users">
 <div class="row">
 <em><h5>Section 3</h5></em>
   <div class="col s6" style="background-color:pink;">
     <em><h6>User Information</h6></em>
-    <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
         <% if user.section == "3" || user.section.nil? %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
-          <%= link_to user.name, "/student_profile" %>
-          <%= link_to "| Delete", @user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <%= "Move to: " %>
+          <a href="/user/section?id=<%=user.id%>&section=1">1</a>
+          <a href="/user/section?id=<%=user.id%>&section=2">2</a>
+          <a href="/user/section?id=<%=user.id%>&section=3">3</a>
+          <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
+          <a href="/student_profile?id=<%=user.id%>"><%=user.name%></a>
         <% end %>
         </li>
       <% end %>
@@ -136,7 +158,6 @@
 
   <div class="col s6" style="background-color:#85C1E9;">
     <em><h6>Lastest Activities</h6></em>
-    <!-- Items Column -->
     <div class="cell gradable" style="text-align:left">
       <% @users.each do |user| %>
         <li>
@@ -152,7 +173,12 @@
               <%= "Number of Attemps: "%>
               <%= user.num_attempt%> 
             <%end%>
-            
+            <% if user.num_correct.nil? %>
+              <%= "None complete"%>
+            <% else %>
+              <%= "Number completed: "%>
+              <%= user.num_correct%> 
+            <%end%>
           <% end %>
         <% end %>
         </li>

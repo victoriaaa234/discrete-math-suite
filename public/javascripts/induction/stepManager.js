@@ -1,4 +1,4 @@
-const stepManager = {
+var stepManager = {
     currentStep: 'basis-step',
     basis: new step('basis','basis-step', 'basis-btn'),
     inductiveHypothesis: new step('inductive-hypothesis','inductive-hypothesis', 'hypothesis-btn'),
@@ -44,7 +44,7 @@ const stepManager = {
                 break;
             case 'inductive-step':
                 incorrectText = document.getElementById('inductive-step-incorrect');
-                if (this.inductiveStep.check()) {
+                if (this.checkInductiveStep()) {
                     this.inductiveStep.hideButton();
                     incorrectText.classList.add('scale-out');                                      
                     return;
@@ -62,7 +62,7 @@ const stepManager = {
             let stamp1Answer = parseInt(document.getElementById(`stamp1-input-${i}`).value);
             let stamp2Answer = parseInt(document.getElementById(`stamp2-input-${i}`).value);
 
-            if((stamp1Answer * x + stamp2Answer * y)  != t + i) {
+            if(((stamp1Answer * x + stamp2Answer * y)  != t + i) || (stamp1Answer < 0) || (stamp2Answer < 0)) {
                 return false;
             } 
             
@@ -76,5 +76,18 @@ const stepManager = {
         return ((hypothesisAnswer1.value == currentProblem.problem.basis.total) && 
             (hypothesisAnswer2.value == currentProblem.problem.basis.total + currentProblem.problem.stamp1 - 1));
         
+    },
+    checkInductiveStep: function(){
+        let inductiveStepAnswer1 = document.getElementById('induction-input-1');
+        if(inductiveStepAnswer1 != parseInt(currentProblem.problem.stamp1 - 1)) {
+            return false;
+        }
+        let inductiveStepAnswer2 = document.getElementById('induction-input-2');
+        if(inductiveStepAnswer2 != parseInt(currentProblem.problem.stamp1-1)) {
+            return false;
+        }
+
+        let inductiveStepAnswer3 = document.getElementById('induction-input-3');
+        window.location = "/induction?check=true"
     }
 };

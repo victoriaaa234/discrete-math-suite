@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:index, :destroy]
+  before_action :current_user, only: [:index, :show, :destroy, :to_section_1]
   def index
     @users = User.all
+    if params[:email]
+      @users = User.where(email: params[:email])
+    end
   end
 
   def new
@@ -44,7 +47,15 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to "/instructor_profile"
+  end
+
+  def move_to_section
+    user = User.find(params[:id])
+    user[:section] = params[:section]
+    user.save()
+    flash[:success] = "User updated"
+    redirect_to "/instructor_profile"
   end
 
 end
