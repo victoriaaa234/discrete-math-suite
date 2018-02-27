@@ -26,9 +26,6 @@
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
           <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
         <% end %>
         </li>
@@ -89,9 +86,6 @@
           <a href="/user/section?id=<%=user.id%>&section=2">2</a>
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
           <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
         <% end %>
         </li>
@@ -149,9 +143,6 @@
           <a href="/user/section?id=<%=user.id%>&section=3">3</a>
           <%= link_to "| Delete |", user, :method => :delete, data: { confirm: "Are you sure?" } %>
           <% if user.section == "3" || user.section.nil? %>
-          <%= "User_ID: " %>
-          <%= user.id %>
-          <%= "--" %>
           <%= link_to user.name, "/student_profile" %>
         <% end %>
         </li>
