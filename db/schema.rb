@@ -30,10 +30,7 @@ ActiveRecord::Schema.define(version: 20180223234930) do
     t.integer "num_correct"
     t.integer "num_attempt"
     t.string "image"
-<<<<<<< HEAD
     t.string "section"
-=======
->>>>>>> 21257035c2ac05c5882474d490556fcd4e1535cf
   end
 
 end
