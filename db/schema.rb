@@ -14,6 +14,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180206223123) do
 
   create_table "input_mappings", force: :cascade do |t|
@@ -30,6 +31,9 @@ ActiveRecord::Schema.define(version: 20180223180708) do
 >>>>>>> induction
 =======
 ActiveRecord::Schema.define(version: 20180223234930) do
+>>>>>>> induction
+=======
+ActiveRecord::Schema.define(version: 20180309034736) do
 >>>>>>> induction
 
   create_table "latex_mappings", force: :cascade do |t|
@@ -70,31 +74,7 @@ ActiveRecord::Schema.define(version: 20180109072627) do
     t.index ["profile_uid"], name: "index_profile_problem_junctions_on_profile_uid"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.string "name"
-    t.string "email"
-    t.string "oauth_token"
-    t.datetime "oauth_expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_seen"
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "correct"
-    t.integer "num_correct"
-    t.integer "num_attempt"
-    t.string "section"
-    t.string "image"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'bool' for column 'is_instructor'
 
 end

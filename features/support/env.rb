@@ -62,6 +62,7 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Capybara.default_driver = :selenium
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
@@ -82,4 +83,6 @@ Capybara.ignore_hidden_elements = false
 Capybara.automatic_reload = true
 =======
 
+>>>>>>> induction
+=======
 >>>>>>> induction

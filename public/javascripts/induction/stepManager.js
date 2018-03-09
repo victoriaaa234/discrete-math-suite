@@ -78,16 +78,26 @@ var stepManager = {
         
     },
     checkInductiveStep: function(){
-        let inductiveStepAnswer1 = document.getElementById('induction-input-1');
-        if(inductiveStepAnswer1 != parseInt(currentProblem.problem.stamp1 - 1)) {
+        let inductiveStepAnswer1 = parseInt(document.getElementById('induction-input-1').value);
+        if(inductiveStepAnswer1 != currentProblem.problem.stamp1 - 1) {
             return false;
         }
-        let inductiveStepAnswer2 = document.getElementById('induction-input-2');
+        let inductiveStepAnswer2 = parseInt(document.getElementById('induction-input-2').value);
         if(inductiveStepAnswer2 != parseInt(currentProblem.problem.stamp1-1)) {
             return false;
         }
-
-        let inductiveStepAnswer3 = document.getElementById('induction-input-3');
+        let inductiveStepAnswer3 = parseInt(document.getElementById('induction-input-3').value);
+        if(inductiveStepAnswer3 != parseInt(currentProblem.problem.stamp1)) {
+            return false;
+        }
+        let inductiveStepAnswer4 = parseInt(document.getElementById('induction-input-4').value);
+        if(inductiveStepAnswer4 != parseInt(currentProblem.problem.stamp1-1)) {
+            return false;
+        }
+        let inductiveStepAnswer5 = parseInt(document.getElementById('induction-input-5').value);
+        if(inductiveStepAnswer5 != parseInt(currentProblem.problem.stamp1)) {
+            return false;
+        }
         window.location = "/induction?check=true"
     }
 };
