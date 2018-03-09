@@ -28,12 +28,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    #redirect_to root_url, notice: "You are not authorized to request this page"  unless current_user.admin == true
   end
 
   def update
     @user = User.find(params[:id])
-    #redirect_to root_url, notice: "You are not authorized to request this page"  unless current_user.admin == true
     if @user.update_attributes(user_params)
       # Handle a successful update.
     else
