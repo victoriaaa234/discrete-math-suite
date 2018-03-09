@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def set_last_seen_at
     current_user.update_attribute(:last_seen, Time.zone.now)
-    if(current_user.email=="jiayaoli@tamu.edu")
+    if(current_user.email=="pcr@tamu.edu")
       current_user.update_attribute(:admin, true)
     end
   end
