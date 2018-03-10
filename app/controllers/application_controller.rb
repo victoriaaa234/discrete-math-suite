@@ -24,7 +24,7 @@ end
 
   def authorize_admin
     return unless !current_user.admin?
-    redirect_to "/student_profile", notice: "Admin only"
+    redirect_to root_path, notice: "Admin only"
   end
 
 end
