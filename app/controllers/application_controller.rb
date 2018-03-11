@@ -9,9 +9,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   rescue ActiveRecord::RecordNotFound
   end
-<<<<<<< HEAD
-end
-=======
 
   before_action :set_last_seen_at, if: proc { !current_user.nil? }
 
@@ -28,4 +25,3 @@ end
   end
 
 end
->>>>>>> induction
